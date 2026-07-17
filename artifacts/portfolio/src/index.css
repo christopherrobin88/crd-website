@@ -400,6 +400,14 @@
   color: #202a30;
 }
 
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: clamp(2.5rem, 10vw, 3.25rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+}
+
 .hero-title-accent {
   font-style: italic;
   color: #c39b46;
