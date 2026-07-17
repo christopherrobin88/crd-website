@@ -1,0 +1,18 @@
+{
+  "slug": "boutique-essentials",
+  "cover": {
+    "type": "cover",
+    "asset": "amenity-range-cover.jpg"
+  },
+  "groups": [
+    {
+      "key": "AmenityRange",
+      "blocks": [
+        {
+          "type": "cover",
+          "asset": "amenity-range-cover.jpg"
+        }
+      ]
+    }
+  ]
+}

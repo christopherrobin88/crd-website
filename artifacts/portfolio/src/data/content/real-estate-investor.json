@@ -1,0 +1,57 @@
+{
+  "slug": "real-estate-investor",
+  "reviewed": true,
+  "cover": {
+    "type": "cover",
+    "asset": "april-may-2020-cover.jpg"
+  },
+  "groups": [
+    {
+      "key": "JuneJuly2019/RiskyBusiness",
+      "blocks": [
+        {
+          "type": "cover",
+          "asset": "june-july-2019-cover.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "june-july-2019-risky-business-spread-01-page-l.jpg",
+          "right": "june-july-2019-risky-business-spread-01-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "june-july-2019-risky-business-spread-02-page-l.jpg",
+          "right": "june-july-2019-risky-business-spread-02-page-r.jpg"
+        }
+      ]
+    },
+    {
+      "key": "DecJan2020",
+      "blocks": [
+        {
+          "type": "cover",
+          "asset": "dec-jan-2020-cover.jpg"
+        }
+      ]
+    },
+    {
+      "key": "AprilMay2020/HowToBeatCovid19",
+      "blocks": [
+        {
+          "type": "cover",
+          "asset": "april-may-2020-cover.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "april-may-2020-how-to-beat-covid-19-spread-01-page-l.jpg",
+          "right": "april-may-2020-how-to-beat-covid-19-spread-01-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "april-may-2020-how-to-beat-covid-19-spread-02-page-l.jpg",
+          "right": "april-may-2020-how-to-beat-covid-19-spread-02-page-r.jpg"
+        }
+      ]
+    }
+  ]
+}

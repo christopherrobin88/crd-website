@@ -1,0 +1,271 @@
+{
+  "slug": "playboy-south-africa",
+  "reviewed": true,
+  "cover": {
+    "type": "cover",
+    "asset": "march-2015-cover-01.jpg"
+  },
+  "groups": [
+    {
+      "key": "March2015",
+      "blocks": [
+        {
+          "type": "cover",
+          "asset": "march-2015-cover-01.jpg"
+        }
+      ]
+    },
+    {
+      "key": "March2015/NickKroll20Q",
+      "blocks": [
+        {
+          "type": "spread",
+          "left": "march-2015-nick-kroll-20q-spread-01-page-l.jpg",
+          "right": "march-2015-nick-kroll-20q-spread-01-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "march-2015-nick-kroll-20q-spread-02-page-l.jpg",
+          "right": "march-2015-nick-kroll-20q-spread-02-page-r.jpg"
+        },
+        {
+          "type": "page",
+          "asset": "march-2015-nick-kroll-20q-page-05.jpg"
+        }
+      ]
+    },
+    {
+      "key": "March2015/ClassicInterviewMarshallMcLuhan",
+      "blocks": [
+        {
+          "type": "spread",
+          "left": "march-2015-classic-interview-marshall-mc-luhan-spread-01-page-l.jpg",
+          "right": "march-2015-classic-interview-marshall-mc-luhan-spread-01-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "march-2015-classic-interview-marshall-mc-luhan-spread-02-page-l.jpg",
+          "right": "march-2015-classic-interview-marshall-mc-luhan-spread-02-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "march-2015-classic-interview-marshall-mc-luhan-spread-03-page-l.jpg",
+          "right": "march-2015-classic-interview-marshall-mc-luhan-spread-03-page-r.jpg"
+        }
+      ]
+    },
+    {
+      "key": "March2015/RebootCamp",
+      "blocks": [
+        {
+          "type": "spread",
+          "left": "march-2015-reboot-camp-spread-01-page-l.jpg",
+          "right": "march-2015-reboot-camp-spread-01-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "march-2015-reboot-camp-spread-02-page-l.jpg",
+          "right": "march-2015-reboot-camp-spread-02-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "march-2015-reboot-camp-spread-03-page-l.jpg",
+          "right": "march-2015-reboot-camp-spread-03-page-r.jpg"
+        }
+      ]
+    },
+    {
+      "key": "March2015/ArtInTheCity",
+      "blocks": [
+        {
+          "type": "spread",
+          "left": "march-2015-art-in-the-city-spread-01-page-l.jpg",
+          "right": "march-2015-art-in-the-city-spread-01-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "march-2015-art-in-the-city-spread-02-page-l.jpg",
+          "right": "march-2015-art-in-the-city-spread-02-page-r.jpg"
+        }
+      ]
+    },
+    {
+      "key": "March2015/CarsOfTheYear",
+      "blocks": [
+        {
+          "type": "spread",
+          "left": "march-2015-cars-of-the-year-spread-01-page-l.jpg",
+          "right": "march-2015-cars-of-the-year-spread-01-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "march-2015-cars-of-the-year-spread-02-page-l.jpg",
+          "right": "march-2015-cars-of-the-year-spread-02-page-r.jpg"
+        }
+      ]
+    },
+    {
+      "key": "March2015/CommemorativeArchitecture",
+      "blocks": [
+        {
+          "type": "spread",
+          "left": "march-2015-commemorative-architecture-spread-01-page-l.jpg",
+          "right": "march-2015-commemorative-architecture-spread-01-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "march-2015-commemorative-architecture-spread-02-page-l.jpg",
+          "right": "march-2015-commemorative-architecture-spread-02-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "march-2015-commemorative-architecture-spread-03-page-l.jpg",
+          "right": "march-2015-commemorative-architecture-spread-03-page-r.jpg"
+        }
+      ]
+    },
+    {
+      "key": "March2015/BloodyGood",
+      "blocks": [
+        {
+          "type": "page",
+          "asset": "march-2015-bloody-good-page-01.jpg"
+        }
+      ]
+    },
+    {
+      "key": "March2015/MachoNachos",
+      "blocks": [
+        {
+          "type": "page",
+          "asset": "march-2015-macho-nachos-page-01.jpg"
+        }
+      ]
+    },
+    {
+      "key": "March2015/CuttingEdge",
+      "blocks": [
+        {
+          "type": "page",
+          "asset": "march-2015-cutting-edge-page-01.jpg"
+        }
+      ]
+    },
+    {
+      "key": "April2015/BadassEricChurch",
+      "blocks": [
+        {
+          "type": "spread",
+          "left": "april-2015-badass-eric-church-spread-01-page-l.jpg",
+          "right": "april-2015-badass-eric-church-spread-01-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "april-2015-badass-eric-church-spread-02-page-l.jpg",
+          "right": "april-2015-badass-eric-church-spread-02-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "april-2015-badass-eric-church-spread-03-page-l.jpg",
+          "right": "april-2015-badass-eric-church-spread-03-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "april-2015-badass-eric-church-spread-04-page-l.jpg",
+          "right": "april-2015-badass-eric-church-spread-04-page-r.jpg"
+        }
+      ]
+    },
+    {
+      "key": "April2015/ClassicInterviewFrankSinatra",
+      "blocks": [
+        {
+          "type": "spread",
+          "left": "april-2015-classic-interview-frank-sinatra-spread-01-page-l.jpg",
+          "right": "april-2015-classic-interview-frank-sinatra-spread-01-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "april-2015-classic-interview-frank-sinatra-spread-02-page-l.jpg",
+          "right": "april-2015-classic-interview-frank-sinatra-spread-02-page-r.jpg"
+        }
+      ]
+    },
+    {
+      "key": "April2015/DavidWalton20Q",
+      "blocks": [
+        {
+          "type": "spread",
+          "left": "april-2015-david-walton-20q-spread-01-page-l.jpg",
+          "right": "april-2015-david-walton-20q-spread-01-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "april-2015-david-walton-20q-spread-02-page-l.jpg",
+          "right": "april-2015-david-walton-20q-spread-02-page-r.jpg"
+        }
+      ]
+    },
+    {
+      "key": "April2015/WinnersLosersAndLegends",
+      "blocks": [
+        {
+          "type": "spread",
+          "left": "april-2015-winners-losers-and-legends-spread-01-page-l.jpg",
+          "right": "april-2015-winners-losers-and-legends-spread-01-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "april-2015-winners-losers-and-legends-spread-02-page-l.jpg",
+          "right": "april-2015-winners-losers-and-legends-spread-02-page-r.jpg"
+        }
+      ]
+    },
+    {
+      "key": "April2015/RollingThunder",
+      "blocks": [
+        {
+          "type": "spread",
+          "left": "april-2015-rolling-thunder-spread-01-page-l.jpg",
+          "right": "april-2015-rolling-thunder-spread-01-page-r.jpg"
+        }
+      ]
+    },
+    {
+      "key": "April2015/Cubism",
+      "blocks": [
+        {
+          "type": "page",
+          "asset": "april-2015-cubism-page-01.jpg"
+        }
+      ]
+    },
+    {
+      "key": "April2015/TuneUpTime",
+      "blocks": [
+        {
+          "type": "page",
+          "asset": "april-2015-tune-up-time-page-01.jpg"
+        }
+      ]
+    },
+    {
+      "key": "April2015/UncommonSense",
+      "blocks": [
+        {
+          "type": "page",
+          "asset": "april-2015-uncommon-sense-page-01.jpg"
+        }
+      ]
+    },
+    {
+      "key": "April2015/VivaPuglia",
+      "blocks": [
+        {
+          "type": "page",
+          "asset": "april-2015-viva-puglia-page-01.jpg"
+        }
+      ]
+    }
+  ]
+}

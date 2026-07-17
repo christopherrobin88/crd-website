@@ -1,0 +1,50 @@
+{
+  "slug": "behelm",
+  "cover": {
+    "type": "cover",
+    "asset": "logo-system-cover.jpg"
+  },
+  "groups": [
+    {
+      "key": "LogoSystem",
+      "blocks": [
+        {
+          "type": "cover",
+          "asset": "logo-system-cover.jpg"
+        },
+        {
+          "type": "page",
+          "asset": "logo-system-page-01.jpg"
+        },
+        {
+          "type": "page",
+          "asset": "logo-system-page-02.jpg"
+        },
+        {
+          "type": "page",
+          "asset": "logo-system-page-03.jpg"
+        },
+        {
+          "type": "page",
+          "asset": "logo-system-page-04.jpg"
+        },
+        {
+          "type": "page",
+          "asset": "logo-system-page-05.jpg"
+        },
+        {
+          "type": "page",
+          "asset": "logo-system-page-06.jpg"
+        },
+        {
+          "type": "page",
+          "asset": "logo-system-page-07.jpg"
+        },
+        {
+          "type": "page",
+          "asset": "logo-system-page-08.jpg"
+        }
+      ]
+    }
+  ]
+}

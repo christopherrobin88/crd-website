@@ -1,0 +1,68 @@
+{
+  "slug": "kruger-magazine",
+  "cover": {
+    "type": "cover",
+    "asset": "issue-29-cover-01.jpg"
+  },
+  "groups": [
+    {
+      "key": "Issue29",
+      "blocks": [
+        {
+          "type": "cover",
+          "asset": "issue-29-cover-01.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "issue-29-spread-01-page-l.jpg",
+          "right": "issue-29-spread-01-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "issue-29-spread-02-page-l.jpg",
+          "right": "issue-29-spread-02-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "issue-29-spread-03-page-l.jpg",
+          "right": "issue-29-spread-03-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "issue-29-spread-04-page-l.jpg",
+          "right": "issue-29-spread-04-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "issue-29-spread-05-page-l.jpg",
+          "right": "issue-29-spread-05-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "issue-29-spread-06-page-l.jpg",
+          "right": "issue-29-spread-06-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "issue-29-spread-07-page-l.jpg",
+          "right": "issue-29-spread-07-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "issue-29-spread-08-page-l.jpg",
+          "right": "issue-29-spread-08-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "issue-29-spread-09-page-l.jpg",
+          "right": "issue-29-spread-09-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "issue-29-spread-10-page-l.jpg",
+          "right": "issue-29-spread-10-page-r.jpg"
+        }
+      ]
+    }
+  ]
+}

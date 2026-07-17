@@ -1,0 +1,96 @@
+{
+  "slug": "checkers-retail",
+  "reviewed": true,
+  "cover": {
+    "type": "cover",
+    "asset": "month-end-may-leaflet-cover.jpeg"
+  },
+  "groups": [
+    {
+      "key": "MonthEndMayLeaflet",
+      "blocks": [
+        {
+          "type": "cover",
+          "asset": "month-end-may-leaflet-cover.jpeg"
+        },
+        {
+          "type": "spread",
+          "left": "month-end-may-leaflet-spread-01-page-l.jpeg",
+          "right": "month-end-may-leaflet-spread-01-page-r.jpeg"
+        },
+        {
+          "type": "spread",
+          "left": "month-end-may-leaflet-spread-02-page-l.jpeg",
+          "right": "month-end-may-leaflet-spread-02-page-r.jpeg"
+        },
+        {
+          "type": "page",
+          "asset": "month-end-may-leaflet-page-06.jpeg"
+        }
+      ]
+    },
+    {
+      "key": "NewYearsXtra",
+      "blocks": [
+        {
+          "type": "cover",
+          "asset": "new-years-xtra-cover.jpeg"
+        },
+        {
+          "type": "spread",
+          "left": "new-years-xtra-spread-01-page-l.jpeg",
+          "right": "new-years-xtra-spread-01-page-r.jpeg"
+        },
+        {
+          "type": "page",
+          "asset": "new-years-xtra-page-04.jpeg"
+        }
+      ]
+    },
+    {
+      "key": "FoodsXXL",
+      "blocks": [
+        {
+          "type": "page",
+          "asset": "foods-xxl-01.jpg"
+        }
+      ]
+    },
+    {
+      "key": "BakingEssentials",
+      "blocks": [
+        {
+          "type": "page",
+          "asset": "baking-essentials-01.jpg"
+        }
+      ]
+    },
+    {
+      "key": "GilletteOldSpice",
+      "blocks": [
+        {
+          "type": "page",
+          "asset": "gillette-old-spice-01.jpg"
+        }
+      ]
+    },
+    {
+      "key": "McCainMealTime",
+      "blocks": [
+        {
+          "type": "page",
+          "asset": "mc-cain-meal-time-01.jpg"
+        }
+      ]
+    },
+    {
+      "key": "PresidentCheese",
+      "blocks": [
+        {
+          "type": "page",
+          "asset": "president-cheese-01.jpg"
+        }
+      ]
+    }
+  ]
+}

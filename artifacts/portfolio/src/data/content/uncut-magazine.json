@@ -1,0 +1,23 @@
+{
+  "slug": "uncut-magazine",
+  "cover": {
+    "type": "cover",
+    "asset": "issue-94-cover.jpg"
+  },
+  "groups": [
+    {
+      "key": "Issue94",
+      "blocks": [
+        {
+          "type": "cover",
+          "asset": "issue-94-cover.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "issue-94-spread-01.jpg",
+          "right": "issue-94-spread-02.jpg"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "build": {
+    "command": "pnpm install --no-frozen-lockfile && pnpm --filter @workspace/portfolio run build",
+    "destination": "artifacts/portfolio/dist/public"
+  }
+}

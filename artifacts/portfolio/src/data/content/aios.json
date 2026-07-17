@@ -1,0 +1,34 @@
+{
+  "slug": "aios",
+  "cover": {
+    "type": "cover",
+    "asset": "option-03-identity.png"
+  },
+  "groups": [
+    {
+      "key": "SystemsConcepts",
+      "blocks": [
+        {
+          "type": "page",
+          "asset": "concept-02-identity.png"
+        },
+        {
+          "type": "page",
+          "asset": "concept-03-identity.png"
+        },
+        {
+          "type": "page",
+          "asset": "concept-05-identity.png"
+        },
+        {
+          "type": "page",
+          "asset": "option-03-identity.png"
+        },
+        {
+          "type": "page",
+          "asset": "orchestration-dashboard.png"
+        }
+      ]
+    }
+  ]
+}

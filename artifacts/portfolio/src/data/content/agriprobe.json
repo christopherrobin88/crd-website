@@ -1,0 +1,109 @@
+{
+  "slug": "agriprobe",
+  "reviewed": true,
+  "cover": {
+    "type": "cover",
+    "asset": "vol-21-no-1-cover.jpg"
+  },
+  "groups": [
+    {
+      "key": "Vol20No3/ShearingFeedlotLambs",
+      "blocks": [
+        {
+          "type": "cover",
+          "asset": "vol-20-no-3-cover.jpg"
+        },
+        {
+          "type": "page",
+          "asset": "vol-20-no-3-shearing-feedlot-lambs-page-01.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "vol-20-no-3-shearing-feedlot-lambs-spread-01-page-l.jpg",
+          "right": "vol-20-no-3-shearing-feedlot-lambs-spread-01-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "vol-20-no-3-shearing-feedlot-lambs-spread-02-page-l.jpg",
+          "right": "vol-20-no-3-shearing-feedlot-lambs-spread-02-page-r.jpg"
+        }
+      ]
+    },
+    {
+      "key": "Vol20No4/RideTheWaveOfGoodwill",
+      "blocks": [
+        {
+          "type": "cover",
+          "asset": "vol-20-no-4-cover.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "vol-20-no-4-ride-the-wave-of-goodwill-spread-01-page-l.jpg",
+          "right": "vol-20-no-4-ride-the-wave-of-goodwill-spread-01-page-r.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "vol-20-no-4-ride-the-wave-of-goodwill-spread-02-page-l.jpg",
+          "right": "vol-20-no-4-ride-the-wave-of-goodwill-spread-02-page-r.jpg"
+        }
+      ]
+    },
+    {
+      "key": "Vol21No1/KlimaatsveranderingEnSkaapboerdery",
+      "blocks": [
+        {
+          "type": "cover",
+          "asset": "vol-21-no-1-cover.jpg"
+        },
+        {
+          "type": "page",
+          "asset": "vol-21-no-1-klimaatsverandering-skaapboerdery-page-01.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "vol-21-no-1-klimaatsverandering-skaapboerdery-spread-01-page-l.jpg",
+          "right": "vol-21-no-1-klimaatsverandering-skaapboerdery-spread-01-page-r.jpg"
+        }
+      ]
+    },
+    {
+      "key": "Vol21No2/ServiceExcellenceAwards",
+      "blocks": [
+        {
+          "type": "cover",
+          "asset": "vol-21-no-2-cover.jpg"
+        },
+        {
+          "type": "page",
+          "asset": "vol-21-no-2-service-excellence-awards-page-01.jpg"
+        },
+        {
+          "type": "spread",
+          "left": "vol-21-no-2-service-excellence-awards-spread-01-page-l.jpg",
+          "right": "vol-21-no-2-service-excellence-awards-spread-01-page-r.jpg"
+        },
+        {
+          "type": "page",
+          "asset": "vol-21-no-2-service-excellence-awards-page-04.jpg"
+        }
+      ]
+    },
+    {
+      "key": "RecentCovers",
+      "blocks": [
+        {
+          "type": "cover",
+          "asset": "vol-21-no-3-cover.jpg"
+        },
+        {
+          "type": "cover",
+          "asset": "vol-22-no-1-cover.jpg"
+        },
+        {
+          "type": "cover",
+          "asset": "vol-22-no-2-cover.jpg"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "slug": "leisure-boating",
+  "cover": {
+    "type": "cover",
+    "asset": "cover-03.png"
+  },
+  "groups": [
+    {
+      "key": "_root",
+      "blocks": [
+        {
+          "type": "cover",
+          "asset": "cover-03.png"
+        },
+        {
+          "type": "page",
+          "asset": "spread-01.png"
+        },
+        {
+          "type": "cover",
+          "asset": "cover-02.png"
+        },
+        {
+          "type": "page",
+          "asset": "spread-02.png"
+        },
+        {
+          "type": "cover",
+          "asset": "cover-01.png"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,373 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 600;
+  src: url("@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2")
+    format("woff2-variations");
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url("@fontsource-variable/playfair-display/files/playfair-display-latin-wght-normal.woff2")
+    format("woff2-variations");
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  font-style: italic;
+  font-display: swap;
+  font-weight: 500;
+  src: url("@fontsource-variable/playfair-display/files/playfair-display-latin-wght-italic.woff2")
+    format("woff2-variations");
+}
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-popover-border: hsl(var(--popover-border));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-border: var(--primary-border);
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary-border: var(--secondary-border);
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-muted-border: var(--muted-border);
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-border: var(--accent-border);
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-destructive-border: var(--destructive-border);
+
+  /* CRD brand palette — direct utilities (bg-crd-forest, text-crd-gold, border-crd-gold, …)
+     Values tuned to the approved website_mockup.png per Christopher (2026-07-04):
+     ink darker, gold deeper, parchment warmer than the Bible v0.6 hexes.
+     Sampled from the mockup, not guessed — see scope.md status log. */
+  --color-crd-forest: #0E2320;
+  --color-crd-moss: #6B7A3D;
+  --color-crd-parchment: #F4ECD9;
+  --color-crd-gold: #A57C33;
+
+  --font-sans: 'DM Sans', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  /* CRD brand source tokens (Brand Bible v0.6) */
+  --crd-forest-blue-green: #12322F;
+  --crd-moss-green: #6B7A3D;
+  --crd-parchment-beige: #F2EDE0;
+  --crd-muted-gold: #C7A35A;
+  --crd-font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --crd-font-body: "DM Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+
+  /* Semantic tokens mapped to the CRD palette (mockup-tuned, see above).
+     Default = warm parchment canvas, deep forest ink. */
+  --background: 42 55% 90%; /* #F4ECD9 - warm parchment */
+  --foreground: 171 43% 10%; /* #0E2320 - deep forest ink */
+
+  --card: 42 55% 93%; /* lifted parchment */
+  --card-foreground: 171 43% 10%;
+  --card-border: 39 27% 73%; /* soft khaki-gold hairline (mockup card border) */
+
+  --popover: 42 55% 93%;
+  --popover-foreground: 171 43% 10%;
+  --popover-border: 39 27% 73%;
+
+  --primary: 171 43% 10%; /* Forest ink */
+  --primary-foreground: 42 55% 90%; /* Parchment */
+
+  --secondary: 43 30% 85%; /* warm sand */
+  --secondary-foreground: 171 43% 10%;
+
+  --muted: 43 30% 87%;
+  --muted-foreground: 168 12% 26%; /* dark desaturated forest */
+
+  --accent: 75 33% 36%; /* #6B7A3D - Moss Green */
+  --accent-foreground: 42 55% 90%;
+
+  --destructive: 0 70% 45%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 40 30% 78%; /* gold-tinted hairline */
+  --input: 40 30% 78%;
+  --ring: 38 53% 42%; /* deep muted gold */
+
+  --radius: 0rem; /* sharp, editorial print feel */
+}
+
+.dark {
+  /* CRD secondary combination: Forest Blue-Green canvas, Parchment ink */
+  --background: 174 47% 13%; /* Forest */
+  --foreground: 43 41% 91%;  /* Parchment */
+
+  --card: 174 40% 16%;
+  --card-foreground: 43 41% 91%;
+  --card-border: 40 30% 45%;
+
+  --popover: 174 40% 16%;
+  --popover-foreground: 43 41% 91%;
+  --popover-border: 40 30% 45%;
+
+  --primary: 43 41% 91%;
+  --primary-foreground: 174 47% 13%;
+
+  --secondary: 174 30% 22%;
+  --secondary-foreground: 43 41% 91%;
+
+  --muted: 174 30% 22%;
+  --muted-foreground: 43 20% 75%;
+
+  --accent: 75 30% 50%; /* Moss, lifted for dark */
+  --accent-foreground: 174 47% 13%;
+
+  --border: 174 30% 26%;
+  --input: 174 30% 26%;
+  --ring: 40 49% 57%; /* Gold */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  /* Anything that escapes the layout clips instead of creating a horizontal
+     scrollbar; clip (unlike hidden) also keeps a new scroll container from
+     being established. */
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground selection:bg-accent selection:text-accent-foreground;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-medium tracking-tight;
+    /* Display sizes at narrow viewports: allow shrinking inside flex/grid
+       tracks and break within a word only when the alternative is overflow. */
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+}
+
+
+/**
+ * Using the elevate system.
+ * Automatic contrast adjustment.
+ *
+ * <element className="hover-elevate" />
+ * <element className="active-elevate-2" />
+ *
+ * // Using the tailwind utility when a data attribute is "on"
+ * <element className="toggle-elevate data-[state=on]:toggle-elevated" />
+ * // Or manually controlling the toggle state
+ * <element className="toggle-elevate toggle-elevated" />
+ *
+ * Elevation systems have to handle many states.
+ * - not-hovered, vs. hovered vs. active  (three mutually exclusive states)
+ * - toggled or not
+ * - focused or not (this is not handled with these utilities)
+ *
+ * Even without handling focused or not, this is six possible combinations that
+ * need to be distinguished from eachother visually.
+ */
+@layer utilities {
+
+  /* Hide ugly search cancel button in Chrome until we can style it properly */
+  input[type="search"]::-webkit-search-cancel-button {
+    @apply hidden;
+  }
+
+  /* Placeholder styling for contentEditable div */
+  [contenteditable][data-placeholder]:empty::before {
+    content: attr(data-placeholder);
+    color: hsl(var(--muted-foreground));
+    pointer-events: none;
+  }
+
+  /* .no-default-hover-elevate/no-default-active-elevate is an escape hatch so consumers of
+   * buttons/badges can remove the automatic brightness adjustment on interactions
+   * and program their own. */
+  .no-default-hover-elevate {}
+
+  .no-default-active-elevate {}
+
+
+  /**
+   * Toggleable backgrounds go behind the content. Hoverable/active goes on top.
+   * This way they can stack/compound. Both will overlap the parent's borders!
+   * So borders will be automatically adjusted both on toggle, and hover/active,
+   * and they will be compounded.
+   */
+  .toggle-elevate::before,
+  .toggle-elevate-2::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    /*border-radius: inherit;   match rounded corners */
+    border-radius: inherit;
+    z-index: -1;
+    /* sits behind content but above backdrop */
+  }
+
+  .toggle-elevate.toggle-elevated::before {
+    background-color: var(--elevate-2);
+  }
+
+  /* If there's a 1px border, adjust the inset so that it covers that parent's border */
+  .border.toggle-elevate::before {
+    inset: -1px;
+  }
+
+  /* Does not work on elements with overflow:hidden! */
+  .hover-elevate:not(.no-default-hover-elevate),
+  .active-elevate:not(.no-default-active-elevate),
+  .hover-elevate-2:not(.no-default-hover-elevate),
+  .active-elevate-2:not(.no-default-active-elevate) {
+    position: relative;
+    z-index: 0;
+  }
+
+  .hover-elevate:not(.no-default-hover-elevate)::after,
+  .active-elevate:not(.no-default-active-elevate)::after,
+  .hover-elevate-2:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:not(.no-default-active-elevate)::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    /*border-radius: inherit;   match rounded corners */
+    border-radius: inherit;
+    z-index: 999;
+    /* sits in front of content */
+  }
+
+  .hover-elevate:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate:active:not(.no-default-active-elevate)::after {
+    background-color: var(--elevate-1);
+  }
+
+  .hover-elevate-2:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:active:not(.no-default-active-elevate)::after {
+    background-color: var(--elevate-2);
+  }
+
+  /* If there's a 1px border, adjust the inset so that it covers that parent's border */
+  .border.hover-elevate:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate:not(.no-active-interaction-elevate)::after,
+  .border.hover-elevate-2:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate-2:not(.no-active-interaction-elevate)::after,
+  .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
+    inset: -1px;
+  }
+}
+
+/* ---- CRD diagram language (src/components/diagrams/) ------------------- */
+/* Ambient motion for the editorial diagrams. Every animation here is
+   decorative-only and disabled wholesale under prefers-reduced-motion. */
+@keyframes crd-diagram-hub-dash {
+  to { stroke-dashoffset: -60; }
+}
+@keyframes crd-diagram-breathe {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+.crd-diagram-hub-ring {
+  animation: crd-diagram-hub-dash 26s linear infinite;
+}
+.crd-diagram-crown {
+  animation: crd-diagram-breathe 4.5s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .crd-diagram-hub-ring,
+  .crd-diagram-crown {
+    animation: none;
+  }
+}
+
+/* ---- CRD button + link motion (ported from the crd-automation-landing
+   concept: gentle lift on hover, press settles, nav underline sweeps). ---- */
+.crd-lift {
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.crd-lift:hover {
+  transform: translateY(-2px);
+}
+.crd-lift:active {
+  transform: translateY(0);
+}
+.crd-underline-sweep {
+  position: relative;
+}
+/* Sweep is transform-only (scaleX), never a layout property, so it stays
+   compositor-friendly. */
+.crd-underline-sweep::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s ease;
+}
+.crd-underline-sweep:hover::after {
+  transform: scaleX(1);
+}
+/* Keyboard focus shows its state immediately — no sweep delay. */
+.crd-underline-sweep:focus-visible::after {
+  transform: scaleX(1);
+  transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .crd-lift,
+  .crd-lift:hover,
+  .crd-lift:active {
+    transform: none;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+  .crd-underline-sweep::after {
+    transition: none;
+  }
+}
