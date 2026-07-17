@@ -22,19 +22,19 @@ import { useInViewOnce, usePrefersReducedMotion } from "./hooks";
  */
 
 const INPUTS = [
-  { label: "BRIEF", y: 76, d: "M128,76 C195,80 225,130 258,158" },
+  { label: "BRIEF", y: 76, d: "M128,76 C195,80 236,130 272,158" },
   { label: "BRAND ASSETS", y: 156, d: "M128,156 C190,156 225,172 254,182" },
   { label: "CONTENT", y: 236, d: "M128,236 C190,234 228,220 256,210" },
-  { label: "CLIENT FEEDBACK", y: 316, d: "M128,316 C195,300 228,262 260,236" },
+  { label: "CLIENT FEEDBACK", y: 316, d: "M128,316 C195,300 236,262 275,236" },
 ];
 
 const OUTPUTS = [
-  { label: "PRINT", y: 36, d: "M362,150 C405,115 450,70 496,36" },
-  { label: "DIGITAL", y: 102, d: "M360,168 C410,148 452,120 496,102" },
-  { label: "CAMPAIGN", y: 168, d: "M366,186 C410,180 452,172 496,168" },
+  { label: "PRINT", y: 36, d: "M348,150 C398,115 450,70 496,36" },
+  { label: "DIGITAL", y: 102, d: "M363,168 C410,148 452,120 496,102" },
+  { label: "CAMPAIGN", y: 168, d: "M367,186 C410,180 452,172 496,168" },
   { label: "SOCIAL", y: 234, d: "M368,204 C412,214 452,226 496,234" },
-  { label: "PACKAGING", y: 300, d: "M362,224 C408,250 452,278 496,300" },
-  { label: "EDITORIAL", y: 366, d: "M356,242 C405,285 450,330 496,366" },
+  { label: "PACKAGING", y: 300, d: "M358,224 C408,250 452,278 496,300" },
+  { label: "EDITORIAL", y: 366, d: "M333,242 C392,285 450,330 496,366" },
 ];
 
 const HUB = { cx: 310, cy: 196, rx: 58, ry: 50 };
