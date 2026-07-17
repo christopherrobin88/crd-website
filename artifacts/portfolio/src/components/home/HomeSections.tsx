@@ -106,7 +106,7 @@ function FeaturedWorkCard({ project }: { project: FeaturedProject }) {
   const coverAspect = cover.img.w / cover.img.h;
 
   return (
-    <div>
+    <div className="case-study-card">
       <div className="grid items-center gap-10 md:grid-cols-12 md:gap-16">
         <Link
           href={`/project/${project.id}`}
@@ -123,7 +123,7 @@ function FeaturedWorkCard({ project }: { project: FeaturedProject }) {
               <Picture
                 pic={cover}
                 alt={project.coverAlt}
-                className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                className="target-image h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 sizes="(min-width: 768px) 40vw, 100vw"
               />
             </div>

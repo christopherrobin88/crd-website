@@ -96,8 +96,8 @@ export default function Landing() {
               <span className="h-px w-16 bg-crd-gold/70" aria-hidden="true" />
             </div>
 
-            <h1 className="font-serif text-5xl leading-[1.05] tracking-tight text-crd-forest sm:text-6xl xl:text-7xl">
-              Design that <span className="text-crd-moss">grows</span> from
+            <h1 className="hero-title">
+              Design that <span className="hero-title-accent">grows</span> from
               strategy, craft and{" "}
               <span className="text-crd-moss">experience.</span>
             </h1>

@@ -1,30 +1,40 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Premium Editorial Scroll Reveals */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .case-study-card img.target-image {
+      /* Kill the Tailwind time transition on transforms so scroll takes over smoothly */
+      transition-property: opacity, filter !important;
+
+      animation: image-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 30%;
+    }
+
+    @keyframes image-reveal {
+      0% {
+        filter: grayscale(100%) blur(4px);
+        transform: scale(1.05);
+        opacity: 0;
+      }
+      100% {
+        filter: grayscale(0%) blur(0);
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  }
+}
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;0,900;1,400;1,600;1,800;1,900&display=swap");
+
 @font-face {
   font-family: "DM Sans";
   font-style: normal;
   font-display: swap;
   font-weight: 400 600;
   src: url("@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2")
-    format("woff2-variations");
-}
-
-@font-face {
-  font-family: "Playfair Display";
-  font-style: normal;
-  font-display: swap;
-  font-weight: 500;
-  src: url("@fontsource-variable/playfair-display/files/playfair-display-latin-wght-normal.woff2")
-    format("woff2-variations");
-}
-
-@font-face {
-  font-family: "Playfair Display";
-  font-style: italic;
-  font-display: swap;
-  font-weight: 500;
-  src: url("@fontsource-variable/playfair-display/files/playfair-display-latin-wght-italic.woff2")
     format("woff2-variations");
 }
 
@@ -181,6 +191,15 @@
        tracks and break within a word only when the alternative is overflow. */
     min-width: 0;
     overflow-wrap: anywhere;
+  }
+
+  /* Editorial measure: body copy (DM Sans) never runs wider than a
+     comfortable reading line. Acts as a ceiling — components that need a
+     narrower column (e.g. max-w-md alongside an image) keep that via their
+     own utility class, which wins on specificity. */
+  p {
+    max-width: 65ch;
+    line-height: 1.6;
   }
 }
 
@@ -369,5 +388,72 @@
   }
   .crd-underline-sweep::after {
     transition: none;
+  }
+}
+
+/* ---- Hero headline (Landing.tsx) — editorial art-direction overhaul ---- */
+.hero-title {
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: #202a30;
+}
+
+.hero-title-accent {
+  font-style: italic;
+  color: #c39b46;
+}
+
+/* ---- Native scroll-driven reveals — homepage <main> content only ----
+   Progressive enhancement: browsers without `animation-timeline: view()`
+   simply render the finished, fully-visible state — no JS fallback
+   needed. Scoped strictly to `main > section` and `.case-study-card` so
+   this never reaches SiteBackground.tsx's GSAP foliage grow-in, the
+   fixed parchment canvas beneath it, or the /work page's project rows
+   (which sit outside a <main> landmark). Content rises and fades in as
+   it crosses into the viewport over that static background. */
+@supports (animation-timeline: view()) {
+  main > section {
+    animation: crd-reveal-section linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+
+  main .case-study-card {
+    animation: crd-reveal-card linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+
+  @keyframes crd-reveal-section {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes crd-reveal-card {
+    from {
+      opacity: 0;
+      transform: translateY(36px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    main > section,
+    main .case-study-card {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
   }
 }
