@@ -147,7 +147,7 @@ export default function Contact() {
           state: "error",
           message:
             payload.error ??
-            "The enquiry could not be sent. Please email the studio directly.",
+            "The form could not send from this preview. Your message is ready to send by email.",
           fallback: mailtoHref(fields),
         });
       }
@@ -155,7 +155,7 @@ export default function Contact() {
       setStatus({
         state: "error",
         message:
-          "The enquiry could not be sent. Please email the studio directly.",
+          "The form could not send from this preview. Your message is ready to send by email.",
         fallback: mailtoHref(fields),
       });
     }
@@ -422,15 +422,15 @@ export default function Contact() {
                 </p>
               )}
               {status.state === "error" && (
-                <p className="mt-6 border-l-2 border-destructive/70 pl-4 font-sans text-sm leading-relaxed text-crd-forest">
+                <p className="mt-6 border-l-2 border-crd-gold pl-4 font-sans text-sm leading-relaxed text-crd-forest">
                   {status.message}{" "}
                   <a
                     href={status.fallback}
                     className="underline decoration-crd-gold/60 underline-offset-2 hover:text-crd-moss"
                   >
-                    Send it from your own email app instead
+                    Open your email app
                   </a>
-                  {" "}— your message is carried across.
+                  .
                 </p>
               )}
             </div>
