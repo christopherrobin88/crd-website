@@ -188,9 +188,11 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif font-medium tracking-tight;
     /* Display sizes at narrow viewports: allow shrinking inside flex/grid
-       tracks and break within a word only when the alternative is overflow. */
+       tracks. break-word (not anywhere) so whole words wrap to the next
+       line first, and a word is only split mid-word if it truly cannot
+       fit on its own line. */
     min-width: 0;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
   }
 
   /* Editorial measure: body copy (DM Sans) never runs wider than a
@@ -404,6 +406,22 @@
   .hero-title {
     font-size: clamp(2.5rem, 10vw, 3.25rem);
     line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* 641px and up: the hero switches to a two-column grid (Landing.tsx
+   md:grid-cols-12) and the headline only occupies roughly half the
+   viewport width, a column that caps around 580-650px regardless of
+   how wide the viewport gets (max-w-7xl). The base rule's 8vw/7rem
+   scaling assumes a full-width column, so past ~768px the longest
+   word ("experience.") stops fitting even alone, forcing a mid-word
+   break no matter what overflow-wrap is set to. Scale against the
+   actual column width instead of the full viewport, at every size. */
+@media (min-width: 641px) {
+  .hero-title {
+    font-size: clamp(2.75rem, 3.6vw, 5.5rem);
+    line-height: 1.02;
     letter-spacing: -0.02em;
   }
 }
