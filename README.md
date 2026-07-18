@@ -12,9 +12,11 @@ Secondary domains, including `christopherrobin.design`, may exist as redirects o
 
 ## Repository
 
-`christopherrobin88/portfolio-showcase`
+`christopherrobin88/crd-website`
 
-This repo is the source of truth for implementation, documentation and project state.
+This repository is the source of truth for implementation, documentation and project state.
+
+`christopherrobin88/portfolio-showcase` is deprecated and disconnected from the production deployment. Do not use it for new work.
 
 ## Stack
 
