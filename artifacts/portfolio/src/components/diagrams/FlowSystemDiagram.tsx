@@ -15,10 +15,12 @@ import { useInViewOnce, usePrefersReducedMotion } from "./hooks";
  *   drifts (index.css `crd-diagram-hub-ring`) — both dropped entirely for
  *   reduced-motion users, who get the finished static drawing;
  * - hover/focus: pointing at any input or output isolates its route —
- *   other stems recede, the hub holds.
+ *   other stems recede, the hub holds. Desktop only; mobile is touch.
  *
- * Below md the beziers don't survive reflow, so the same content renders
- * as the established typographic list fallback.
+ * Below md the landscape composition doesn't survive reflow, so a second,
+ * portrait-oriented SVG renders instead — same stems, same hub, same
+ * entrance choreography, just rotated onto a vertical axis rather than
+ * collapsing to a typographic list.
  */
 
 const INPUTS = [
@@ -39,10 +41,39 @@ const OUTPUTS = [
 
 const HUB = { cx: 310, cy: 196, rx: 58, ry: 50 };
 
+// Mobile set: the desktop paths rotated 90° (x/y swapped, points re-walked)
+// so the same converging-stems composition reads top-to-bottom instead of
+// left-to-right. Landing dot for each input/output is the transposed start
+// or end point of its stem, exactly as on desktop.
+const MOBILE_INPUTS = [
+  { label: "BRIEF", x: 76, d: "M76,128 C80,195 130,236 158,272" },
+  { label: "BRAND ASSETS", x: 156, d: "M156,128 C156,190 172,225 182,254" },
+  { label: "CONTENT", x: 236, d: "M236,128 C234,190 220,228 210,256" },
+  { label: "CLIENT FEEDBACK", x: 316, d: "M316,128 C300,195 262,236 236,275" },
+];
+
+const MOBILE_OUTPUTS = [
+  { label: "PRINT", x: 36, d: "M150,333 C115,392 70,450 36,496" },
+  { label: "DIGITAL", x: 102, d: "M168,358 C148,408 120,452 102,496" },
+  { label: "CAMPAIGN", x: 168, d: "M186,367 C180,410 172,452 168,496" },
+  { label: "SOCIAL", x: 234, d: "M204,368 C214,412 226,452 234,496" },
+  { label: "PACKAGING", x: 300, d: "M224,358 C250,408 278,452 300,496" },
+  { label: "EDITORIAL", x: 366, d: "M242,333 C285,392 330,450 366,496" },
+];
+
+const MOBILE_HUB = { cx: 196, cy: 310, rx: 50, ry: 58 };
+
 const labelStyle = {
   fontFamily: "var(--font-sans)",
   fontSize: 10.5,
   letterSpacing: "0.13em",
+  fill: "var(--color-crd-forest)",
+} as const;
+
+const mobileLabelStyle = {
+  fontFamily: "var(--font-sans)",
+  fontSize: 9,
+  letterSpacing: "0.09em",
   fill: "var(--color-crd-forest)",
 } as const;
 
@@ -51,6 +82,38 @@ type Hovered = { side: "in" | "out"; i: number } | null;
 function stemOpacity(hovered: Hovered, side: "in" | "out", i: number, base: number) {
   if (!hovered) return base;
   return hovered.side === side && hovered.i === i ? 0.85 : 0.12;
+}
+
+/** Two-line label for the tighter mobile layout — splits on the last word
+ * ("BRAND ASSETS" → "BRAND" / "ASSETS") and stacks toward or away from the
+ * landing dot depending on which side of the hub it sits. */
+function MobileLabel({
+  x,
+  baseY,
+  label,
+  anchor,
+}: {
+  x: number;
+  baseY: number;
+  label: string;
+  anchor: "above" | "below";
+}) {
+  const words = label.split(" ");
+  const lines = words.length > 1 ? [words.slice(0, -1).join(" "), words[words.length - 1]] : [label];
+  const lineHeight = 11;
+  return (
+    <text x={x} textAnchor="middle" style={mobileLabelStyle} fillOpacity={0.75}>
+      {lines.map((line, li) => {
+        const lineY =
+          anchor === "above" ? baseY - (lines.length - 1 - li) * lineHeight : baseY + li * lineHeight;
+        return (
+          <tspan key={line} x={x} y={lineY}>
+            {line}
+          </tspan>
+        );
+      })}
+    </text>
+  );
 }
 
 export function FlowSystemDiagram({ className = "" }: { className?: string }) {
@@ -79,6 +142,7 @@ export function FlowSystemDiagram({ className = "" }: { className?: string }) {
 
   return (
     <div ref={ref} className={className}>
+      {/* Desktop / landscape */}
       <svg
         viewBox="0 0 640 400"
         className="hidden w-full md:block"
@@ -214,36 +278,119 @@ export function FlowSystemDiagram({ className = "" }: { className?: string }) {
         ))}
       </svg>
 
-      {/* Mobile: the same three groups as a typographic list. */}
-      <div className="flex flex-col items-center gap-3 py-2 md:hidden">
-        <ul className="flex flex-col items-center gap-2.5">
-          {INPUTS.map(({ label }) => (
-            <li key={label} className="font-sans text-[11px] uppercase tracking-[0.14em] text-crd-forest/75">
-              {label}
-            </li>
+      {/* Mobile / portrait — same stems and hub, rotated onto a vertical
+          axis. No hover isolation (touch has no hover); everything else
+          (draw-in, ambient pulses, reduced-motion fallback) matches
+          desktop. */}
+      <svg
+        viewBox="0 0 400 560"
+        className="w-full md:hidden"
+        role="img"
+        aria-label="Diagram: brief, brand assets, content and client feedback flow into the CRD Design System, which produces print, digital, campaign, social, packaging and editorial output."
+      >
+        <g fill="none" strokeWidth={1} strokeLinecap="round">
+          {MOBILE_INPUTS.map(({ d }, i) => (
+            <path
+              key={`min-${i}`}
+              d={d}
+              pathLength={1}
+              stroke="var(--color-crd-forest)"
+              strokeOpacity={0.34}
+              style={stemStyle("in", i)}
+            />
           ))}
-        </ul>
-
-        <span aria-hidden="true" className="my-2 block h-6 w-px bg-crd-moss/40" />
-
-        <div className="rounded-full border border-dashed border-crd-gold/45 px-9 py-6 text-center">
-          <p className="font-serif text-sm leading-snug text-crd-forest/85">
-            CRD Design
-            <br />
-            System
-          </p>
-        </div>
-
-        <span aria-hidden="true" className="my-2 block h-6 w-px bg-crd-gold/40" />
-
-        <ul className="flex flex-col items-center gap-2.5">
-          {OUTPUTS.map(({ label }) => (
-            <li key={label} className="font-sans text-[11px] uppercase tracking-[0.14em] text-crd-forest/75">
-              {label}
-            </li>
+          {MOBILE_OUTPUTS.map(({ d }, i) => (
+            <path
+              key={`mout-${i}`}
+              d={d}
+              pathLength={1}
+              stroke="var(--color-crd-gold)"
+              strokeOpacity={0.42}
+              style={stemStyle("out", i)}
+            />
           ))}
-        </ul>
-      </div>
+        </g>
+
+        {!reducedMotion &&
+          drawn &&
+          [...MOBILE_INPUTS.map((p, i) => ({ ...p, key: `mpin-${i}`, dur: 6.5, begin: i * 1.7 })),
+           ...MOBILE_OUTPUTS.map((p, i) => ({ ...p, key: `mpout-${i}`, dur: 7, begin: 0.8 + i * 1.9 }))].map(
+            ({ key, d, dur, begin }) => (
+              <circle key={key} r={2.1} fill="var(--color-crd-gold)" opacity={0}>
+                <animateMotion dur={`${dur}s`} begin={`${begin}s`} repeatCount="indefinite" path={d} />
+                <animate
+                  attributeName="opacity"
+                  values="0;0.75;0.75;0"
+                  keyTimes="0;0.15;0.8;1"
+                  dur={`${dur}s`}
+                  begin={`${begin}s`}
+                  repeatCount="indefinite"
+                />
+              </circle>
+            ),
+          )}
+
+        <ellipse
+          cx={MOBILE_HUB.cx}
+          cy={MOBILE_HUB.cy}
+          rx={MOBILE_HUB.rx}
+          ry={MOBILE_HUB.ry}
+          fill="none"
+          className={reducedMotion ? undefined : "crd-diagram-hub-ring"}
+          stroke="var(--color-crd-gold)"
+          strokeOpacity={0.45}
+          strokeWidth={0.8}
+          strokeDasharray="1.5 4.5"
+          vectorEffect="non-scaling-stroke"
+        />
+        <circle
+          cx={MOBILE_HUB.cx}
+          cy={MOBILE_HUB.cy - MOBILE_HUB.ry}
+          r={2.4}
+          fill="var(--color-crd-gold)"
+          className={reducedMotion ? undefined : "crd-diagram-crown"}
+        />
+        <text
+          x={MOBILE_HUB.cx}
+          y={MOBILE_HUB.cy - 6}
+          textAnchor="middle"
+          style={{ fontFamily: "var(--font-serif)", fontSize: 15, fill: "var(--color-crd-forest)", fillOpacity: 0.9 }}
+        >
+          CRD Design
+        </text>
+        <line
+          x1={MOBILE_HUB.cx - 18}
+          y1={MOBILE_HUB.cy + 4}
+          x2={MOBILE_HUB.cx + 18}
+          y2={MOBILE_HUB.cy + 4}
+          stroke="var(--color-crd-gold)"
+          strokeOpacity={0.6}
+          strokeWidth={0.75}
+          vectorEffect="non-scaling-stroke"
+        />
+        <text
+          x={MOBILE_HUB.cx}
+          y={MOBILE_HUB.cy + 21}
+          textAnchor="middle"
+          style={{ fontFamily: "var(--font-serif)", fontSize: 15, fill: "var(--color-crd-forest)", fillOpacity: 0.9 }}
+        >
+          System
+        </text>
+
+        {MOBILE_INPUTS.map(({ label, x }, i) => (
+          <g key={label} style={nodeStyle("in", i)}>
+            <MobileLabel x={x} baseY={112} label={label} anchor="above" />
+            <circle cx={x} cy={128} r={2.2} fill="var(--color-crd-gold)" />
+          </g>
+        ))}
+
+        {MOBILE_OUTPUTS.map(({ label, x }, i) => (
+          <g key={label} style={nodeStyle("out", i)}>
+            <MobileLabel x={x} baseY={514} label={label} anchor="below" />
+            <circle cx={x} cy={496} r={2.2} fill="var(--color-crd-gold)" />
+          </g>
+        ))}
+      </svg>
     </div>
   );
 }
