@@ -93,7 +93,7 @@ export default function About() {
               <h2 className="font-sans text-xs uppercase tracking-[0.22em] text-crd-gold mb-6">
                 What drives the work
               </h2>
-              <ul className="space-y-4 font-sans text-foreground/70">
+              <ul className="space-y-4 font-sans text-base md:text-lg text-foreground/70">
                 <li>
                   <span className="text-foreground">Strategy first.</span> Design
                   decisions rooted in purpose, not surface styling.
@@ -124,7 +124,7 @@ export default function About() {
                 <h2 className="font-sans text-xs uppercase tracking-[0.22em] text-crd-gold mb-6">
                   Disciplines
                 </h2>
-                <p className="font-sans text-foreground/70 leading-relaxed">
+                <p className="font-sans text-base md:text-lg text-foreground/70 leading-relaxed">
                   Editorial design · Brand identity · Packaging &amp; retail · DTP
                   &amp; production · Creative direction · Production systems ·
                   AI-assisted workflows
@@ -135,7 +135,7 @@ export default function About() {
                 <h2 className="font-sans text-xs uppercase tracking-[0.22em] text-crd-gold mb-6">
                   Based in
                 </h2>
-                <p className="font-sans text-foreground/70">Cape Town, South Africa</p>
+                <p className="font-sans text-base md:text-lg text-foreground/70">Cape Town, South Africa</p>
               </div>
             </div>
           </div>
@@ -151,7 +151,7 @@ export default function About() {
               <p className="font-serif text-2xl md:text-3xl tracking-tight text-crd-forest mb-8 max-w-md">
                 The discipline of the printed page.
               </p>
-              <ul className="space-y-4 font-sans text-foreground/70">
+              <ul className="space-y-4 font-sans text-base md:text-lg text-foreground/70">
                 <li>Visual direction with an editorial eye</li>
                 <li>Publication design and layout systems</li>
                 <li>Typography, hierarchy and pacing</li>
@@ -170,7 +170,7 @@ export default function About() {
               <p className="font-serif text-2xl md:text-3xl tracking-tight text-crd-forest mb-8 max-w-md">
                 The structure that keeps it moving.
               </p>
-              <ul className="space-y-4 font-sans text-foreground/70">
+              <ul className="space-y-4 font-sans text-base md:text-lg text-foreground/70">
                 <li>Templates and master files built for reuse</li>
                 <li>Workflow and production logic that hold under deadline</li>
                 <li>Automation and AI-assisted production, scripted not improvised</li>

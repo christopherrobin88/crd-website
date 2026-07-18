@@ -19,6 +19,19 @@ Christopher explicitly chose to proceed with the mockup rather than block on sou
 
 ---
 
+## Open issues (cont.)
+
+### 2. No shared body-copy type scale — inconsistent paragraph sizing site-wide
+**Status: quick-fixed 18 July 2026, structural cause not yet resolved.**
+
+Christopher spotted stacked body paragraphs on `/contact` rendering at visibly different sizes (`text-lg md:text-xl` next to `text-base md:text-lg`). Audit found this wasn't a one-off: there is no shared type-scale for body copy anywhere in the codebase (`index.css`'s `@layer base` sets `p { max-width: 65ch; line-height: 1.6 }` but no font-size), so every page hand-sets its own Tailwind size classes per paragraph, and drift is easy to introduce and hard to notice.
+
+Quick fix applied on `feat/body-copy-size-consistency`: normalised all outlying body paragraphs to the dominant `text-base md:text-lg` convention already used correctly on the homepage sections. Fixed: `Contact.tsx` (both paragraphs, plus the left-rail intake copy), `ProjectDetail.tsx` (brief and process copy), `About.tsx` (three paragraphs/lists that were missing a size class entirely and silently rendering at browser-default 16px), `Work.tsx` (closing quote-band body copy).
+
+**Not fixed:** the root cause. There's still no enforced type-scale, so this class of bug can recur any time a new paragraph is added without matching the convention by hand. Proper fix is a shared `<Prose>`/`<BodyText>` component or a `.body-copy` utility in `index.css`'s `@layer base`, so size is defined once and inherited rather than retyped per paragraph. Not done here to keep this change scoped to the reported symptom; worth doing before the next round of new pages.
+
+---
+
 ## Resolved
 
 ### Systemic nav-bar / hero-image overlap on project detail pages

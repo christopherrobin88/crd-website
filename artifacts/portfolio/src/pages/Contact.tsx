@@ -181,7 +181,7 @@ export default function Contact() {
             </a>
           </h1>
 
-          <p className="font-sans text-lg md:text-xl text-foreground/70 leading-relaxed max-w-lg mb-6">
+          <p className="font-sans text-base md:text-lg text-foreground/70 leading-relaxed max-w-lg mb-6">
             For agencies, production companies and brands looking for senior
             creative support, CRD works across art direction, editorial
             design, campaign systems and AI-assisted production workflows.
@@ -206,7 +206,7 @@ export default function Contact() {
               <h2 className="font-serif text-3xl md:text-4xl tracking-tight mb-4">
                 Start a project conversation
               </h2>
-              <p className="font-sans text-base text-foreground/70 leading-relaxed max-w-md">
+              <p className="font-sans text-base md:text-lg text-foreground/70 leading-relaxed max-w-md">
                 Share the essentials and I'll use this to understand the
                 scope, timing and best way forward.
               </p>
