@@ -28,7 +28,7 @@ export function Work() {
             <p className="font-serif text-2xl md:text-3xl tracking-tight text-crd-forest">
               Rooted in craft. Focused on impact.
             </p>
-            <p className="mt-4 font-sans text-base leading-relaxed text-crd-forest/80">
+            <p className="mt-4 font-sans text-base md:text-lg leading-relaxed text-crd-forest/80">
               CRD works with agencies, brands and organisations to design with
               clarity, shape stories and build systems that work beautifully.
             </p>

@@ -187,13 +187,13 @@ export default function ProjectDetail() {
 
           <div>
             <h2 className="font-sans text-xs font-medium uppercase tracking-widest text-crd-forest/70 mb-3">{text.brief}</h2>
-            <p className="font-sans text-base leading-relaxed text-foreground/80">
+            <p className="font-sans text-base md:text-lg leading-relaxed text-foreground/80">
               {project.fullDescription}
             </p>
           </div>
           <div>
             <h2 className="font-sans text-xs font-medium uppercase tracking-widest text-crd-forest/70 mb-3">{text.process}</h2>
-            <p className="font-sans text-base leading-relaxed text-foreground/80">
+            <p className="font-sans text-base md:text-lg leading-relaxed text-foreground/80">
               {project.processNotes}
             </p>
           </div>
