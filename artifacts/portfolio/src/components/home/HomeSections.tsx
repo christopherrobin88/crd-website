@@ -25,7 +25,7 @@ export function PositioningSection() {
     <section className="px-6 py-24 md:px-12 md:py-36">
       <div className="mx-auto max-w-7xl">
         <div>
-          <h2 className="max-w-4xl font-serif text-4xl leading-[1.1] tracking-tight text-crd-forest md:text-6xl">
+          <h2 className="max-w-4xl font-serif text-3xl leading-[1.1] tracking-tight text-crd-forest md:text-5xl">
             Good design is half the job. Delivering it, correctly, every time,
             is the other half.
           </h2>

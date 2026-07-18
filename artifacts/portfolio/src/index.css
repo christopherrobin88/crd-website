@@ -400,6 +400,12 @@
   line-height: 0.95;
   letter-spacing: -0.03em;
   color: #202a30;
+  /* Never split a word mid-character, no matter how tight the column
+     gets. Worst case is a whole word wrapping to the next line, which
+     is always acceptable here; a mid-word break never is. This
+     overrides the global h1-h6 break-word rule further down. */
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 @media (max-width: 640px) {
@@ -412,16 +418,17 @@
 
 /* 641px and up: the hero switches to a two-column grid (Landing.tsx
    md:grid-cols-12) and the headline only occupies roughly half the
-   viewport width, a column that caps around 580-650px regardless of
-   how wide the viewport gets (max-w-7xl). The base rule's 8vw/7rem
-   scaling assumes a full-width column, so past ~768px the longest
-   word ("experience.") stops fitting even alone, forcing a mid-word
-   break no matter what overflow-wrap is set to. Scale against the
-   actual column width instead of the full viewport, at every size. */
+   viewport width, a column that caps around 580px regardless of how
+   wide the viewport gets (max-w-7xl). The base rule's 8vw/7rem scaling
+   assumes a full-width column, so past ~768px the longest word
+   ("experience.") stops fitting even alone. 4.5rem keeps real margin
+   (~460px word against a ~580px column) even accounting for font
+   metrics being wider than estimated, unlike the previous 5.5rem cap
+   which left almost no margin at very wide/high-DPI viewports. */
 @media (min-width: 641px) {
   .hero-title {
-    font-size: clamp(2.75rem, 3.6vw, 5.5rem);
-    line-height: 1.02;
+    font-size: clamp(2.75rem, 3.6vw, 4.5rem);
+    line-height: 1.05;
     letter-spacing: -0.02em;
   }
 }
