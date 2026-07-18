@@ -7,4 +7,4 @@
  * Switching the public address (e.g. to info@ or hello@) is: this line, a
  * matching custom address in Email Routing, and nothing else.
  */
-export const CONTACT_EMAIL = "christopher@christopherrobindesign.com";
+export const CONTACT_EMAIL = "info@christopherrobindesign.com";

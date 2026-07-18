@@ -58,8 +58,9 @@ Verify this section against the actual repo before relying on it.
 - **Image pipeline:** vite-imagetools, WebP with JPEG fallback.
 - **Typography:** Playfair Display for headlines, DM Sans for body and UI.
 - **Colour system:** forest blue-green, parchment, moss green and muted gold. Confirm current tokens before changing colours.
-- **Hosting and deploy:** Cloudflare, auto-deploy from `main`.
-- **Source control:** GitHub repo `christopherrobin88/portfolio-showcase`.
+- **Hosting and deploy:** Cloudflare Worker `crd-portfolio`, auto-deploy from `main`.
+- **Source control:** GitHub repo `christopherrobin88/crd-website`. This is the live, connected repo as of 18 July 2026.
+- **Deprecated repo:** `christopherrobin88/portfolio-showcase` was the previous source-connected repo. It was disconnected from Cloudflare on 18 July 2026 and replaced by `crd-website`. It is now orphaned: do not push to it, branch from it, or treat it as current. If old briefs or docs reference it, that reference is stale.
 - **Previous platforms:** Wix and Replit are deprecated. Do not reintroduce platform-specific tooling from either.
 - **Package manager:** pnpm only. The workspace root rejects npm and yarn.
 

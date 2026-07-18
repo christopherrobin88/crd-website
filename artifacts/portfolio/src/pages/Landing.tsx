@@ -98,7 +98,7 @@ export default function Landing() {
 
             <h1 className="hero-title">
               Design that <span className="hero-title-accent">grows</span> from
-              strategy, craft and{" "}
+              strategy, craft and{" "}
               <span className="text-crd-moss">experience.</span>
             </h1>
 

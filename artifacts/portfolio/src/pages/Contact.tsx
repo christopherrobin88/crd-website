@@ -68,8 +68,9 @@ function readFields(form: HTMLFormElement): EnquiryFields {
   };
 }
 
-/* Fallback path (kept until the production flow is verified end to end):
-   the same composed message, handed to the visitor's own mail client. */
+/* Error fallback: if /api/enquiry fails (rate limit, transient error), hand
+   the same composed message to the visitor's own mail client so they still
+   have a way to send it. */
 function mailtoHref(fields: EnquiryFields): string {
   const lines = [
     `Name: ${fields.name}`,
@@ -147,7 +148,7 @@ export default function Contact() {
           state: "error",
           message:
             payload.error ??
-            "The form could not send from this preview. Your message is ready to send by email.",
+            "Something went wrong sending your enquiry. Your message is ready to send by email instead.",
           fallback: mailtoHref(fields),
         });
       }
@@ -155,7 +156,7 @@ export default function Contact() {
       setStatus({
         state: "error",
         message:
-          "The form could not send from this preview. Your message is ready to send by email.",
+          "Something went wrong sending your enquiry. Your message is ready to send by email instead.",
         fallback: mailtoHref(fields),
       });
     }
