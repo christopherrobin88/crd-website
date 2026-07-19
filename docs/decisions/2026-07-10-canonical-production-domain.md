@@ -4,7 +4,7 @@
 
 ## Decision
 
-`https://www.christopherrobindesign.com` is the canonical production domain for the Christopher Robin Design website.
+`https://christopherrobindesign.com` is the canonical production domain for the Christopher Robin Design website.
 
 ## Applies to
 
@@ -20,7 +20,9 @@
 
 ## Notes
 
-`christopherrobin.design` may remain available as a secondary domain, redirect target or testing domain, but it is not the canonical public domain.
+`www.christopherrobindesign.com` and `christopherrobin.design` may remain available as secondary domains or redirect sources, but they are not the canonical public domain.
+
+On 19 July 2026, the canonical host changed from `www.christopherrobindesign.com` to the apex `.com` domain. The `www` `.com` host should permanently redirect to the apex `.com`, and `.design` hosts should permanently redirect to the matching apex `.com` path.
 
 Canonical-domain uncertainty is no longer an open Phase 0 decision. Future sessions must not reopen this unless Christopher explicitly changes the domain strategy.
 
@@ -28,12 +30,12 @@ Canonical-domain uncertainty is no longer an open Phase 0 decision. Future sessi
 
 Use:
 
-`https://www.christopherrobindesign.com`
+`https://christopherrobindesign.com`
 
 Do not use these as canonical values:
 
-- `https://christopherrobindesign.com`
+- `https://www.christopherrobindesign.com`
 - `https://christopherrobin.design`
 - `https://www.christopherrobin.design`
 
-Secondary domains should redirect to the canonical `www` `.com` domain where possible.
+Secondary domains should redirect to the canonical apex `.com` domain where possible.

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.christopherrobindesign.com/sitemap.xml
+Sitemap: https://christopherrobindesign.com/sitemap.xml

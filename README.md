@@ -6,9 +6,9 @@ Portfolio website for Christopher Robin Design, a Cape Town-based design studio 
 
 Canonical production domain:
 
-`https://www.christopherrobindesign.com`
+`https://christopherrobindesign.com`
 
-Secondary domains, including `christopherrobin.design`, may exist as redirects or test domains, but they are not canonical.
+Secondary domains, including `www.christopherrobindesign.com` and `christopherrobin.design`, may exist as redirects or test domains, but they are not canonical.
 
 ## Repository
 

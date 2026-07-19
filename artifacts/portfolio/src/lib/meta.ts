@@ -9,7 +9,7 @@ import { projects } from "@/data/projects";
  *    routes that actually exist
  */
 
-export const SITE_ORIGIN = "https://www.christopherrobindesign.com";
+export const SITE_ORIGIN = "https://christopherrobindesign.com";
 export const SITE_NAME = "Christopher Robin Design";
 
 /** Default social card, used by routes without their own artwork. */

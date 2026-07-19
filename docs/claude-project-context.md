@@ -12,7 +12,7 @@ Official project for the design, development and maintenance of the Christopher 
 
 Primary production website:
 
-`https://www.christopherrobindesign.com`
+`https://christopherrobindesign.com`
 
 Repository:
 
@@ -101,9 +101,9 @@ Repository:
 
 Primary production website:
 
-`https://www.christopherrobindesign.com`
+`https://christopherrobindesign.com`
 
-The previous `.design` domain may remain available as a redirect, secondary domain or testing domain, but it is not the canonical public domain.
+The `www` `.com` host and previous `.design` domain may remain available as redirects, secondary domains or testing domains, but they are not the canonical public domain.
 
 Technology:
 
@@ -171,7 +171,7 @@ Current priorities:
 
 Confirmed project facts:
 
-- `https://www.christopherrobindesign.com` is the canonical production domain.
+- `https://christopherrobindesign.com` is the canonical production domain.
 - The site is deployed from `main` via Cloudflare.
 - Auto-deploy to production is enabled.
 - The repository remains the source of truth.
