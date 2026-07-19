@@ -1,51 +1,45 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "@/lib/motion";
-import heroLaptop from "@/assets/images/web_hero_laptop.svg";
+import { HeroLaptopArt } from "@/components/HeroLaptopArt";
 
 /**
- * The landing hero illustration uses Christopher's supplied vector artwork.
+ * The landing hero illustration: botanical linework that draws itself out
+ * of the laptop screen (HeroLaptopArt, a self-contained inline SVG driven
+ * entirely by CSS keyframes — see that file for detail and provenance).
  *
- * Motion, per the hero micro-animation brief:
- *  - idle: barely-there float/sway loop
+ * Motion here, per the hero micro-animation brief:
+ *  - idle: barely-there float/sway loop, starting once the SVG's own
+ *    draw-on has finished (its longest path delay ends ~2.4s in)
  *  - scroll: gentle parallax against the page
  *  - cursor: gentle tilt toward the pointer within the hero
- * All of it is skipped under prefers-reduced-motion (static image instead).
+ * All of it is skipped under prefers-reduced-motion (HeroLaptopArt falls
+ * back to the fully drawn static illustration internally, and none of the
+ * GSAP behaviours below run either).
  * Three.js background layer from the brief deliberately omitted — the flat
  * texture layer already carries the depth, and the dependency wouldn't earn
  * its place.
+ *
+ * `web_hero_laptop.svg` is left in `src/assets/images/` for now — cleanup
+ * once this hero is verified in production (see docs/scope.md).
  */
 
 export function HeroLaptop({ className }: { className?: string }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const floatRef = useRef<HTMLDivElement>(null);
   const tiltRef = useRef<HTMLDivElement>(null);
-  const overlayRef = useRef<HTMLImageElement>(null);
 
   useLayoutEffect(() => {
     const root = rootRef.current;
     const float = floatRef.current;
     const tilt = tiltRef.current;
-    const overlay = overlayRef.current;
-    if (!root || !float || !tilt || !overlay) return;
+    if (!root || !float || !tilt) return;
 
     const mm = gsap.matchMedia();
     mm.add("(prefers-reduced-motion: no-preference)", () => {
-      const state = { r: 0 };
-      overlay.style.opacity = "0.32";
-      overlay.style.setProperty("--hero-r", "0%");
-      const intro = gsap.to(state, {
-        r: 185,
-        duration: 1.65,
-        delay: 0.15,
-        ease: "power2.inOut",
-        onUpdate: () => overlay.style.setProperty("--hero-r", `${state.r}%`),
-        onComplete: () => {
-          gsap.to(overlay, { opacity: 0, duration: 0.45, ease: "power1.out" });
-        },
-      });
-
       // Idle float — separate element from the cursor tilt so their
-      // transforms never fight.
+      // transforms never fight. Delayed until after the SVG draw-on
+      // (last path delay + duration lands around 2.4s) so it doesn't
+      // compete with the reveal.
       const idle = gsap.to(float, {
         y: -6,
         rotation: 0.35,
@@ -54,7 +48,7 @@ export function HeroLaptop({ className }: { className?: string }) {
         ease: "sine.inOut",
         yoyo: true,
         repeat: -1,
-        delay: 1.5,
+        delay: 2.75,
       });
 
       // Scroll parallax — the illustration drifts up slightly faster than
@@ -93,12 +87,9 @@ export function HeroLaptop({ className }: { className?: string }) {
       return () => {
         zone.removeEventListener("pointermove", onMove);
         zone.removeEventListener("pointerleave", onLeave);
-        intro.kill();
         idle.kill();
         parallax.scrollTrigger?.kill();
         parallax.kill();
-        overlay.style.opacity = "0";
-        overlay.style.removeProperty("--hero-r");
       };
     });
 
@@ -109,29 +100,7 @@ export function HeroLaptop({ className }: { className?: string }) {
     <div ref={rootRef} className={className}>
       <div ref={floatRef}>
         <div ref={tiltRef} className="relative">
-          <img
-              src={heroLaptop}
-              alt="A laptop with botanical linework growing from the screen"
-              className="h-auto w-full"
-              width={1148}
-              height={1370}
-              fetchPriority="high"
-            />
-          <img
-            ref={overlayRef}
-            src={heroLaptop}
-            alt=""
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 h-auto w-full opacity-0"
-            width={1148}
-            height={1370}
-            style={{
-              maskImage:
-                "radial-gradient(circle at 62% 90%, black calc(var(--hero-r, 0%) - 14%), transparent var(--hero-r, 0%))",
-              WebkitMaskImage:
-                "radial-gradient(circle at 62% 90%, black calc(var(--hero-r, 0%) - 14%), transparent var(--hero-r, 0%))",
-            }}
-          />
+          <HeroLaptopArt className="h-auto w-full" />
         </div>
       </div>
     </div>
