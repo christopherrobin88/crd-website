@@ -4,7 +4,7 @@ import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { SiteNav } from "@/components/Navigation";
 import { SiteFooter } from "@/components/SiteFooter";
-import { Fleck, QuoteBand, Sprig } from "@/components/EditorialAtmosphere";
+import { QuoteBand } from "@/components/EditorialAtmosphere";
 import { ProcessTimeline, type TimelineStep } from "@/components/diagrams/ProcessTimeline";
 import { AutomationArchitecture } from "@/components/diagrams/AutomationArchitecture";
 import { usePageMeta } from "@/hooks/use-page-meta";
@@ -98,13 +98,6 @@ export default function Services() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
           Services
-          <span aria-hidden="true" className="relative mt-2 shrink-0 md:mt-3">
-            <Sprig
-              variant="corner"
-              className="w-16 -scale-x-100 rotate-[14deg] opacity-90 md:w-24"
-            />
-            <Fleck className="absolute -right-2 -top-1 h-2.5 w-2.5 md:h-3 md:w-3" />
-          </span>
         </motion.h1>
 
         <motion.p
