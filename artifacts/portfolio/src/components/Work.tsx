@@ -90,7 +90,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             {String(index + 1).padStart(2, "0")}
           </span>
           <span className="text-accent">
-            {project.year ? `${project.year} — ` : ""}{project.category}
+            {project.category}
           </span>
         </div>
         <Link

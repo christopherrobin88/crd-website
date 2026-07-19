@@ -107,7 +107,7 @@ export default function ProjectDetail() {
             className="font-sans text-xs font-medium uppercase tracking-widest text-crd-forest/80 mb-6"
             initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2 }}
           >
-            {project.publicationName}{project.year ? ` — ${project.year}` : ""}
+            {project.publicationName}
           </motion.div>
           <motion.h1
             className="font-serif text-6xl md:text-8xl lg:text-9xl tracking-tighter mb-8"
@@ -154,7 +154,7 @@ export default function ProjectDetail() {
               {project.title}
             </p>
             <p className="font-sans text-xs font-medium uppercase tracking-widest text-crd-forest/70">
-              {project.publicationName}{project.year ? ` — ${project.year}` : ""}
+              {project.publicationName}
             </p>
           </div>
 

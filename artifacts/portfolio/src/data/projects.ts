@@ -16,7 +16,6 @@ export interface Project {
   title: string;
   publicationName: string;
   role: string;
-  year: string;
   category: string;
   layout: ProjectLayout;
   shortDescription: string;
@@ -87,7 +86,6 @@ export const projects: Project[] = [
     title: "Kruger Magazine",
     publicationName: "MLP Media",
     role: "Layout, Image Correction & Social Design",
-    year: "",
     category: "Editorial Design & Production",
     shortDescription:
       "End-to-end editorial production across multiple issues — layout, image correction and print-ready output for a specialist wildlife title.",
@@ -106,7 +104,6 @@ export const projects: Project[] = [
     title: "Behelm",
     publicationName: "Behelm Consulting",
     role: "Brand Identity Design",
-    year: "2026",
     category: "Brand Identity & Logo System",
     shortDescription:
       "A complete identity system for a private security consultancy — a quiet shield monogram, disciplined colour rules and applications built to signal discretion and authority.",
@@ -125,7 +122,6 @@ export const projects: Project[] = [
     title: "Checkers Retail Campaigns",
     publicationName: "Ninety9Cents, Cape Town",
     role: "Art Director",
-    year: "",
     category: "Retail Marketing & Campaign Design",
     shortDescription:
       "High-volume retail campaign design for one of South Africa's largest grocery chains — built for speed-to-market without losing brand consistency.",
@@ -144,7 +140,6 @@ export const projects: Project[] = [
     title: "Playboy South Africa",
     publicationName: "Chapel Lane Media",
     role: "Art Director",
-    year: "",
     category: "Editorial Direction & Publication Design",
     shortDescription:
       "Editorial direction for a national lifestyle title — local voice and commercial features held within a global brand system.",
@@ -163,7 +158,6 @@ export const projects: Project[] = [
     title: "Boutique Essentials",
     publicationName: "Boutique Essentials, Cape Town",
     role: "Packaging & Label Design",
-    year: "",
     category: "Packaging & Brand Design",
     shortDescription:
       "Label and packaging design for a Cape Town amenity supplier to boutique hotels and short-stay properties — quiet, natural shelf presence for guest bathrooms.",
@@ -181,7 +175,6 @@ export const projects: Project[] = [
     title: "AgriProbe",
     publicationName: "MLP Media",
     role: "Editorial Designer",
-    year: "2023–2025",
     category: "Editorial Design & Publication Production",
     shortDescription:
       "Editorial design across multiple issues of the Western Cape Department of Agriculture's research and news magazine.",
@@ -199,7 +192,6 @@ export const projects: Project[] = [
     title: "UNCUT Magazine",
     publicationName: "LoveLife",
     role: "Art Director & Designer",
-    year: "2015",
     category: "Editorial Design & Art Direction",
     shortDescription:
       "Commissioned art direction and layout for LoveLife's bold youth music and culture title — Issue 94, cover to press-ready spreads.",
@@ -218,7 +210,6 @@ export const projects: Project[] = [
     title: "Real Estate Investor",
     publicationName: "SA Real Estate Investor Magazine",
     role: "Editorial Designer",
-    year: "2019–2020",
     category: "Editorial Design & Publication Design",
     shortDescription:
       "Cover and feature design for South Africa's property investment magazine — finance-led content with newsstand presence.",
@@ -236,7 +227,6 @@ export const projects: Project[] = [
     title: "Leisure Boating Magazine",
     publicationName: "Caravan Publications",
     role: "Art Director & Designer",
-    year: "",
     category: "Publication Design & Layout Systems",
     shortDescription:
       "Layout and visual system for a specialist title — cohesive design that made technical content clear and enjoyable to read.",
@@ -255,7 +245,6 @@ export const projects: Project[] = [
     title: "AIOS",
     publicationName: "Self-initiated — systems design concept",
     role: "Brand Concepts & Product UI Design",
-    year: "2026",
     category: "Systems Design & Product Concept",
     shortDescription:
       "Conceptual identity routes and orchestration-dashboard design for an AI operating system — the studio's systems thinking made visible.",
