@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRD Editorial — Publication Layout Engine</title>
+
+  <!-- Tailwind CSS (Play CDN, prototype tool only) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Single source of truth for the chrome palette (utility classes).
+    // Keep in sync with the :root block below, which serves the raw-CSS page styles.
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: '#0E2320',
+            'forest-bg': '#12322F',
+            gold: '#A57C33',
+            'muted-gold': '#C7A35A',
+            moss: '#6B7A3D',
+            'moss-dark': '#5A6633',
+            parchment: '#F4ECD9',
+            'parchment-beige': '#F2EDE0',
+            charcoal: '#202A30'
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"DM Sans"', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --forest: #0E2320;
+      --forest-bg: #12322F;
+      --gold: #A57C33;
+      --muted-gold: #C7A35A;
+      --moss: #6B7A3D;
+      --parchment: #F4ECD9;
+      --parchment-beige: #F2EDE0;
+      --charcoal: #202A30;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--charcoal);
+      color: var(--parchment-beige);
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    .font-serif { font-family: 'Playfair Display', Georgia, serif; }
+
+    /* ---------------------------------------------------------------------
+       Editorial page stylesheet.
+       Shared by the visible canvas AND the offscreen measurer, so the
+       height the engine measures is exactly the height it renders. This is
+       the design-system layer: change typography here, once.
+       --------------------------------------------------------------------- */
+    .a4-page {
+      width: 794px;
+      height: 1123px;
+      padding: 48px 56px;
+      box-sizing: border-box;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      background: var(--parchment);
+      border: 1px solid rgba(14, 35, 32, 0.2);
+      color: var(--forest);
+      font-family: 'DM Sans', sans-serif;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .a4-page.measure { height: auto; box-shadow: none; }
+
+    .page-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(14, 35, 32, 0.15);
+    }
+    .page-head span {
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 10px;
+      font-weight: 600;
+    }
+    .page-head .kicker { color: var(--gold); }
+    .page-head .folio { color: var(--moss); }
+
+    .page-region { flex: 1 1 auto; display: flex; flex-direction: column; gap: 24px; overflow: hidden; }
+    .page-region-measure { display: flex; flex-direction: column; gap: 24px; }
+    .foot-reserve { height: 44px; }
+
+    .page-hero { margin-bottom: 8px; }
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.75rem;
+      line-height: 1.1;
+      margin: 0 0 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    .page-hero .standfirst {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: rgba(14, 35, 32, 0.8);
+      margin: 0 0 16px;
+      border-left: 2px solid var(--gold);
+      padding-left: 20px;
+    }
+    .page-hero .byline {
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--moss);
+      margin: 0;
+    }
+
+    .body-classic { column-count: 2; column-gap: 2.5rem; font-size: 13px; line-height: 1.85; text-align: justify; }
+    .body-classic p { margin: 0 0 16px; }
+    .body-visual { max-width: 85%; margin: 0 auto; font-size: 14px; line-height: 1.85; text-align: justify; }
+    .body-visual p { margin: 0 0 20px; }
+    .minimal-wrap { flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 64px; }
+    .body-minimal { font-size: 14px; line-height: 2.2; color: var(--forest); }
+    .body-minimal p { margin: 0 0 24px; text-align: center; }
+    .body-minimal p.lede { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-style: italic; color: var(--gold); }
+
+    .img-slot { background: var(--parchment-beige); border: 1px solid rgba(199, 163, 90, 0.3); overflow: hidden; width: 100%; }
+    .img-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .page-foot {
+      position: absolute;
+      bottom: 32px;
+      left: 56px;
+      right: 56px;
+      display: flex;
+      justify-content: center;
+      border-top: 1px solid rgba(14, 35, 32, 0.1);
+      padding-top: 16px;
+    }
+    .page-foot span { font-family: 'Playfair Display', serif; font-style: italic; font-size: 10px; color: var(--gold); }
+
+    .drop-cap:first-of-type::first-letter {
+      float: left;
+      font-family: 'Playfair Display', serif;
+      font-size: 4.5rem;
+      line-height: 0.8;
+      padding-top: 0.15rem;
+      padding-right: 0.5rem;
+      padding-left: 0.1rem;
+      color: var(--gold);
+    }
+
+    /* Reusable sidebar label chrome (was duplicated ~10x as a utility string) */
+    .field-label {
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    /* Offscreen measurer: laid out but never painted */
+    #measurer { position: fixed; left: -10000px; top: 0; width: 794px; visibility: hidden; pointer-events: none; z-index: -1; }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--charcoal); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+    @media print {
+      body { overflow: visible; }
+      body * { visibility: hidden; }
+      #print-canvas, #print-canvas * { visibility: visible; }
+      #print-canvas { position: absolute; left: 0; top: 0; width: 100%; margin: 0; padding: 0; background: white; overflow: visible; }
+      #pages-container { transform: none !important; gap: 0 !important; padding: 0 !important; }
+      .a4-page {
+        width: 210mm !important; height: 297mm !important; margin: 0 !important;
+        box-shadow: none !important; border: 0 !important;
+        page-break-after: always; page-break-inside: avoid;
+      }
+      .page-ring { display: none !important; }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="h-screen w-full flex">
+
+  <!-- LEFT SIDEBAR: CONTENT INGESTION -->
+  <div class="w-[340px] shrink-0 bg-forest-bg flex flex-col h-full z-10 no-print shadow-2xl border-r border-forest">
+    <div class="p-6 border-b border-charcoal">
+      <h2 class="font-serif text-2xl text-muted-gold mb-1">CRD Editorial</h2>
+      <p class="text-[10px] uppercase tracking-[0.15em] text-moss">Publication Engine v1.1</p>
+    </div>
+    <div class="flex-1 overflow-y-auto p-6 space-y-6">
+      <div class="space-y-4">
+        <div>
+          <label class="field-label mb-2" for="input-title">Headline</label>
+          <input id="input-title" type="text" value="The Architecture of Silence" class="w-full bg-forest border border-gold/20 rounded px-3 py-2 text-sm focus:outline-none focus:border-gold text-white" oninput="onField('title', this.value)">
+        </div>
+        <div>
+          <label class="field-label mb-2" for="input-standfirst">Standfirst</label>
+          <textarea id="input-standfirst" rows="3" class="w-full bg-forest border border-gold/20 rounded px-3 py-2 text-sm focus:outline-none focus:border-gold resize-none text-white" oninput="onField('standfirst', this.value)">How modern minimalists are reclaiming whitespace in a loud digital world, building sanctuaries out of pixels and grids.</textarea>
+        </div>
+        <div>
+          <label class="field-label mb-2" for="input-byline">Byline</label>
+          <input id="input-byline" type="text" value="Christopher Robin" class="w-full bg-forest border border-gold/20 rounded px-3 py-2 text-sm focus:outline-none focus:border-gold text-white" oninput="onField('byline', this.value)">
+        </div>
+      </div>
+
+      <div class="pt-2 border-t border-charcoal">
+        <div class="flex items-center justify-between mb-3">
+          <label class="field-label" for="input-body">Body Copy</label>
+          <label class="cursor-pointer text-[10px] uppercase tracking-wider text-moss hover:text-parchment-beige flex items-center gap-1.5 transition-colors bg-forest px-2 py-1 rounded border border-moss/30">
+            <span>Import .txt</span>
+            <input type="file" accept=".txt" class="hidden" onchange="handleTextUpload(event)">
+          </label>
+        </div>
+        <textarea id="input-body" rows="14" class="w-full bg-forest border border-gold/20 rounded px-3 py-3 text-[13px] leading-relaxed focus:outline-none focus:border-gold resize-none text-parchment-beige" oninput="onField('body', this.value)">There is a particular quiet in the workshop that has nothing to do with silence. The presses are loud when they run, a steady clatter of metal on paper that fills the room like weather. But between print runs, in the hours spent setting type by hand, the quiet is total.
+
+Each letter is chosen, weighed, placed. There is no undo, no autocorrect, no second draft hiding behind a screen. The printer works the way the craft has always worked: forwards, with consequences.
+
+For the last three decades, this has been the daily practice of one of the few remaining letterpress operators in the city. The trade has nearly disappeared, replaced by faster, cheaper, infinitely correctable digital printing. But something about the physical permanence of metal type, the slight impression it leaves in good paper, the way ink sits differently than toner, keeps a small but devoted clientele coming back.
+
+The workshop itself looks like a museum that still works for a living. Cabinets of wooden and metal type line the walls, sorted by size and face, decades of accumulated typefaces that simply cannot be bought new anymore. A Vandercook proof press dominates the centre of the room, its iron frame worn smooth where hands have rested on it for fifty years.
+
+What keeps the work alive is not nostalgia alone. Designers increasingly seek out the texture and intentionality that letterpress provides, the opposite of the disposable, infinitely editable digital object.
+
+A wedding invitation, a small book of poems, a limited run of gallery prints: these are the jobs that sustain the practice, each one a small act of resistance against the assumption that faster is always better.</textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- CENTRE CANVAS -->
+  <div class="flex-1 flex flex-col relative bg-charcoal">
+    <div class="h-14 bg-forest-bg flex items-center justify-between px-6 no-print shrink-0 z-10 border-b border-forest shadow-md">
+      <div class="flex items-center gap-4">
+        <span class="flex items-center gap-2 text-[11px] uppercase tracking-[0.15em] text-parchment-beige font-bold">
+          Layout Canvas
+        </span>
+        <span id="overflow-badge" class="hidden items-center gap-1.5 text-[10px] uppercase tracking-widest font-bold text-charcoal bg-muted-gold px-2.5 py-1 rounded">
+          Text Overflow Active
+        </span>
+      </div>
+      <button type="button" onclick="window.print()" class="flex items-center gap-2 bg-moss hover:bg-moss-dark text-white px-4 py-1.5 rounded text-[11px] uppercase tracking-[0.15em] transition-colors font-bold shadow-lg">
+        Export PDF
+      </button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto p-12 bg-charcoal" id="print-canvas">
+      <div id="pages-container" class="flex flex-col items-center gap-16 pb-24 transform scale-[0.75] origin-top">
+        <!-- Rendered pages inject here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT SIDEBAR: PAGE CONFIG & ASSETS -->
+  <div class="w-[320px] shrink-0 bg-forest-bg flex flex-col h-full z-10 no-print shadow-2xl border-l border-forest">
+    <div class="p-6 border-b border-charcoal">
+      <div class="flex items-center justify-between mb-4">
+        <label class="field-label">Page Sequence</label>
+        <button type="button" onclick="addPage()" class="text-parchment-beige bg-moss hover:bg-moss-dark rounded px-2 py-1 text-[11px] uppercase tracking-wider font-bold transition-colors">
+          + Add
+        </button>
+      </div>
+      <div id="page-list" class="space-y-2 max-h-[180px] overflow-y-auto pr-1">
+        <!-- Page items inject here -->
+      </div>
+    </div>
+
+    <div id="active-settings" class="p-6 border-b border-charcoal bg-forest">
+      <!-- Active page controls inject here -->
+    </div>
+
+    <div class="flex-1 overflow-y-auto p-6 flex flex-col">
+      <div class="flex items-center justify-between mb-4">
+        <label class="field-label">Asset Drawer</label>
+        <label class="cursor-pointer text-[10px] uppercase tracking-wider text-forest bg-muted-gold hover:bg-gold px-2 py-1 rounded font-bold transition-colors flex items-center gap-1">
+          <span>Upload</span>
+          <input type="file" accept="image/*" multiple class="hidden" onchange="handleImageUpload(event)">
+        </label>
+      </div>
+      <div id="asset-drawer" class="grid grid-cols-2 gap-3 flex-1">
+        <!-- Assets inject here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Offscreen measurer for real height-based text flow -->
+  <div id="measurer" aria-hidden="true"></div>
+
+  <script>
+    'use strict';
+
+    /* =====================================================================
+       State
+       ===================================================================== */
+    const state = {
+      title: document.getElementById('input-title').value,
+      standfirst: document.getElementById('input-standfirst').value,
+      byline: document.getElementById('input-byline').value,
+      body: document.getElementById('input-body').value,
+      assets: [],
+      pages: [
+        { id: 'p1', template: 'classic', imageRefs: {} },
+        { id: 'p2', template: 'visual', imageRefs: {} }
+      ],
+      activePageId: 'p1'
+    };
+
+    /* =====================================================================
+       Utilities
+       ===================================================================== */
+    const ESC_MAP = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+    const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ESC_MAP[c]);
+
+    const uid = (prefix) => prefix + ((self.crypto && crypto.randomUUID)
+      ? crypto.randomUUID().slice(0, 8)
+      : Math.random().toString(36).slice(2, 10));
+
+    function debounce(fn, ms) {
+      let t;
+      return function () { clearTimeout(t); t = setTimeout(fn, ms); };
+    }
+
+    /* =====================================================================
+       Template registry — each template owns its own view.
+       Adding a layout means adding one entry here. Nothing else changes.
+       ===================================================================== */
+    const imgSlot = (url, height) =>
+      `<div class="img-slot" style="height:${height}px;"><img src="${esc(url)}" alt=""></div>`;
+
+    const TEMPLATES = {
+      classic: {
+        label: 'Classic Editorial',
+        desc: '2-column body, main feature image',
+        slots: [{ id: 'main', label: 'Main Feature Image' }],
+        renderBody: ({ paragraphs, images, isFirst }) => `
+          ${images.main ? imgSlot(images.main.url, isFirst ? 320 : 180) : ''}
+          <div class="body-classic">
+            ${paragraphs.map((p, i) => `<p class="${i === 0 && isFirst ? 'drop-cap' : ''}">${esc(p)}</p>`).join('')}
+          </div>`
+      },
+      visual: {
+        label: 'Visual-Heavy',
+        desc: 'Large hero, single column flow',
+        slots: [{ id: 'hero', label: 'Hero Banner' }, { id: 'secondary', label: 'Secondary Image' }],
+        renderBody: ({ paragraphs, images, isFirst }) => {
+          const top = paragraphs.slice(0, 2);
+          const rest = paragraphs.slice(2);
+          return `
+            ${images.hero ? imgSlot(images.hero.url, 320) : ''}
+            <div class="body-visual">
+              ${top.map((p, i) => `<p class="${i === 0 && isFirst ? 'drop-cap' : ''}">${esc(p)}</p>`).join('')}
+            </div>
+            ${images.secondary ? imgSlot(images.secondary.url, 180) : ''}
+            ${rest.length ? `<div class="body-visual">${rest.map((p) => `<p>${esc(p)}</p>`).join('')}</div>` : ''}`;
+        }
+      },
+      minimal: {
+        label: 'Minimal',
+        desc: 'Generous whitespace, text focus',
+        slots: [],
+        renderBody: ({ paragraphs, isFirst }) => `
+          <div class="minimal-wrap">
+            <div class="body-minimal">
+              ${paragraphs.map((p, i) => `<p class="${i === 0 && isFirst ? 'lede' : ''}">${esc(p)}</p>`).join('')}
+            </div>
+          </div>`
+      }
+    };
+
+    /* =====================================================================
+       Shared page fragments (used by both the canvas and the measurer)
+       ===================================================================== */
+    function resolveImages(page) {
+      const out = {};
+      for (const slotId in page.imageRefs) {
+        const asset = state.assets.find((a) => a.id === page.imageRefs[slotId]);
+        if (asset) out[slotId] = asset;
+      }
+      return out;
+    }
+
+    function headHTML(index, total) {
+      const kicker = state.title ? state.title.slice(0, 40) : 'Untitled Document';
+      return `<div class="page-head">
+        <span class="kicker">${esc(kicker)}</span>
+        <span class="folio">${String(index + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}</span>
+      </div>`;
+    }
+
+    function heroHTML() {
+      return `<div class="page-hero">
+        <h1>${esc(state.title || 'Headline goes here')}</h1>
+        ${state.standfirst ? `<p class="standfirst">${esc(state.standfirst)}</p>` : ''}
+        ${state.byline ? `<p class="byline">Words by ${esc(state.byline)}</p>` : ''}
+      </div>`;
+    }
+
+    function regionChildrenHTML(page, paragraphs, isFirst) {
+      const body = TEMPLATES[page.template].renderBody({ paragraphs, images: resolveImages(page), isFirst });
+      return `${isFirst ? heroHTML() : ''}${body}`;
+    }
+
+    /* =====================================================================
+       Real height-based text flow (replaces the old character-count guess)
+       ===================================================================== */
+    const PAGE_HEIGHT = 1123; // A4 at 96dpi; matches .a4-page
+    const measurer = document.getElementById('measurer');
+
+    function measuredHeight(page, paragraphs, isFirst, index, total) {
+      measurer.innerHTML = `
+        <div class="a4-page measure">
+          ${headHTML(index, total)}
+          <div class="page-region-measure">${regionChildrenHTML(page, paragraphs, isFirst)}</div>
+          <div class="foot-reserve"></div>
+        </div>`;
+      return measurer.firstElementChild.offsetHeight;
+    }
+
+    function fits(page, paragraphs, isFirst, index, total) {
+      return measuredHeight(page, paragraphs, isFirst, index, total) <= PAGE_HEIGHT;
+    }
+
+    // Memoise the paragraph split on the body string.
+    let _splitCache = { body: null, paras: [] };
+    function getParagraphs() {
+      if (_splitCache.body !== state.body) {
+        _splitCache = {
+          body: state.body,
+          paras: state.body.split(/\n+/).map((p) => p.trim()).filter(Boolean)
+        };
+      }
+      return _splitCache.paras;
+    }
+
+    function computeFlow() {
+      const paras = getParagraphs();
+      let remaining = paras.slice();
+      const total = state.pages.length;
+
+      const flowed = state.pages.map((page, index) => {
+        if (!remaining.length) return { page, paragraphs: [] };
+        const isFirst = index === 0;
+
+        let count;
+        if (fits(page, remaining, isFirst, index, total)) {
+          count = remaining.length; // everything left fits on this page
+        } else {
+          // Binary-search the largest prefix that fits.
+          let lo = 1, hi = remaining.length, best = 1;
+          while (lo <= hi) {
+            const mid = (lo + hi) >> 1;
+            if (fits(page, remaining.slice(0, mid), isFirst, index, total)) { best = mid; lo = mid + 1; }
+            else { hi = mid - 1; }
+          }
+          count = best; // at least 1, even if a single paragraph overruns
+        }
+
+        const chunk = remaining.slice(0, count);
+        remaining = remaining.slice(count);
+        return { page, paragraphs: chunk };
+      });
+
+      return { flowed, overflow: remaining.length };
+    }
+
+    // Memoise the flow on a signature of everything that affects page height.
+    let _flowCache = { sig: null, result: null };
+    function flowSignature() {
+      return JSON.stringify({
+        b: state.body,
+        p: state.pages.map((p) => ({
+          t: p.template,
+          s: TEMPLATES[p.template].slots.map((sl) =>
+            p.imageRefs[sl.id] && state.assets.some((a) => a.id === p.imageRefs[sl.id]) ? 1 : 0)
+        }))
+      });
+    }
+    function getFlow() {
+      const sig = flowSignature();
+      if (_flowCache.sig !== sig) _flowCache = { sig, result: computeFlow() };
+      return _flowCache.result;
+    }
+
+    /* =====================================================================
+       Targeted renderers — each touches only its own region
+       ===================================================================== */
+    function pageHTML(entry, index, total) {
+      const { page, paragraphs } = entry;
+      const isFirst = index === 0;
+      const selected = state.activePageId === page.id;
+      const ringClass = selected ? 'border-gold' : 'border-transparent group-hover/page:border-forest-bg';
+      return `
+        <div class="relative group/page cursor-pointer" data-page-id="${page.id}" onclick="setActivePage('${page.id}')">
+          <div class="page-ring absolute -inset-4 border-[3px] rounded-xl pointer-events-none transition-colors no-print ${ringClass}"></div>
+          <div class="a4-page shadow-2xl shrink-0">
+            ${headHTML(index, total)}
+            <div class="page-region">${regionChildrenHTML(page, paragraphs, isFirst)}</div>
+            <div class="page-foot"><span>Christopher Robin Design · Brand Studio</span></div>
+          </div>
+        </div>`;
+    }
+
+    function renderCanvas() {
+      const { flowed, overflow } = getFlow();
+      const total = state.pages.length;
+      document.getElementById('pages-container').innerHTML =
+        flowed.map((entry, i) => pageHTML(entry, i, total)).join('');
+
+      const badge = document.getElementById('overflow-badge');
+      if (overflow > 0) {
+        badge.classList.remove('hidden');
+        badge.classList.add('flex');
+        badge.textContent = `Overflow: ${overflow} paragraph${overflow === 1 ? '' : 's'} unplaced`;
+      } else {
+        badge.classList.add('hidden');
+        badge.classList.remove('flex');
+      }
+    }
+
+    // Selection is pure view state — never trigger a reflow for it.
+    function updateSelectionRing() {
+      document.querySelectorAll('#pages-container [data-page-id]').forEach((node) => {
+        const ring = node.querySelector('.page-ring');
+        if (!ring) return;
+        const selected = node.getAttribute('data-page-id') === state.activePageId;
+        ring.classList.toggle('border-gold', selected);
+        ring.classList.toggle('border-transparent', !selected);
+        ring.classList.toggle('group-hover/page:border-forest-bg', !selected);
+      });
+    }
+
+    function renderPageList() {
+      document.getElementById('page-list').innerHTML = state.pages.map((p, i) => {
+        const active = state.activePageId === p.id;
+        const rowClass = active ? 'bg-forest border-gold' : 'bg-charcoal/50 border-transparent hover:border-moss/50';
+        return `
+          <div data-page-id="${p.id}" onclick="setActivePage('${p.id}')" class="flex items-center justify-between p-2.5 rounded border cursor-pointer transition-colors ${rowClass}">
+            <span class="text-xs font-bold text-parchment-beige">Page ${i + 1}</span>
+            <div class="flex items-center gap-3">
+              <span class="text-[10px] text-gold uppercase tracking-wider">${esc(TEMPLATES[p.template].label)}</span>
+              <button type="button" aria-label="Delete page ${i + 1}" onclick="event.stopPropagation(); removePage('${p.id}')" class="text-moss hover:text-red-400 transition-colors">&#10005;</button>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    function renderActiveSettings() {
+      const el = document.getElementById('active-settings');
+      const page = state.pages.find((p) => p.id === state.activePageId);
+      if (!page) { el.innerHTML = ''; return; }
+      const tpl = TEMPLATES[page.template];
+      const pageNum = state.pages.findIndex((p) => p.id === page.id) + 1;
+
+      const templateButtons = Object.entries(TEMPLATES).map(([id, t]) => {
+        const btnClass = page.template === id ? 'bg-forest-bg border-gold' : 'border-transparent bg-charcoal/40 hover:border-moss';
+        return `
+          <button type="button" onclick="setTemplate('${id}')" class="w-full text-left p-3 rounded border transition-colors ${btnClass}">
+            <div class="text-xs font-bold text-parchment-beige">${esc(t.label)}</div>
+            <div class="text-[10px] text-parchment-beige/60 mt-1">${esc(t.desc)}</div>
+          </button>`;
+      }).join('');
+
+      let slotsHtml = '';
+      if (tpl.slots.length) {
+        slotsHtml = `
+          <div class="pt-4 border-t border-charcoal">
+            <label class="field-label mb-3">Image Routing</label>
+            <div class="space-y-3">
+              ${tpl.slots.map((slot) => `
+                <div class="bg-forest-bg p-3 rounded border border-charcoal">
+                  <div class="text-[10px] uppercase tracking-[0.15em] text-parchment-beige mb-2">${esc(slot.label)}</div>
+                  ${state.assets.length === 0
+                    ? '<div class="text-[10px] text-gold italic">Upload assets below.</div>'
+                    : `<select aria-label="${esc(slot.label)} image" class="w-full bg-forest text-xs text-parchment-beige border border-gold/20 p-2 rounded outline-none" onchange="assignAsset('${slot.id}', this.value)">
+                        <option value="">-- Empty Slot --</option>
+                        ${state.assets.map((a) => `<option value="${esc(a.id)}" ${page.imageRefs[slot.id] === a.id ? 'selected' : ''}>${esc(a.name)}</option>`).join('')}
+                      </select>`}
+                </div>`).join('')}
+            </div>
+          </div>`;
+      }
+
+      el.innerHTML = `
+        <label class="field-label mb-4">Layout Settings (Page ${pageNum})</label>
+        <div class="space-y-2 mb-4">${templateButtons}</div>
+        ${slotsHtml}`;
+    }
+
+    function renderAssetDrawer() {
+      const el = document.getElementById('asset-drawer');
+      if (!state.assets.length) {
+        el.innerHTML = `
+          <div class="col-span-2 border border-dashed border-moss/40 rounded-lg p-6 text-center bg-forest/50">
+            <p class="text-[10px] text-parchment-beige/50 uppercase tracking-[0.1em]">Drawer is empty</p>
+          </div>`;
+        return;
+      }
+      el.innerHTML = state.assets.map((a) => `
+        <div class="relative group rounded overflow-hidden border border-gold/30 aspect-square bg-forest">
+          <img src="${esc(a.url)}" alt="${esc(a.name)}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+          <button type="button" aria-label="Remove ${esc(a.name)}" onclick="removeAsset('${a.id}')" class="absolute top-1 right-1 bg-red-500 text-white p-1 rounded opacity-0 group-hover:opacity-100 transition-opacity shadow text-xs leading-none">&#10005;</button>
+        </div>`).join('');
+    }
+
+    function renderAll() {
+      renderPageList();
+      renderActiveSettings();
+      renderAssetDrawer();
+      renderCanvas();
+    }
+
+    /* =====================================================================
+       Actions — each calls only the renderers it actually invalidates
+       ===================================================================== */
+    const scheduleCanvas = debounce(renderCanvas, 140);
+
+    function onField(key, value) {
+      state[key] = value;
+      scheduleCanvas(); // only the canvas depends on copy fields
+    }
+
+    function handleTextUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        state.body = ev.target.result;
+        document.getElementById('input-body').value = state.body;
+        renderCanvas();
+      };
+      reader.readAsText(file);
+      e.target.value = '';
+    }
+
+    function handleImageUpload(e) {
+      Array.from(e.target.files).forEach((f) => {
+        state.assets.push({ id: uid('a_'), name: f.name, url: URL.createObjectURL(f) });
+      });
+      e.target.value = '';
+      renderAssetDrawer();
+      renderActiveSettings(); // repopulate slot selects
+    }
+
+    function addPage() {
+      const id = uid('p_');
+      state.pages.push({ id, template: 'classic', imageRefs: {} });
+      state.activePageId = id;
+      renderPageList();
+      renderActiveSettings();
+      renderCanvas();
+    }
+
+    function removePage(id) {
+      if (state.pages.length <= 1) return;
+      state.pages = state.pages.filter((p) => p.id !== id);
+      if (state.activePageId === id) state.activePageId = state.pages[0].id;
+      renderPageList();
+      renderActiveSettings();
+      renderCanvas();
+    }
+
+    function setActivePage(id) {
+      if (state.activePageId === id) return;
+      state.activePageId = id;
+      renderPageList();
+      renderActiveSettings();
+      updateSelectionRing(); // no reflow
+    }
+
+    function setTemplate(templateId) {
+      const page = state.pages.find((p) => p.id === state.activePageId);
+      if (!page) return;
+      page.template = templateId;
+      page.imageRefs = {};
+      renderActiveSettings();
+      renderCanvas();
+    }
+
+    function assignAsset(slotId, assetId) {
+      const page = state.pages.find((p) => p.id === state.activePageId);
+      if (!page) return;
+      if (!assetId) delete page.imageRefs[slotId];
+      else page.imageRefs[slotId] = assetId;
+      renderActiveSettings();
+      renderCanvas();
+    }
+
+    function removeAsset(assetId) {
+      const asset = state.assets.find((a) => a.id === assetId);
+      if (asset) { try { URL.revokeObjectURL(asset.url); } catch (_) {} } // free the blob
+      state.assets = state.assets.filter((a) => a.id !== assetId);
+      state.pages.forEach((p) => {
+        Object.keys(p.imageRefs).forEach((slot) => {
+          if (p.imageRefs[slot] === assetId) delete p.imageRefs[slot];
+        });
+      });
+      renderAssetDrawer();
+      renderActiveSettings();
+      renderCanvas();
+    }
+
+    // Expose the handlers referenced by inline attributes.
+    Object.assign(window, {
+      onField, handleTextUpload, handleImageUpload,
+      addPage, removePage, setActivePage, setTemplate, assignAsset, removeAsset
+    });
+
+    /* =====================================================================
+       Boot
+       ===================================================================== */
+    renderAll();
+
+    // Fonts change text metrics; re-flow once they are ready.
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => { _flowCache.sig = null; renderCanvas(); });
+    }
+  </script>
+</body>
+</html>

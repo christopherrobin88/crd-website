@@ -41,6 +41,8 @@ Read these before meaningful project work:
 3. `docs/known-issues.md`
 4. `docs/decisions/`
 5. `docs/briefs/`
+6. `docs/crd-brand-bible.html` — Brand Bible v1.0, source of truth for colour, type and component rules
+7. `docs/crd-editorial-engine.html` — prototype publication layout tool (not part of the production build)
 
 ## Working rules
 

@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;0,900;1,400;1,600;1,800;1,900&display=swap");
 
 /* Premium Editorial Scroll Reveals */
 @supports (animation-timeline: view()) {
@@ -27,7 +28,6 @@
     }
   }
 }
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;0,900;1,400;1,600;1,800;1,900&display=swap");
 
 @font-face {
   font-family: "DM Sans";
