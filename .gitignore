@@ -63,3 +63,6 @@ archive/
 
 # wrangler local dev state
 .wrangler/
+
+# Generated graph/map artifacts
+graphify-out/

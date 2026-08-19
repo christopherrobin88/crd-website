@@ -258,3 +258,11 @@ git push origin feat/<clear-branch-name>
 - Do not hide scope conflicts.
 - Do not treat Christopher as a beginner.
   
+
+## Graphify
+
+- The Codex `graphify` skill is installed globally. When this repo contains `graphify-out/graph.json`, use Graphify first for questions about architecture, code relationships, project structure, or repository content.
+- For natural-language repo questions, prefer `graphify query "<question>"` before broad manual file searches. For explicit rebuild/update requests, follow the Graphify skill workflow instead.
+- Treat `graphify-out/` as generated, derived evidence. Do not edit it by hand, and do not treat generated graph output as authoritative until it has been reviewed against source files.
+
+## Imported Claude Cowork project instructions

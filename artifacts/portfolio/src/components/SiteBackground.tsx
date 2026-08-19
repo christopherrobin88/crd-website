@@ -13,7 +13,9 @@ import foliageCorner from "@/assets/images/foliage_corner.webp";
  * from the approved landing mockup (cut out by scripts/extract-foliage.ts —
  * cropped from an approved asset per CLAUDE.md Section 3, not generated).
  * On load they grow in from their stem side, then hold a barely-there sway.
- * Static under prefers-reduced-motion.
+ * They also drift slightly against scroll (a soft parallax, slower than the
+ * page itself) so they read as sitting behind the content rather than being
+ * rigidly locked to the viewport. Static under prefers-reduced-motion.
  */
 
 const growMask = (originX: string, originY: string): CSSProperties => {
@@ -34,6 +36,23 @@ export function SiteBackground() {
         root.querySelectorAll<HTMLElement>("[data-foliage]"),
       );
       const tweens: gsap.core.Tween[] = [];
+
+      // Soft parallax on the whole foliage group — drifts opposite to
+      // scroll direction at a fraction of page speed, so the sprigs feel
+      // like they sit behind the content instead of pinned to the glass.
+      // Kept on the group, not per-sprig, so it never fights the individual
+      // grow/sway tweens below (different element, different property owner).
+      const parallaxTween = gsap.to(root, {
+        y: -70,
+        ease: "none",
+        scrollTrigger: {
+          trigger: document.body,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: true,
+        },
+      });
+
       sprigs.forEach((el, i) => {
         // growth reveal from the stem side
         const state = { r: 0 };
@@ -63,6 +82,8 @@ export function SiteBackground() {
       });
       return () => {
         tweens.forEach((t) => t.kill());
+        parallaxTween.scrollTrigger?.kill();
+        parallaxTween.kill();
         sprigs.forEach((el) => el.style.removeProperty("--f-r"));
       };
     });
