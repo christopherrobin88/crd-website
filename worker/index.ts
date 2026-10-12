@@ -9,37 +9,7 @@
  * limiter live server-side only; the frontend just POSTs JSON.
  */
 
-interface EmailSendParams {
-  to: string;
-  from: { email: string; name?: string };
-  replyTo?: string;
-  subject: string;
-  text: string;
-}
-
-// Narrow local shapes for the bindings we call. Regenerate with
-// `wrangler types` once the account-side setup exists if fuller typing is
-// wanted; the runtime contract is what matters here.
-interface EmailSender {
-  send(params: EmailSendParams): Promise<unknown>;
-}
-
-interface RateLimiter {
-  limit(options: { key: string }): Promise<{ success: boolean }>;
-}
-
-interface Env {
-  ASSETS: { fetch(request: Request): Promise<Response> };
-  /** send_email binding; absent until deployed with the binding configured. */
-  EMAIL?: EmailSender;
-  /** Rate-limiting binding; absent in local dev. */
-  ENQUIRY_RATE?: RateLimiter;
-  /** Where enquiries land. Must be a verified destination address on the
-   *  Cloudflare account for free sending. Set in wrangler.toml [vars]. */
-  CONTACT_INBOX: string;
-  /** From address, on the site's own domain. Set in wrangler.toml [vars]. */
-  ENQUIRY_FROM: string;
-}
+import { handleNewsletter } from "./newsletter";
 
 interface EnquiryBody {
   name?: unknown;
@@ -177,6 +147,7 @@ async function handleEnquiry(request: Request, env: Env): Promise<Response> {
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
+    if (url.pathname === "/api/newsletter") return handleNewsletter(request, env);
     if (url.pathname === "/api/enquiry") {
       return handleEnquiry(request, env);
     }

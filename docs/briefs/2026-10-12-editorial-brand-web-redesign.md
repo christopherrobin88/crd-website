@@ -36,6 +36,8 @@ Christopher supplied his invoice HTML template during this pricing work. Its col
 
 ## Release
 
+Christopher subsequently chose Gmail for marketing signup notifications. The native Studio notes form and separate `/api/newsletter` route send a private consent record to the existing configured inbox, without creating a new MailerLite account. Gmail and the Worker bindings are verified; domain sending and real delivery remain unverified because the connector cannot read Email Sending status. Production signup stays gated until a successful delivery check. Server security tests, workspace type checks and configured production-browser form checks passed. See `docs/marketing-signup.md` for activation, consent handling and rollback. This change does not send campaigns or modify DNS.
+
 Feature branch: feat/editorial-brand-web-portfolio. Build and review the draft before considering production. This task does not change the Studio, public calendar, private services, trading dashboard, recorder, launchd jobs or DNS.
 
 ## Late review, 13 October

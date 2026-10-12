@@ -1,36 +1,38 @@
 # CRD Studio notes signup
 
-13 October 2026. Requested by Christopher for marketing email collection, separate from project enquiries. Recommended provider: MailerLite. Christopher confirmed a new account is needed.
+13 October 2026. Christopher chose Gmail as the destination for marketing signups. This supersedes the earlier plan to create a MailerLite account for collection. Project enquiries remain separate.
 
-## Current state
+## Gmail delivery draft
 
-The local draft includes a CRD popup and a footer entry point. With no form configured, development shows disabled design-preview fields and an explicit preview notice. Production renders neither the popup nor its footer button. No addresses are currently collected. Account creation, email verification, provider configuration and a real confirmation test remain outstanding.
+The CRD popup submits email, an unchecked required marketing-consent checkbox, the consent version and a honeypot to `POST /api/newsletter`. The Worker emails one notification to the existing `CONTACT_INBOX` through the `EMAIL` binding. It never accepts a visitor-supplied destination or sends a campaign. The notification records the address, UTC receipt time, source host and exact consent text/version. It explicitly says email ownership has not been verified. No subscriber addresses or consent records are stored in the public repository, browser storage or request logs.
 
-Desktop automatic prompting requires 45 seconds on the site and 35% page scroll. It is suppressed on contact pages, while another dialog or the Studio channel transition is active, and while the tab is hidden. Mobile uses the footer button only. Dismissal suppresses automatic prompts for 90 days on that browser; explicit footer opening still works. If storage is blocked, suppression lasts for the current page session. No email addresses are stored in browser storage.
+Consent version: `crd-studio-notes-v1`. Consent text: `I'd like to receive CRD marketing emails. I can unsubscribe at any time.` The popup explains that the address and consent go to the studio inbox. It provides an email link for unsubscribe/removal requests. These requests must be handled manually before any later campaign. A Gmail notification is a signup request record, not a verified subscriber database or double-opt-in flow.
 
-## Connect the form
+Server validation requires current explicit consent and a valid bounded address. The route checks same origin, JSON content type, a bounded 2 KB body including chunked requests, honeypot and per-IP rate limits. Newsletter keys have a separate prefix under the existing rate binding so they do not consume the project's enquiry key. Missing email/rate bindings fail closed. Email sending is awaited; a sending error returns failure and the visitor's entered fields are retained for retry. The browser prevents duplicate concurrent submissions. No addresses are currently collected by this draft on production.
 
-1. Create the account at <https://accounts.mailerlite.com/signup>, using Christopher's chosen business login. Complete verification and any provider account approval.
-2. Create a group named `CRD Studio notes`, then an embedded signup form assigned to it. Leave double opt-in enabled. Use email only, an unchecked required marketing-consent checkbox and the purpose below. Include a privacy statement explaining that MailerLite processes the signup for CRD and how to request removal. Enable the provider's spam protection.
-3. Match the form to forest `#0E2320` on parchment `#F4ECD9`, DM Sans for fields, with no duplicate heading above the fields. Suggested consent: `I'd like to receive CRD marketing emails. I can unsubscribe at any time.` Suggested purpose: occasional CRD project updates, design notes and studio news. Make the success message request email confirmation, rather than claiming the subscription is complete.
-4. Copy the form's public Share URL, normally `https://preview.mailerlite.io/forms/ACCOUNT/FORM/share`. Set `VITE_NEWSLETTER_FORM_URL` to that URL in the Mini development environment and the existing Cloudflare build environment. This is a public form URL, not an API key. Other origins and malformed URLs fail closed. If MailerLite supplies a different official URL shape, verify it before extending the allowlist.
-5. Rebuild the review draft. The provider form loads in an iframe only when the dialog is open, with a new-tab fallback. Inspect the actual provider form on desktop and mobile, including any iframe restrictions, consent, validation, CAPTCHA, keyboard navigation, success message and confirmation flow. Replace the embed with MailerLite's supplied HTML if its Share page refuses embedding. A provider fixture is not proof of a working live signup.
-6. With Christopher's own controlled test address, verify that the submission is persisted to the correct MailerLite group as unconfirmed, receives a confirmation email, becomes active only after confirmation, and can unsubscribe from a test campaign. Do not use visitor addresses for tests. Do not send campaigns without Christopher's instruction. Remove test data afterwards through the provider.
+## Verified access and remaining release checks
 
-The account login and verification must be completed by Christopher. The platform was not available among the discovered connected plugins in this session; account management is not claimed to be automated. No Cloudflare DNS, email routing, enquiry Worker or launchd jobs are changed by this frontend integration.
+On 13 October, read-only Cloudflare API inspection confirmed that the configured Gmail destination is verified and the live `crd-portfolio` Worker has the expected email, recipient, sender and rate-limit bindings. The rate limit is five requests per minute per connecting IP. The domain's Email Routing setting reports disabled. Email Sending is a separate capability; the connector rejected reading its sending-domain status with Unauthorized. This audit proves the recipient and bindings exist, not successful delivery. No DNS, routing, account settings or production deployment were changed. A limited Gmail ID search found no messages from the configured sender in the previous 30 days; this is not proof that sending fails.
 
-## Rollback
+Before activation, verify domain sending and a controlled end-to-end notification arriving in the chosen Gmail inbox, including Spam. Label any test clearly and do not create a subscriber or represent test data as genuine marketing consent. Check the subject, sender, reply-to, timestamps and consent text. Retain the private delivery evidence and remove test messages separately if requested. Do not change existing mailbox MX records to enable this feature without reviewing the actual mail setup.
 
-Unset `VITE_NEWSLETTER_FORM_URL` and rebuild to disable the public signup surfaces. The existing enquiry form continues independently. Removing the popup does not delete provider subscriber records; manage retention and removal in MailerLite.
+## Activation and rollback
 
-## Draft validation
+After the delivery check and approval of the review draft, set `VITE_NEWSLETTER_DELIVERY=gmail` in the existing Cloudflare build environment and rebuild/deploy the frontend and Worker together. Local development shows the native Gmail form for review. A plain Vite preview does not run the Worker; without a real endpoint it shows a truthful sending error. Browser validation uses stub responses only and does not send email.
 
-Workspace type checks and the production build passed, including all 19 prerendered routes. Mini Chrome checks passed at 320, 390 and 1440 pixels: dialog fit and internal scrolling, focus trapping and return, Escape, background scroll lock, desktop delay/scroll gating, mobile automatic-prompt suppression, contact-page exclusion and dismissal across reload. Invalid provider URLs fail closed. A stubbed configured provider form loaded only on opening, unloaded on closing and retained a new-tab fallback with reduced motion. The unconfigured production build showed no signup surfaces after hydration. No live provider submission, confirmation or unsubscribe has been tested yet.
+Production stays hidden with no delivery mode and no existing hosted form URL. Set `VITE_NEWSLETTER_DELIVERY=off` and rebuild to hide every signup surface. Reverting the newsletter route removes the email notification endpoint. Neither action deletes Gmail records; manage retention and removals privately in the inbox. A previously configured MailerLite hosted URL remains supported for a future deliberate migration, but no new MailerLite account is required for the Gmail route.
 
-Production checks exposed a reduced-motion hydration mismatch in the existing BrowserPreview and ProjectFlow controls. Their preference now uses a shared external-store hook with a deterministic server snapshot, so initial hydration matches the prerender and then applies the visitor's setting. The footer entry point is also mounted after hydration.
+Desktop automatic prompting still requires 45 seconds and 35% page scroll. It is suppressed on Contact, other dialogs, the Studio transition and hidden tabs. Mobile opens only through the footer. Closing suppresses automatic prompts for 90 days; manual opening remains available. Only a dismissal timestamp is stored locally.
 
-## Provider references
+## Validation
 
-- <https://www.mailerlite.com/pricing>
-- <https://www.mailerlite.com/help/how-to-create-an-embedded-form>
-- <https://www.mailerlite.com/help/how-to-use-double-opt-in-when-collecting-subscribers>
+Workspace TypeScript checks and the Gmail-enabled production build passed, including the 19 prerendered routes. Six Worker tests cover owner-only delivery and consent records, invalid or stale consent/email, malformed/cross-origin/oversized requests, chunked body bounds, honeypot/rate/missing bindings and awaited send failure. Mini Chrome checks at 320, 390 and 1440 pixels passed: dialog fit, required unchecked consent, failure retaining fields, successful request acknowledgement, unsubscribe link, Escape and return focus. Six browser requests were intercepted fixtures, not real Gmail delivery.
+
+Current Worker binding declarations are generated by Wrangler in `worker/env.d.ts` and checked against current `@cloudflare/workers-types`. Regenerate with `--include-runtime=false --strict-vars=false` so configured inbox values are not copied into this declaration. The Worker bundle also routes signup, existing project enquiries and static assets correctly with stub bindings. No schedules or background agents were introduced.
+
+## References
+
+- <https://developers.cloudflare.com/email-service/api/send-emails/workers-api/>
+- <https://developers.cloudflare.com/email-service/configuration/send-bindings/>
+- <https://developers.cloudflare.com/email-service/configuration/domains/>
+- <https://developers.cloudflare.com/workers/best-practices/workers-best-practices/>

@@ -6,11 +6,8 @@
     "strict": true,
     "noEmit": true,
     "skipLibCheck": true,
-    // The Workers runtime is fetch-native; the dom lib covers the Request /
-    // Response / URL surface this worker touches without adding a types
-    // dependency. Swap for @cloudflare/workers-types via `wrangler types`
-    // if the worker grows beyond this file.
-    "lib": ["es2022", "dom"]
+    "types": ["@cloudflare/workers-types"],
+    "lib": ["es2022"]
   },
-  "include": ["index.ts"]
+  "include": ["*.ts"]
 }

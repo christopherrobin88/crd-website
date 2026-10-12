@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Leaf, X } from "lucide-react";
 import { useLocation } from "wouter";
 import { SketchLine } from "@/components/SketchLine";
-import { newsletterAvailable, newsletterOpenEvent, newsletterUrl } from "@/lib/newsletter";
+import { newsletterAvailable, newsletterOpenEvent, newsletterUrl, newsletterGmail, newsletterConsentText, newsletterConsentVersion } from "@/lib/newsletter";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 const storageKey = "crd:studio-notes-dismissed-until";
 const quietPeriod = 90 * 24 * 60 * 60 * 1000;
@@ -16,10 +17,38 @@ function wasDismissed() {
 export function NewsletterPopup() {
   const [path] = useLocation();
   const [open, setOpen] = useState(false);
+  const [signupStatus, setSignupStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [signupError, setSignupError] = useState("");
+  const sending = useRef(false);
   const dismissed = useRef(false);
   const started = useRef(0);
   const opener = useRef<HTMLElement | null>(null);
   const closeButton = useRef<HTMLButtonElement | null>(null);
+
+  async function submitSignup(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (sending.current) return;
+    const data = new FormData(event.currentTarget);
+    sending.current = true;
+    setSignupStatus("sending");
+    setSignupError("");
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: data.get("email"), consent: data.get("consent") === "on", consentVersion: newsletterConsentVersion, website: data.get("website") }),
+      });
+      const result = await response.json().catch(() => null);
+      if (!response.ok || result?.ok !== true) {
+        setSignupError(typeof result?.error === "string" ? result.error : "Your signup could not be sent. Please try again later.");
+        setSignupStatus("error");
+        return;
+      }
+      setSignupStatus("sent");
+    } catch {
+      setSignupError("Your signup could not be sent. Please check your connection and try again.");
+      setSignupStatus("error");
+    } finally { sending.current = false; }
+  }
 
   const changeOpen = (value: boolean) => {
     if (!value) {
@@ -74,7 +103,19 @@ export function NewsletterPopup() {
         <Dialog.Title className="font-serif text-4xl leading-tight tracking-tight sm:text-5xl">A little of what<br /><span className="italic">goes into the work.</span></Dialog.Title>
         <SketchLine className="my-5 w-40 text-crd-moss" />
         <Dialog.Description className="text-base leading-relaxed">Occasional project updates, design notes and news from Christopher Robin Design. Editorial, branding and the web.</Dialog.Description>
-        {newsletterUrl ? <div className="mt-5">
+        {newsletterGmail ? <div className="mt-6">
+          {signupStatus === "sent" ? <p role="status" className="border-t border-crd-forest/20 pt-5 text-base leading-relaxed">Thank you. Your signup request has been sent to the studio. We’ll keep you posted with the occasional note.</p> : <form onSubmit={submitSignup} aria-busy={signupStatus === "sending"}>
+            <fieldset disabled={signupStatus === "sending"}>
+              <label htmlFor="studio-notes-email" className="text-sm">Email address</label>
+              <input id="studio-notes-email" name="email" type="email" required maxLength={254} autoComplete="email" placeholder="you@example.com" className="mt-2 w-full rounded-none border-0 border-b border-crd-forest/40 bg-transparent py-3 text-base placeholder:text-crd-forest/60 focus:outline-2 focus:outline-offset-2 focus:outline-crd-forest" />
+              <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden"><label htmlFor="studio-notes-website">Website</label><input id="studio-notes-website" name="website" tabIndex={-1} autoComplete="off" /></div>
+              <label className="mt-4 flex min-h-11 items-start gap-3 text-sm leading-relaxed"><input name="consent" type="checkbox" required className="mt-1 h-5 w-5 shrink-0 accent-crd-forest" />{newsletterConsentText}</label>
+              <button type="submit" className="mt-5 min-h-11 w-full rounded-full bg-crd-forest px-6 py-3 text-sm font-medium text-crd-parchment disabled:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-crd-forest">{signupStatus === "sending" ? "Sending…" : "Send me studio notes"}</button>
+            </fieldset>
+            {signupStatus === "error" && <p role="alert" className="mt-4 text-sm leading-relaxed">{signupError}</p>}
+          </form>}
+          <p className="mt-4 text-xs leading-relaxed text-crd-forest/80">Your email and consent are sent to CRD’s inbox to keep a private signup record. To unsubscribe or request removal, email <a href={`mailto:${CONTACT_EMAIL}?subject=Unsubscribe%20from%20CRD%20Studio%20notes`} className="underline">{CONTACT_EMAIL}</a>.</p>
+        </div> : newsletterUrl ? <div className="mt-5">
           <iframe src={newsletterUrl} title="CRD email signup form" className="h-[360px] w-full border-0" referrerPolicy="no-referrer" />
           <a href={newsletterUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block border-b border-crd-forest/40 text-sm">Open the signup form in a new tab</a>
         </div> : <div className="mt-6" aria-label="Signup design preview">

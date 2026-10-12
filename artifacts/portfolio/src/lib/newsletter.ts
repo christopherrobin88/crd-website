@@ -12,5 +12,8 @@ export function newsletterFormUrl(value: unknown): string | null {
 }
 
 export const newsletterUrl = newsletterFormUrl(import.meta.env.VITE_NEWSLETTER_FORM_URL);
-export const newsletterAvailable = Boolean(newsletterUrl) || import.meta.env.DEV;
+export const newsletterGmail = import.meta.env.VITE_NEWSLETTER_DELIVERY === "gmail" || (import.meta.env.DEV && !newsletterUrl && import.meta.env.VITE_NEWSLETTER_DELIVERY !== "off");
+export const newsletterAvailable = import.meta.env.VITE_NEWSLETTER_DELIVERY !== "off" && (newsletterGmail || Boolean(newsletterUrl) || import.meta.env.DEV);
+export const newsletterConsentVersion = "crd-studio-notes-v1";
+export const newsletterConsentText = "I'd like to receive CRD marketing emails. I can unsubscribe at any time.";
 export const newsletterOpenEvent = "crd:open-studio-notes";
