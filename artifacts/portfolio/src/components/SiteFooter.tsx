@@ -15,7 +15,7 @@ export function SiteFooter() {
         className="border-b border-crd-forest/40 pb-1 text-sm text-crd-forest focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-crd-forest">
         Get occasional studio notes
       </button></div>}
-      <p className="mb-5 flex flex-col items-center justify-center gap-x-3 gap-y-2 text-center font-sans text-[0.7rem] uppercase tracking-[0.2em] text-crd-forest/80 sm:flex-row">
+      <p className="mx-auto mb-5 flex flex-col items-center justify-center gap-x-3 gap-y-2 text-center font-sans text-[0.7rem] uppercase tracking-[0.2em] text-crd-forest/80 sm:flex-row">
         <span className="whitespace-nowrap">Design with purpose.</span>
         <span className="hidden text-crd-gold sm:inline" aria-hidden="true">•</span>
         <span className="whitespace-nowrap">Crafted with care.</span>

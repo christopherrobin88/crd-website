@@ -34,6 +34,11 @@ Quick fix applied on `feat/body-copy-size-consistency`: normalised all outlying 
 
 ## Resolved
 
+### Footer slogan sat left of the centred leaf and copyright on desktop
+**Resolved in the review draft, 13 October 2026.**
+
+The shared paragraph rule limited the slogan to `65ch`, but its container had no automatic horizontal margins. On wider screens the slogan remained at the footer's left padding while the leaf and copyright stayed centred. Added automatic horizontal margins to the slogan container. Verified on the Riette Gara case study at 390px and 1440px: the leaf, slogan and copyright share the footer's centre. Complete slogan phrases still stack on phones. This change is saved in the redesign review branch, not deployed to production.
+
 ### Systemic nav-bar / hero-image overlap on project detail pages
 **Resolved by 17 July 2026** (verified during the production-refinement pass; the fix itself landed in an earlier workstream).
 
