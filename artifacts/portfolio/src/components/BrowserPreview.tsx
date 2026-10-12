@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 import { Pause, Play } from "lucide-react";
-import { useReducedMotion } from "framer-motion";
+import { useReducedMotionPreference } from "@/hooks/use-reduced-motion-preference";
 import { gsap } from "@/lib/motion";
 
 /** Supplied screenshots or recorded interactions in a browser window. */
@@ -15,7 +15,7 @@ export function BrowserPreview({ title, image, mobileImage, previewVideo, href, 
   const animation = useRef<gsap.core.Tween | null>(null);
   const visible = useRef(false);
   const [paused, setPaused] = useState(false);
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionPreference();
   const canPlay = useRef(false);
   canPlay.current = !paused && !reduce;
 

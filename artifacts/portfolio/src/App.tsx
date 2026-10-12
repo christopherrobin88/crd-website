@@ -5,6 +5,7 @@ import { webProjects } from "@/data/web-projects";
 import Landing from "@/pages/Landing";
 import { AnimatePresence, MotionConfig } from "framer-motion";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
+import { NewsletterPopup } from "@/components/NewsletterPopup";
 
 const NotFound = lazy(() => import("@/pages/not-found"));
 const WorkPage = lazy(() => import("@/pages/WorkPage"));
@@ -44,7 +45,7 @@ export interface AppProps {
 function AppContent() {
   useSmoothScroll();
 
-  return <Router />;
+  return <><Router /><NewsletterPopup /></>;
 }
 
 function App({ path }: AppProps) {

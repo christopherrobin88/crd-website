@@ -1,6 +1,7 @@
 import { SketchLine } from "@/components/SketchLine";
 import { useEffect, useRef, useState } from "react";
-import { useInView, useReducedMotion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useReducedMotionPreference } from "@/hooks/use-reduced-motion-preference";
 import { Check, Pause, Play } from "lucide-react";
 
 const steps = [
@@ -19,7 +20,7 @@ export function ProjectFlow() {
   const [paused, setPaused] = useState(false);
   const [inspecting, setInspecting] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionPreference();
   useEffect(() => {
     const update = () => setHidden(document.hidden);
     update(); document.addEventListener("visibilitychange", update);
