@@ -34,6 +34,11 @@ Quick fix applied on `feat/body-copy-size-consistency`: normalised all outlying 
 
 ## Resolved
 
+### Direct enquiry links lost the selected service after prerender hydration
+**Resolved in the review draft, 13 October 2026.**
+
+The prerendered contact page has no query-specific select value. React's uncontrolled select retained that blank value when opening a package link directly, although client navigation from Services selected it correctly. The contact page now applies validated service and package selections after hydration; the package message remains editable. Verified all four pricing links through client navigation and direct production-page loads, with no browser errors. Unknown package/type parameters leave the fields blank. This fix is in the redesign review branch, not production.
+
 ### Footer slogan sat left of the centred leaf and copyright on desktop
 **Resolved in the review draft, 13 October 2026.**
 

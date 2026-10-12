@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { SiteNav } from "@/components/Navigation";
 import { ProjectFlow } from "@/components/ProjectFlow";
+import { PricingPackages } from "@/components/PricingPackages";
 import { SiteFooter } from "@/components/SiteFooter";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { scrollNowTo } from "@/hooks/use-smooth-scroll";
@@ -25,6 +26,7 @@ export default function Services() {
           <p className="mb-5 text-xs uppercase tracking-[0.22em]">The CRD offer</p>
           <h1 className="font-serif text-5xl leading-[1.08] tracking-tight md:text-7xl">Editorial design.<br />Branding. Websites.</h1>
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-crd-forest/85">Independent design support for publications, brands and agencies. Clear thinking, considered craft and the experience to get the work delivered.</p>
+          <a href="#packages" className="mt-6 inline-flex min-h-11 items-center gap-2 border-b border-crd-gold text-sm font-medium">Explore packages & fees<ArrowRight className="h-4 w-4" aria-hidden="true" /></a>
         </header>
         <div>
           {services.map((service, index) => <section key={service.title} className="grid gap-8 border-t border-crd-forest/20 py-10 md:grid-cols-[1fr_1.5fr] md:gap-20 md:py-14">
@@ -39,14 +41,7 @@ export default function Services() {
             </div>
           </section>)}
         </div>
-        <section className="mt-12 grid gap-8 rounded-xl bg-crd-forest px-7 py-10 text-crd-parchment md:grid-cols-2 md:gap-16 md:px-12 md:py-14" aria-labelledby="fees-title">
-          <div><p className="mb-4 text-xs uppercase tracking-[0.2em]">Scope & fees</p><h2 id="fees-title" className="font-serif text-3xl leading-tight md:text-4xl">A clear scope.<br />An agreed project fee.</h2></div>
-          <div>
-            <p className="text-base leading-relaxed md:text-lg">Each project is quoted to scope. The fee depends on the content, deliverables, review rounds and timeline. For websites, hosting, maintenance and any ongoing support are agreed separately.</p>
-            <p className="mt-5 text-base leading-relaxed md:text-lg">Share your brief and budget. You'll receive a proposal setting out what is included, the project fee and the delivery stages before work begins.</p>
-            <Link href="/contact" className="mt-7 inline-flex items-center gap-2 border-b border-crd-parchment/60 pb-2 text-sm font-medium">Ask for a project quote<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
-          </div>
-        </section>
+        <PricingPackages />
         <section className="mt-16 grid gap-6 border-t border-crd-forest/20 pt-10 md:grid-cols-2 md:gap-16">
           <h2 className="font-serif text-3xl tracking-tight md:text-4xl">Craft, through to delivery.</h2>
           <p className="text-lg leading-relaxed text-crd-forest/85">The work begins with a conversation and a brief, then moves through direction, design and review to a considered handover. Print production, campaign rollout and ongoing editorial support can be included where the project needs them.</p>
