@@ -38,9 +38,17 @@ export function ProjectFlow() {
     <section className="px-6 py-16 md:px-12 md:py-24" aria-labelledby="project-flow-title">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 grid gap-7 md:grid-cols-2 md:gap-20">
-          <div><p className="mb-5 text-xs uppercase tracking-[0.2em]">Design & delivery systems</p><div className="flex items-start justify-between gap-4"><h2 id="project-flow-title" className="font-serif text-4xl leading-tight tracking-tight md:text-5xl">Drawn by hand.<br /><span className="italic">Kept in motion.</span></h2>{!reduce && <button type="button" onClick={() => setPaused((value) => !value)} aria-label={`${paused ? "Play" : "Pause"} project workflow`} aria-pressed={paused} className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-crd-forest/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-crd-forest">{paused ? <Play className="h-4 w-4" /> : <Pause className="h-4 w-4" />}</button>}</div><SketchLine className="mt-4 w-52" /></div>
+          <div><p className="mb-5 text-xs uppercase tracking-[0.2em]">Design & delivery systems</p><h2 id="project-flow-title" className="font-serif text-4xl leading-tight tracking-tight md:text-5xl">Drawn by hand.<br /><span className="italic">Kept in motion.</span></h2><SketchLine className="mt-4 w-52" /></div>
           <p className="text-lg leading-relaxed text-crd-forest/85">Good systems give creative work room to happen. A clear brief, visible ownership and considered checkpoints keep a project moving. Routine acknowledgements, status updates and reminders can be automated; design decisions and approvals stay with people. The cards show a sample project from brief to delivery.</p>
         </div>
+        {!reduce && <div className="mb-4 flex justify-end">
+          <button type="button" onClick={() => setPaused((value) => !value)}
+            aria-label={`${paused ? "Play" : "Pause"} project workflow`} aria-pressed={paused}
+            className="inline-flex min-h-11 items-center gap-2 border-b border-crd-forest/30 px-2 text-sm text-crd-forest focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-crd-forest">
+            {paused ? <Play className="h-3.5 w-3.5" aria-hidden="true" /> : <Pause className="h-3.5 w-3.5" aria-hidden="true" />}
+            <span>{paused ? "Resume workflow" : "Pause workflow"}</span>
+          </button>
+        </div>}
         <ol ref={cards} className="crd-flow-grid" onPointerEnter={(event) => { if (event.pointerType === "mouse") setInspecting(true); }} onPointerLeave={() => setInspecting(false)}>
           {steps.map((step, index) => <li key={step.title} className={`crd-flow-step ${index <= shownStage ? "is-reached" : ""}`}>
             <svg className="crd-flow-outline" viewBox="0 0 180 180" preserveAspectRatio="none" aria-hidden="true">

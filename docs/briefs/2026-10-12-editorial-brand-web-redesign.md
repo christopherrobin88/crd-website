@@ -20,7 +20,7 @@ Do not publish the supplied PDF's example business-card contact details or confi
 
 ## Systems and the Studio
 
-Christopher requested the project workflow here as public proof of systems thinking. The hand-drawn demonstration automatically cycles from Brief through Assign, Design, Review, Approve and Deliver while visible. A small pause control appears beside the heading. There is no Run/Reset bar. It pauses off-screen, while reading with a mouse pointer and in hidden tabs; reduced motion shows all six stages without cycling. It is explicitly a sample, uses no client data and explains which routine updates can be automated while design decisions and approvals stay with people. It appears on the homepage and services page.
+Christopher requested the project workflow here as public proof of systems thinking. The hand-drawn demonstration automatically cycles from Brief through Assign, Design, Review, Approve and Deliver while visible. A labelled pause/resume control appears directly above the cards. There is no Run/Reset bar. It pauses off-screen, while reading with a mouse pointer and in hidden tabs; reduced motion shows all six stages without cycling. It is explicitly a sample, uses no client data and explains which routine updates can be automated while design decisions and approvals stay with people. It appears on the homepage and services page.
 
 The homepage includes a visitor link to https://christopherrobin.studio/ labelled "Step into the Studio". An ordinary click plays a short TV-static distortion and reveals the existing neon room before navigating. Reduced-motion and modified clicks use the direct link. The overlay mounts outside the distorted page and clears on browser return.
 
