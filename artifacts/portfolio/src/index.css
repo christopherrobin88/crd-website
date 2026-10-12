@@ -1,6 +1,19 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;0,900;1,400;1,600;1,800;1,900&display=swap");
+@font-face {
+  font-family: "Playfair Display";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 900;
+  src: url("@fontsource-variable/playfair-display/files/playfair-display-latin-wght-normal.woff2") format("woff2-variations");
+}
+@font-face {
+  font-family: "Playfair Display";
+  font-style: italic;
+  font-display: swap;
+  font-weight: 400 900;
+  src: url("@fontsource-variable/playfair-display/files/playfair-display-latin-wght-italic.woff2") format("woff2-variations");
+}
 
 /* Premium Editorial Scroll Reveals */
 @supports (animation-timeline: view()) {
@@ -489,4 +502,60 @@
       transform: none;
     }
   }
+}
+
+/* Website previews keep supplied artwork inside a recognisable browser. */
+.crd-browser { overflow: hidden; border: 1.5px solid rgb(14 35 32 / .55); border-radius: 12px 12px 9px 11px; background: #F4ECD9; }
+.crd-browser-bar { display: flex; align-items: center; gap: 10px; min-height: 43px; padding: 3px 10px; border-bottom: 1px solid rgb(14 35 32 / .3); }
+.crd-browser-dots { display: flex; gap: 4px; }
+.crd-browser-dots i { width: 5px; height: 5px; border: 1px solid #0E2320; border-radius: 50%; }
+.crd-browser-screen { overflow: hidden; aspect-ratio: 4 / 5; background: #0E2320; }
+@media (min-width: 768px) { .crd-browser-screen { aspect-ratio: 16 / 9; } }
+
+/* Pencil-like outlines for the public project-flow demonstration. */
+.crd-flow-grid { display: grid; grid-template-columns: 1fr; gap: 36px; }
+.crd-flow-step { position: relative; min-width: 0; }
+.crd-flow-step:not(:last-child)::after { content: '↓'; position: absolute; left: 50%; bottom: -28px; font-family: var(--font-serif); font-size: 24px; color: #0E2320; }
+.crd-flow-outline { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; fill: transparent; stroke: rgb(14 35 32 / .5); stroke-width: 1.25; transition: fill .35s ease, stroke .35s ease; }
+.crd-flow-pencil { opacity: .25; stroke-width: .6; }
+.crd-flow-step.is-reached .crd-flow-outline { fill: rgb(107 122 61 / .1); stroke: #0E2320; }
+@media (min-width: 1024px) {
+  .crd-flow-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 15px; }
+  .crd-flow-step:not(:last-child)::after { content: '→'; left: auto; right: -16px; top: 42%; bottom: auto; z-index: 1; font-size: 20px; }
+  .crd-flow-step > div { padding: 22px 17px; }
+}
+
+/* A deliberate channel change at the boundary between CRD and the Studio. */
+.crd-channel-overlay { position: fixed; inset: 0; z-index: 100; opacity: 0; visibility: hidden; pointer-events: none; overflow: hidden; background: #141817; }
+.crd-tv-noise { position: absolute; inset: -5%; width: 110%; height: 110%; opacity: .65; }
+.crd-tv-scanlines { position: absolute; inset: 0; background: repeating-linear-gradient(to bottom, transparent 0 3px, rgb(0 0 0 / .22) 3px 5px); }
+.crd-channel-colour { position: absolute; inset: 0; opacity: 0; background: url("/work/web/studio-doorway.webp") center / cover; }
+.crd-channel-label { position: absolute; left: 8%; bottom: 12%; color: #F4ECD9; font-family: var(--font-mono); font-size: clamp(16px, 2vw, 24px); letter-spacing: .12em; line-height: 1.8; }
+.crd-changing-channel #root { animation: crd-channel-distort 1.2s linear both; }
+.crd-changing-channel .crd-tv-noise { animation: crd-static-shift .16s steps(2) infinite; }
+@keyframes crd-channel-distort {
+  0% { filter: grayscale(0); transform: none; }
+  24% { filter: grayscale(1) blur(1px); transform: skewX(-1.5deg) translateX(5px); }
+  48% { filter: grayscale(1) blur(3px); transform: skewX(2deg) translateX(-7px); }
+  72% { filter: grayscale(.4) blur(5px); transform: scale(1.025) skewX(-.5deg); }
+  100% { filter: blur(7px); transform: scale(1.04); }
+}
+@keyframes crd-static-shift { from { transform: translate(-1%, -1%); } to { transform: translate(1%, 1%); } }
+@media (prefers-reduced-motion: reduce) {
+  .crd-changing-channel #root, .crd-changing-channel .crd-tv-noise { animation: none; }
+  .crd-flow-outline { transition: none; }
+}
+
+/* A small family of authored pencil marks, kept separate from body copy. */
+.crd-sketch-line { display: block; height: auto; overflow: visible; fill: none; stroke: #6B7A3D; stroke-width: 1.8; stroke-linecap: round; }
+.crd-sketch-line path:last-child { opacity: .35; stroke-width: .8; }
+.crd-sketch-arrow { height: auto; fill: none; stroke: #0E2320; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.crd-browser { position: relative; border-radius: 13px 11px 15px 9px; }
+.crd-browser-pencil { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; pointer-events: none; fill: none; stroke: #0E2320; stroke-opacity: .25; stroke-width: .7; }
+.crd-browser-pencil path { vector-effect: non-scaling-stroke; }
+.crd-pencil-button { position: relative; }
+.crd-pencil-button::after { content: ''; position: absolute; inset: -4px -3px -3px -4px; border: 1px solid rgb(14 35 32 / .4); border-radius: 46% 52% 47% 51% / 50% 46% 55% 51%; pointer-events: none; }
+@media (prefers-reduced-motion: no-preference) {
+  [data-hero-zone] .crd-sketch-line path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: crd-pencil-draw 1.4s ease .5s forwards; }
+  @keyframes crd-pencil-draw { to { stroke-dashoffset: 0; } }
 }

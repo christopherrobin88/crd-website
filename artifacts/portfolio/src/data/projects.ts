@@ -104,16 +104,16 @@ export const projects: Project[] = [
     title: "Behelm",
     publicationName: "Behelm Consulting",
     role: "Brand Identity Design",
-    category: "Brand Identity & Logo System",
+    category: "Brand Identity Study & Logo System",
     shortDescription:
-      "A complete identity system for a private security consultancy — a quiet shield monogram, disciplined colour rules and applications built to signal discretion and authority.",
+      "An earlier logo system study for a private security consultancy: a shield monogram, disciplined colour rules and considered applications.",
     fullDescription:
-      "Behelm Consulting provides discreet, intelligence-led protection for executives, VIPs and organisations that need high-trust advisory. The identity had to carry authority without theatre: a BH monogram held in a shield silhouette — referencing the maritime helm and old seal traditions — drawn calm, precise and discreet. Navy and paper carry every surface; gold appears once, as a single point at the crown of the mark, never as fill.",
+      "Behelm Consulting provides discreet, intelligence-led protection for executives, VIPs and organisations that need high-trust advisory. This earlier identity study explores a BH monogram held in a shield silhouette, referencing maritime helm and seal traditions. The latest website uses a compass-style mark, shown separately in the web portfolio. Navy and paper carry every surface; gold appears once, as a single point at the crown of the mark, never as fill.",
     processNotes:
       "The mark is constructed on a 16-unit grid — spine width, shield rise and watch line are fixed relationships, so it reproduces identically at any size. The system specifies scale behaviour down to a 24px favicon (the gold accent drops below 80px), reverse lockups for navy and paper grounds, and a stationery and digital-avatar set. Usage rules were written to survive contact with real work: approved colourways, minimum sizes and misuse cases are all documented.",
     toolsUsed: ["Illustrator", "InDesign"],
     outcomes:
-      "A logo system delivered as a working toolkit — construction, colour, scale and application rules in one presentation the client can hand to any supplier.",
+      "A logo system study presented as a working toolkit: construction, colour, scale and application rules brought together in a restrained presentation.",
     coverImage: coverPicFor("behelm"),
   },
   {

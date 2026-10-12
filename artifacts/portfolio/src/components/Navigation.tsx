@@ -6,6 +6,7 @@ import { useMobileMenuA11y } from "@/hooks/use-mobile-menu-a11y";
 
 const navLinks = [
   { href: "/work", label: "Work" },
+  { href: "/web", label: "Web" },
   { href: "/services", label: "Services" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
@@ -24,7 +25,7 @@ export function SiteNav() {
     <>
       <motion.nav
         className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-crd-gold/25 bg-crd-parchment/85 px-6 py-3 backdrop-blur-sm md:px-12 md:py-4"
-        initial={{ opacity: 0, y: -20 }}
+        initial={false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
       >
@@ -48,8 +49,8 @@ export function SiteNav() {
             <Link
               key={href}
               href={href}
-              className={`crd-underline-sweep transition-colors hover:text-crd-gold ${
-                location === href ? "text-crd-gold" : ""
+              className={`crd-underline-sweep transition-opacity hover:opacity-80 ${
+                location === href ? "font-semibold underline decoration-crd-gold underline-offset-4" : ""
               }`}
             >
               {label}
@@ -86,8 +87,8 @@ export function SiteNav() {
                 key={href}
                 href={href}
                 onClick={close}
-                className={`font-serif text-3xl text-crd-parchment transition-colors hover:text-crd-gold ${
-                  location === href ? "text-crd-gold" : ""
+                className={`font-serif text-3xl text-crd-parchment transition-opacity hover:opacity-80 ${
+                  location === href ? "font-semibold underline decoration-crd-gold underline-offset-4" : ""
                 }`}
               >
                 {label}

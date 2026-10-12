@@ -1,3 +1,4 @@
+import { webProjects } from "@/data/web-projects";
 import { projects } from "@/data/projects";
 
 /**
@@ -39,9 +40,9 @@ function projectDescription(short: string): string {
 const staticRoutes: PageMeta[] = [
   {
     path: "/",
-    title: "Christopher Robin Design | Editorial and Brand Design, Cape Town",
+    title: "Christopher Robin Design | Editorial, Branding and Web Design, Cape Town",
     description:
-      "Editorial design, brand systems and production workflows for agencies, brands and creative teams. A Cape Town design studio led by seventeen years of publication craft.",
+      "Editorial design, branding and websites from a Cape Town studio. Seventeen years of publication craft, carried from page to screen.",
     ogType: "website",
     image: DEFAULT_OG_IMAGE,
   },
@@ -49,7 +50,7 @@ const staticRoutes: PageMeta[] = [
     path: "/work",
     title: "Selected Work | Christopher Robin Design",
     description:
-      "Selected projects across editorial design, brand identity, packaging and retail campaigns, from national magazine titles to complete identity systems.",
+      "Selected projects across editorial design, branding and websites, including Kruger Magazine, Behelm, Riette Gara and Made by Mike.",
     ogType: "website",
     image: DEFAULT_OG_IMAGE,
   },
@@ -57,9 +58,16 @@ const staticRoutes: PageMeta[] = [
     path: "/services",
     title: "Services | Christopher Robin Design",
     description:
-      "Editorial design, brand identity, packaging and retail, DTP and production, creative direction and production systems: one working system from idea to finished output.",
+      "Editorial design, branding and website design. Explore the CRD offer, project scope and how fees are agreed before work begins.",
     ogType: "website",
     image: DEFAULT_OG_IMAGE,
+  },
+  {
+    path: "/web",
+    title: "Web Portfolio | Christopher Robin Design",
+    description: "Websites for artists, makers and businesses, shaped by an editorial eye. Explore Riette Gara, Made by Mike and Behelm across desktop and mobile.",
+    ogType: "website",
+    image: { url: "/work/web/riette-gara-desktop.webp", width: 1440, height: 1000 },
   },
   {
     path: "/about",
@@ -92,7 +100,15 @@ const projectRoutes: PageMeta[] = projects.map((project) => ({
 }));
 
 /** Every prerenderable route, in sitemap order. */
-export const routeMetaList: PageMeta[] = [...staticRoutes, ...projectRoutes];
+const webRoutes: PageMeta[] = webProjects.map((project) => ({
+  path: `/project/${project.id}`,
+  title: `${project.title}: ${project.discipline} | ${SITE_NAME}`,
+  description: project.description,
+  ogType: "article",
+  image: { url: project.desktop, width: 1440, height: 1000 },
+}));
+
+export const routeMetaList: PageMeta[] = [...staticRoutes, ...projectRoutes, ...webRoutes];
 
 export function metaForPath(path: string): PageMeta | undefined {
   const normalised =
