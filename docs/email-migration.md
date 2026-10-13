@@ -1,5 +1,11 @@
 # Email migration and enquiry-form runbook
 
+## Current direction, 13 October 2026
+
+Christopher selected `info@christopherrobindesign.com` for public contact, enquiry and signup notification delivery, and the marketing sender. Both Worker address variables in the review draft use that address. Destination verification and delivery testing are required before updating the live Worker. The current DNS audit still shows Google MX records and disabled Cloudflare Email Routing. Preserve the existing mailbox setup; the historical cutover instructions below are not an instruction to change MX records now. MailerLite authentication and sender verification remain pending.
+
+The sections below retain the July audit and migration history. Their old address choices and provider assumptions are not the current configuration.
+
 Written 17 July 2026 during the enquiry-form workstream. Two separate Cloudflare capabilities are involved; do not conflate them:
 
 - **Email Routing** (receiving): forwards mail addressed to `@christopherrobindesign.com` addresses to a verified destination inbox. Free on all plans. Replaces the Wix/Google mailboxes for receiving once (and only once) the MX records are switched.

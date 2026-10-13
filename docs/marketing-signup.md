@@ -1,8 +1,8 @@
 # CRD Studio notes signup
 
-13 October 2026. Christopher chose Gmail as the destination for marketing signups. This supersedes the earlier plan to create a MailerLite account for collection. Project enquiries remain separate.
+13 October 2026. Christopher specified `info@christopherrobindesign.com` for CRD enquiries, signup notifications and the marketing sender. The private email can remain the MailerLite account login. The notification route and MailerLite subscriber collection are separate: the private MailerLite plugin is saved, but its OAuth connection and account configuration are not yet verified.
 
-## Gmail delivery draft
+## Studio inbox delivery draft
 
 The CRD popup submits email, an unchecked required marketing-consent checkbox, the consent version and a honeypot to `POST /api/newsletter`. The Worker emails one notification to the existing `CONTACT_INBOX` through the `EMAIL` binding. It never accepts a visitor-supplied destination or sends a campaign. The notification records the address, UTC receipt time, source host and exact consent text/version. It explicitly says email ownership has not been verified. No subscriber addresses or consent records are stored in the public repository, browser storage or request logs.
 
@@ -14,7 +14,11 @@ Server validation requires current explicit consent and a valid bounded address.
 
 On 13 October, read-only Cloudflare API inspection confirmed that the configured Gmail destination is verified and the live `crd-portfolio` Worker has the expected email, recipient, sender and rate-limit bindings. The rate limit is five requests per minute per connecting IP. The domain's Email Routing setting reports disabled. Email Sending is a separate capability; the connector rejected reading its sending-domain status with Unauthorized. This audit proves the recipient and bindings exist, not successful delivery. No DNS, routing, account settings or production deployment were changed. A limited Gmail ID search found no messages from the configured sender in the previous 30 days; this is not proof that sending fails.
 
-Before activation, verify domain sending and a controlled end-to-end notification arriving in the chosen Gmail inbox, including Spam. Label any test clearly and do not create a subscriber or represent test data as genuine marketing consent. Check the subject, sender, reply-to, timestamps and consent text. Retain the private delivery evidence and remove test messages separately if requested. Do not change existing mailbox MX records to enable this feature without reviewing the actual mail setup.
+The current draft sets both `CONTACT_INBOX` and `ENQUIRY_FROM` to `info@christopherrobindesign.com`. The latest read-only audit found Google MX records, disabled Cloudflare Email Routing and no verified `info@` destination. An old Cloudflare forwarding rule exists but is not evidence of active receiving while Email Routing is disabled. The live Worker still has its previous recipient and sender, pending destination verification and delivery testing.
+
+Cloudflare destination registration for `info@christopherrobindesign.com` succeeded on 13 October and requested a verification email. The address is pending verification; registration is not proof of delivery. No live Worker settings or mailbox DNS were changed.
+
+Before activation, verify `info@christopherrobindesign.com` as a destination, domain sending and a controlled end-to-end notification arriving in that inbox, including Spam. Label any test clearly and do not create a subscriber or represent test data as genuine marketing consent. Check the subject, sender, reply-to, timestamps and consent text. Retain the private delivery evidence and remove test messages separately if requested. Preserve the existing Google MX records. For MailerLite, use `info@christopherrobindesign.com` as the sender and reply-to, and verify the address/domain in the connected account before sending any campaign.
 
 ## Activation and rollback
 
