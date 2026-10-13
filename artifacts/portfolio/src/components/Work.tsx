@@ -1,3 +1,4 @@
+import { WebProjects } from "@/components/WebProjects";
 import { Link } from "wouter";
 import { projects, type Project } from "@/data/projects";
 import { Picture } from "@/components/Picture";
@@ -16,6 +17,12 @@ export function Work() {
           </h1>
         </header>
 
+        <section className="mb-16 border-t border-crd-forest/20 pt-10 md:mb-24" aria-labelledby="work-web-title">
+          <h2 id="work-web-title" className="mb-4 font-serif text-3xl tracking-tight md:text-4xl">Web design</h2>
+          <p className="mb-8 max-w-2xl text-lg leading-relaxed text-crd-forest/85">Recent websites for an artist, a maker and a consultancy. Explore each presentation across desktop and mobile.</p>
+          <WebProjects fromWork />
+        </section>
+        <h2 className="mb-10 border-t border-crd-forest/20 pt-10 font-serif text-3xl tracking-tight md:text-4xl">Editorial, branding & selected work</h2>
         <div className="space-y-20 md:space-y-28">
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />

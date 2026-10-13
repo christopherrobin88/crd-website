@@ -18,10 +18,10 @@ name = "EMAIL"
 
 [vars]
 # Must match a verified Email Routing destination address for free sending.
-CONTACT_INBOX = "chrisgara@gmail.com"
-# From address on the site's own domain (requires Email Routing enabled on
-# the zone so the domain is a verified sender).
-ENQUIRY_FROM = "enquiries@christopherrobindesign.com"
+CONTACT_INBOX = "info@christopherrobindesign.com"
+# From address on the site's own domain. Verify the domain's sending setup
+# separately from receiving mail; do not replace existing mailbox MX records.
+ENQUIRY_FROM = "info@christopherrobindesign.com"
 
 # 5 submissions per minute per connecting IP.
 [[ratelimits]]

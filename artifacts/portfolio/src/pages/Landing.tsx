@@ -1,203 +1,84 @@
-import { useCallback, useRef, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "wouter";
-import { motion, useReducedMotion } from "framer-motion";
-import { usePageMeta } from "@/hooks/use-page-meta";
-import { useMobileMenuA11y } from "@/hooks/use-mobile-menu-a11y";
-import { Leaf, Menu, X, ArrowRight } from "lucide-react";
-import { AnimatePresence } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { SiteNav } from "@/components/Navigation";
+import { SiteFooter } from "@/components/SiteFooter";
 import { HeroLaptop } from "@/components/HeroLaptop";
-import { MistBand } from "@/components/EditorialAtmosphere";
-import {
-  PositioningSection,
-  SelectedWorkSection,
-  ConnectedSystemsSection,
-  ServicesTeaserSection,
-  ContactCloseSection,
-} from "@/components/home/HomeSections";
+import { StudioPortal } from "@/components/StudioPortal";
+import { SketchLine, SketchArrow } from "@/components/SketchLine";
+import { ProjectFlow } from "@/components/ProjectFlow";
+import { SelectedWorkSection, ContactCloseSection } from "@/components/home/HomeSections";
+import { WebWorkSection } from "@/components/WebProjects";
+import { usePageMeta } from "@/hooks/use-page-meta";
+import { scrollNowTo } from "@/hooks/use-smooth-scroll";
+import { contactHref } from "@/lib/enquiry";
 
-const navLinks = [
-  { href: "/work", label: "Work" },
-  { href: "/services", label: "Services" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+const offers = [
+  { title: "Editorial design", body: "Magazines, reports and publications. A clear hierarchy, careful image treatment and layouts built to carry the story.", href: "/project/kruger-magazine", proof: "Explore the editorial work" },
+  { title: "Branding", body: "Distinctive identities with the typography, colour and application rules to hold together across print and digital.", href: "/project/behelm", proof: "Explore the brand work" },
+  { title: "Websites", body: "Considered websites for artists, makers and businesses. The same attention to content and craft, made for the screen.", href: "/web", proof: "Explore the web work" },
 ];
 
-const ease = [0.16, 1, 0.3, 1] as const;
-
 export default function Landing() {
-  const [open, setOpen] = useState(false);
-  const reduceMotion = useReducedMotion();
-  const close = useCallback(() => setOpen(false), []);
-  const triggerRef = useRef<HTMLButtonElement>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
-
-  useMobileMenuA11y({ open, close, triggerRef, menuRef });
-
   usePageMeta("/");
-
+  useEffect(() => scrollNowTo(0), []);
   return (
-    <div className="relative min-h-[100dvh] overflow-x-clip text-crd-forest">
-      {/* Lower-edge conifer/mist band, rises behind the contact close and footer */}
-      <MistBand className="absolute inset-x-0 bottom-0 z-0 h-72 md:h-96" />
-
-      <div className="relative z-10 mx-auto flex max-w-7xl flex-col px-6 py-8 md:px-12 md:py-6">
-        {/* ---- Header ---- */}
-        <header className="flex items-start justify-between">
-          <Link href="/" className="transition-opacity hover:opacity-80">
-            <img
-              src="/logos/01_crd_primary_lockup.svg"
-              alt="Christopher Robin Design"
-              className="h-28 w-auto sm:h-32 md:h-[7.5rem]"
-              width={150}
-              height={158}
-            />
-          </Link>
-
-          <nav className="hidden items-center gap-9 pt-6 font-sans text-[0.7rem] uppercase tracking-[0.22em] text-crd-forest md:flex">
-            {navLinks.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className="crd-underline-sweep transition-colors hover:text-crd-gold"
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-
-          <button
-            ref={triggerRef}
-            type="button"
-            className="pt-6 text-crd-forest md:hidden"
-            aria-label="Open menu"
-            aria-expanded={open}
-            onClick={() => setOpen(true)}
-          >
-            <Menu className="h-6 w-6" />
-          </button>
-        </header>
-
-        {/* ---- Hero ---- */}
-        <div
-          data-hero-zone
-          className="grid flex-1 items-center gap-10 py-10 md:grid-cols-12 md:gap-6 md:py-3"
-        >
-          {/* Left: editorial headline */}
-          <motion.div
-            initial={reduceMotion ? false : { y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease }}
-            className="max-w-xl md:col-span-6"
-          >
-            <div className="mb-7 flex items-center gap-4">
-              <span className="font-sans text-[0.7rem] font-medium uppercase tracking-[0.28em] text-crd-forest/80">
-                Cape Town Design Studio
-              </span>
-              <span className="h-px w-16 bg-crd-gold/70" aria-hidden="true" />
-            </div>
-
-            <h1 className="hero-title">
-              Design that <span className="hero-title-accent">grows</span> from
-              strategy, craft and{" "}
-              <span className="text-crd-moss">experience.</span>
+    <div className="min-h-screen text-crd-forest">
+      <SiteNav />
+      <main>
+        <section data-hero-zone className="mx-auto grid max-w-7xl items-center gap-6 px-6 pb-12 pt-28 md:grid-cols-[1.15fr_1fr] md:gap-x-16 md:gap-y-8 md:px-12 md:pb-24 md:pt-44">
+          <div className="order-0 md:col-start-1 md:row-start-1 md:self-end">
+            <p className="mb-5 text-[0.65rem] font-medium uppercase tracking-[0.2em] md:mb-7 md:text-xs">Independent design studio / Cape Town</p>
+            <h1 className="font-serif text-[clamp(2.7rem,5.6vw,5.5rem)] font-semibold leading-[1.05] tracking-[-0.035em]">
+              Editorial.<br />Branding.<br /><span className="relative inline-block font-normal italic text-crd-moss">Websites.<SketchLine className="absolute -bottom-4 left-0 w-full" /></span>
             </h1>
-
-            <p className="mt-6 max-w-md font-sans text-base leading-relaxed text-crd-forest/85 md:text-lg">
-              Editorial design, brand systems and production workflows for
-              agencies, brands and creative teams that need craft,
-              consistency and speed.
-            </p>
-
-            <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
-              <Link
-                href="/work"
-                className="group crd-lift inline-flex items-center gap-3 whitespace-nowrap bg-crd-forest px-8 py-4 font-sans text-[0.7rem] uppercase tracking-[0.24em] text-crd-parchment hover:bg-crd-moss focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crd-gold focus-visible:ring-offset-2"
-              >
-                View Selected Work
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-              <Link
-                href="/contact"
-                className="group inline-flex items-center gap-3 whitespace-nowrap font-sans text-[0.7rem] uppercase tracking-[0.24em] text-crd-forest underline decoration-crd-gold/60 underline-offset-8 transition-colors duration-300 hover:text-crd-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crd-gold focus-visible:ring-offset-2"
-              >
-                Start a Conversation
-              </Link>
-            </div>
-          </motion.div>
-
-          {/* Right: botanical laptop illustration, GSAP-animated.
-              Scale per the mockup: it anchors the right half of the hero. */}
-          <div className="md:col-span-6">
-            <div className="relative">
-              {/* Soft ground plane — elliptical mist/shadow beneath the laptop base */}
-              <div
-                aria-hidden="true"
-                className="absolute bottom-[4%] left-1/2 h-12 w-[70%] -translate-x-1/2 rounded-[100%] bg-[radial-gradient(50%_50%_at_50%_50%,rgba(14,35,32,0.16),rgba(14,35,32,0.06)_55%,transparent_78%)] blur-md md:h-16"
-              />
-              {/* Width cap keeps the illustration's height inside a 1280x800
-                  fold — uncapped it ran ~820px tall and pushed the CTA below
-                  the viewport. */}
-              <HeroLaptop className="relative mx-auto w-full max-w-md md:max-w-[30rem] lg:max-w-[34rem]" />
+          </div>
+          <div className="order-2 md:col-start-1 md:row-start-2 md:self-start">
+            <p className="max-w-lg text-base leading-relaxed text-crd-forest/85 md:text-lg">Seventeen years of publication craft, carried from page to screen. Editorial design, distinctive brand identities and websites with a clear point of view.</p>
+            <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-4 md:mt-8 md:gap-x-7">
+              <Link href="/work" className="inline-flex items-center gap-3 crd-pencil-button rounded-full bg-crd-forest px-5 py-3 text-[0.8rem] md:px-7 md:py-4 md:text-sm font-medium text-crd-parchment focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-crd-forest">View selected work<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+              <Link href="/contact" className="border-b border-crd-gold pb-1 text-sm font-medium">Start a conversation</Link>
             </div>
           </div>
-        </div>
+          <div className="order-1 mx-auto w-full max-w-[230px] md:col-start-2 md:row-span-2 md:row-start-1 md:max-w-[430px]">
+            <HeroLaptop className="w-full" />
+            <p className="mt-2 flex items-center justify-center gap-2 font-serif text-sm italic md:gap-3 md:text-lg">Drawn to the possibilities.<SketchArrow className="w-16" /></p>
+            <Link href="/web" className="mt-1 flex items-center justify-center gap-2 text-xs font-medium md:text-sm">Explore the web work<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+          </div>
+        </section>
 
-      </div>
+        <section className="px-6 py-14 md:px-12 md:py-20" aria-labelledby="approach-title">
+          <div className="mx-auto grid max-w-7xl gap-8 border-y border-crd-forest/20 py-12 md:grid-cols-2 md:gap-20 md:py-16">
+            <h2 id="approach-title" className="font-serif text-3xl leading-tight tracking-tight md:text-4xl">The editorial eye runs through everything.</h2>
+            <p className="max-w-xl text-lg leading-relaxed text-crd-forest/85">A publication teaches you to make sense of content: where to lead, what to emphasise and when to give something space. CRD brings that discipline to magazines, identities and websites, with the production experience to carry the design through to delivery.</p>
+          </div>
+        </section>
 
-      {/* ---- Homepage sections below the hero (Phase 1 extension) ---- */}
-      <main className="relative z-10">
-        <PositioningSection />
         <SelectedWorkSection />
-        <ConnectedSystemsSection />
-        <ServicesTeaserSection />
+        <WebWorkSection />
+
+        <section className="px-6 py-16 md:px-12 md:py-24" aria-labelledby="offer-title">
+          <div className="mx-auto max-w-7xl">
+            <h2 id="offer-title" className="mb-10 font-serif text-4xl tracking-tight md:text-5xl">Three ways to work together.</h2>
+            <div className="grid gap-8 md:grid-cols-3">
+              {offers.map((offer, index) => <article key={offer.title} className="border-t border-crd-forest/20 pt-6">
+                <p className="mb-4 text-xs uppercase tracking-widest">0{index + 1}</p>
+                <h3 className="font-serif text-3xl">{offer.title}</h3>
+                <p className="mt-5 text-base leading-relaxed text-crd-forest/85 md:text-lg">{offer.body}</p>
+                <Link href={offer.href} className="mt-6 inline-flex items-center gap-2 text-sm font-medium underline decoration-crd-gold underline-offset-4">{offer.proof}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+              </article>)}
+            </div>
+            <div className="mt-12 flex flex-wrap items-center gap-5">
+              <Link href="/services" className="rounded-full border border-crd-forest/30 px-6 py-3 text-sm font-medium">Services & project scope</Link>
+              <Link href={contactHref("Not sure yet")} className="border-b border-crd-gold pb-1 text-sm">Not sure where to start? Let's talk.</Link>
+            </div>
+          </div>
+        </section>
+        <ProjectFlow />
         <ContactCloseSection />
+        <StudioPortal />
       </main>
-
-      {/* ---- Footer tagline ---- */}
-      <footer className="relative z-10 flex flex-col items-center gap-3 px-6 pb-8 pt-10">
-        <Leaf className="h-4 w-4 text-crd-moss" aria-hidden="true" />
-        <p className="font-sans text-[0.7rem] uppercase tracking-[0.24em] text-crd-forest/70 text-center">
-          Design with purpose.
-          <span className="mx-2 text-crd-gold">•</span>
-          Crafted with care.
-        </p>
-        <p className="font-sans text-[0.7rem] text-crd-forest/70 text-center">
-          © 2026 Christopher Robin Design. Cape Town.
-        </p>
-      </footer>
-
-      {/* ---- Mobile menu ---- */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            ref={menuRef}
-            className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-10 bg-crd-forest md:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <button
-              type="button"
-              className="absolute right-6 top-7 text-crd-parchment"
-              aria-label="Close menu"
-              onClick={close}
-            >
-              <X className="h-6 w-6" />
-            </button>
-            {navLinks.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                onClick={close}
-                className="font-serif text-3xl text-crd-parchment transition-colors hover:text-crd-gold"
-              >
-                {label}
-              </Link>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <SiteFooter />
     </div>
   );
 }

@@ -9,6 +9,7 @@ import { usePageMeta } from "@/hooks/use-page-meta";
 import { scrollNowTo } from "@/hooks/use-smooth-scroll";
 import { CONTACT_EMAIL } from "@/lib/site";
 import { PROJECT_TYPES, isProjectType } from "@/lib/enquiry";
+import { servicePackages } from "@/data/service-packages";
 
 const projectTypes = PROJECT_TYPES;
 
@@ -98,19 +99,31 @@ export default function Contact() {
   usePageMeta("/contact");
 
   const search = useSearch();
+  const initialPackage = useMemo(() => {
+    const id = new URLSearchParams(search).get("package");
+    return servicePackages.find((item) => item.id === id);
+  }, [search]);
   // Preselected build type carried in from a "type of build" link elsewhere
   // on the site (/contact?type=…). Only values the select actually offers
   // are honoured.
   const initialType = useMemo(() => {
     const raw = new URLSearchParams(search).get("type");
-    return isProjectType(raw) ? raw : "";
-  }, [search]);
+    return isProjectType(raw) ? raw : initialPackage?.enquiryType ?? "";
+  }, [search, initialPackage]);
 
   const formRef = useRef<HTMLFormElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
+  const projectTypeRef = useRef<HTMLSelectElement>(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
   const [status, setStatus] = useState<SubmitStatus>({ state: "idle" });
 
   useEffect(() => {
+    // Prerendered contact HTML has no query-specific selection. Apply it
+    // after hydration as well as when arriving through client navigation.
+    if (projectTypeRef.current) projectTypeRef.current.value = initialType;
+    if (messageRef.current && initialPackage) {
+      messageRef.current.value = `I'm interested in the ${initialPackage.title} package.\n\nAbout my project:\n`;
+    }
     if (!initialType) {
       scrollNowTo(0);
       return;
@@ -122,7 +135,7 @@ export default function Contact() {
       nameRef.current?.focus({ preventScroll: true });
     }, 80);
     return () => window.clearTimeout(timer);
-  }, [initialType]);
+  }, [initialType, initialPackage]);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -332,6 +345,7 @@ export default function Contact() {
                   Project type *
                 </label>
                 <select
+                  ref={projectTypeRef}
                   id="enquiry-type"
                   name="projectType"
                   required
@@ -395,8 +409,11 @@ export default function Contact() {
                   Message / project details *
                 </label>
                 <textarea
+                  ref={messageRef}
+                  key={initialPackage?.id ?? "project-details"}
                   id="enquiry-message"
                   name="message"
+                  defaultValue={initialPackage ? `I'm interested in the ${initialPackage.title} package.\n\nAbout my project:\n` : ""}
                   required
                   rows={5}
                   placeholder="What are you building, fixing or trying to make sharper?"

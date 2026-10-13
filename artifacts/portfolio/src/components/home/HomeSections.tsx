@@ -6,7 +6,6 @@ import { FlowSystemDiagram } from "@/components/diagrams/FlowSystemDiagram";
 import { contactHref, type ProjectType } from "@/lib/enquiry";
 import krugerCover from "@/assets/images/kruger/issue-29-cover-01.jpg?format=webp;jpg&as=picture";
 import behelmCover from "@/assets/images/behelm/logo-system-cover.jpg?format=webp;jpg&as=picture";
-import boutiqueEssentialsCover from "@/assets/images/boutique-essentials/amenity-range-cover.jpg?format=webp;jpg&as=picture";
 
 /**
  * Homepage sections below the hero (Phase 1 extension). All copy is final and
@@ -22,7 +21,7 @@ import boutiqueEssentialsCover from "@/assets/images/boutique-essentials/amenity
 
 export function PositioningSection() {
   return (
-    <section className="px-6 py-24 md:px-12 md:py-36">
+    <section className="px-6 py-16 md:px-12 md:py-24">
       <div className="mx-auto max-w-7xl">
         <div>
           <h2 className="max-w-4xl font-serif text-3xl leading-[1.1] tracking-tight text-crd-forest md:text-5xl">
@@ -79,25 +78,14 @@ const featured: FeaturedProject[] = [
   {
     id: "behelm",
     title: "Behelm",
-    label: "Brand Identity & Logo System",
+    label: "Brand Identity Study",
     client: "Behelm Consulting",
     description:
-      "A complete identity system for a private security consultancy: shield monogram, colour rules, stationery and digital applications. Built as a working toolkit the client can hand to any supplier and have reproduced correctly.",
+      "An earlier logo system study for a private security consultancy: shield monogram, colour rules and applications. A precise presentation of the thinking behind an identity.",
     coverAlt: "Behelm logo system presentation cover — shield monogram on deep navy",
     cover: behelmCover,
     reversed: true,
     large: true,
-  },
-  {
-    id: "boutique-essentials",
-    title: "Boutique Essentials",
-    label: "Packaging & Brand Design",
-    client: "Boutique Essentials, Cape Town",
-    description:
-      "Label and packaging design for a Cape Town supplier of guest amenities to boutique hotels and short-stay properties. Quiet, natural presence designed for the guest bathroom, not the retail shelf.",
-    coverAlt: "Boutique Essentials shampoo bottle and carton with olive labels",
-    cover: boutiqueEssentialsCover,
-    reversed: false,
   },
 ];
 
@@ -115,7 +103,7 @@ function FeaturedWorkCard({ project }: { project: FeaturedProject }) {
           } ${project.reversed ? "md:order-2" : ""}`}
         >
           {/* Parchment mat, matching the Work page's mounted-cover treatment */}
-          <div className="border border-crd-gold/30 bg-crd-parchment/75 p-3 shadow-[0_18px_44px_-20px_rgba(14,35,32,0.35)] transition-shadow duration-500 group-hover:shadow-[0_26px_56px_-22px_rgba(14,35,32,0.45)] md:p-5">
+          <div className="rounded-xl border border-crd-gold/30 bg-crd-parchment/75 p-3 shadow-[0_18px_44px_-20px_rgba(14,35,32,0.35)] transition-shadow duration-500 group-hover:shadow-[0_26px_56px_-22px_rgba(14,35,32,0.45)] md:p-5">
             <div
               className="relative w-full overflow-hidden bg-muted"
               style={{ aspectRatio: coverAspect }}
@@ -135,7 +123,7 @@ function FeaturedWorkCard({ project }: { project: FeaturedProject }) {
             project.reversed ? "md:order-1" : ""
           }`}
         >
-          <p className="mb-4 font-sans text-xs uppercase tracking-widest text-accent">
+          <p className="mb-4 font-sans text-xs uppercase tracking-widest text-crd-forest/80">
             {project.label}
           </p>
           <h3 className="font-serif text-4xl tracking-tight text-crd-forest md:text-5xl">
@@ -160,15 +148,15 @@ function FeaturedWorkCard({ project }: { project: FeaturedProject }) {
 
 export function SelectedWorkSection() {
   return (
-    <section className="px-6 py-24 md:px-12 md:py-36">
+    <section className="px-6 py-16 md:px-12 md:py-24">
       <div className="mx-auto max-w-7xl">
         <div>
           <h2 className="font-serif text-4xl leading-[1.1] tracking-tight text-crd-forest md:text-5xl">
             Selected Work
           </h2>
           <p className="mt-6 max-w-2xl font-sans text-base leading-relaxed text-foreground/80 md:text-lg">
-            Selected work across editorial, brand identity and packaging —
-            visual craft and production discipline in equal measure.
+            Publication craft and identity design, with the thinking and
+            production detail that carry each project through.
           </p>
         </div>
         <div className="mt-4 space-y-24 md:mt-8 md:space-y-36">
@@ -185,7 +173,7 @@ export function SelectedWorkSection() {
 
 export function ConnectedSystemsSection() {
   return (
-    <section className="px-6 py-24 md:px-12 md:py-36">
+    <section className="px-6 py-16 md:px-12 md:py-24">
       <div className="mx-auto max-w-7xl">
         <div>
           {/* Copy runs on top; the diagram then takes the full column width
@@ -249,7 +237,7 @@ const services = [
 
 export function ServicesTeaserSection() {
   return (
-    <section className="px-6 py-24 md:px-12 md:py-36">
+    <section className="px-6 py-16 md:px-12 md:py-24">
       <div className="mx-auto max-w-7xl">
         <div>
           <h2 className="mb-8 font-serif text-4xl leading-[1.1] tracking-tight text-crd-forest md:text-5xl">
@@ -305,12 +293,11 @@ export function ContactCloseSection() {
             Tell me what you're building.
           </h2>
           <p className="mt-6 font-sans text-base leading-relaxed text-foreground/80 md:text-lg">
-            One conversation to find the clearest next step. No pitch theatre,
-            no obligation.
+            Share your brief, your timeline and what you need the work to do.
           </p>
           <Link
             href="/contact"
-            className="group crd-lift mt-10 inline-flex items-center gap-3 whitespace-nowrap bg-crd-forest px-8 py-4 font-sans text-[0.7rem] uppercase tracking-[0.24em] text-crd-parchment hover:bg-crd-moss focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crd-gold focus-visible:ring-offset-2"
+            className="group crd-lift mt-10 inline-flex items-center gap-3 whitespace-nowrap rounded-full bg-crd-forest px-8 py-4 font-sans text-[0.7rem] uppercase tracking-[0.24em] text-crd-parchment hover:bg-crd-moss focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crd-gold focus-visible:ring-offset-2"
           >
             Start a conversation
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

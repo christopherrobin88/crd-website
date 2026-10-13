@@ -7,11 +7,13 @@
     "build": "pnpm run typecheck && pnpm -r --if-present run build",
     "typecheck:libs": "tsc --build",
     "typecheck": "pnpm run typecheck:libs && pnpm run typecheck:worker && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck",
-    "typecheck:worker": "tsc -p worker/tsconfig.json --noEmit"
+    "typecheck:worker": "tsc -p worker/tsconfig.json --noEmit",
+    "test:worker": "node --experimental-strip-types --test worker/*.test.mjs"
   },
   "private": true,
   "packageManager": "pnpm@10.11.1",
   "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261012.1",
     "prettier": "^3.8.3",
     "typescript": "~5.9.3"
   }

@@ -7,7 +7,7 @@ const images = join(root, "src", "assets", "images");
 const heroLegacyAsset = join(images, "web_hero_laptop.svg");
 const heroArtComponent = join(root, "src", "components", "HeroLaptopArt.tsx");
 
-// The static raster/SVG hero (web_hero_laptop.svg) was superseded by the
+// The retained static raster/SVG hero (web_hero_laptop.svg) was superseded by the
 // animated HeroLaptopArt component on 2026-07-19 (see docs/scope.md). The
 // legacy asset file is left on disk deliberately as a pending cleanup item
 // and is no longer required to be wired into HeroLaptop.tsx.
@@ -25,4 +25,8 @@ if (!picture.includes("`image/${type === \"jpg\" ? \"jpeg\" : type}`")) {
   throw new Error("validate-hero: Picture MIME normalisation is missing");
 }
 
-console.log("validate-hero: supplied SVG hero asset and MIME handling OK.");
+const landing = readFileSync(join(root, "src", "pages", "Landing.tsx"), "utf8");
+if (!landing.includes("<HeroLaptop")) {
+  throw new Error("validate-hero: the requested animated laptop is not mounted on the homepage");
+}
+console.log("validate-hero: active botanical illustration and MIME handling OK.");

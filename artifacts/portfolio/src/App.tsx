@@ -1,15 +1,19 @@
 import { lazy, Suspense } from "react";
 import { Switch, Route, Router as WouterRouter } from "wouter";
 import { SiteBackground } from "@/components/SiteBackground";
+import { webProjects } from "@/data/web-projects";
 import Landing from "@/pages/Landing";
 import { AnimatePresence, MotionConfig } from "framer-motion";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
+import { NewsletterPopup } from "@/components/NewsletterPopup";
 
 const NotFound = lazy(() => import("@/pages/not-found"));
 const WorkPage = lazy(() => import("@/pages/WorkPage"));
 const Services = lazy(() => import("@/pages/Services"));
 const About = lazy(() => import("@/pages/About"));
 const Contact = lazy(() => import("@/pages/Contact"));
+const WebPortfolio = lazy(() => import("@/pages/WebPortfolio"));
+const WebProject = lazy(() => import("@/pages/WebProject"));
 const ProjectDetail = lazy(() => import("@/pages/ProjectDetail"));
 
 function Router() {
@@ -20,6 +24,10 @@ function Router() {
           <Route path="/" component={Landing} />
           <Route path="/services" component={Services} />
           <Route path="/work" component={WorkPage} />
+          <Route path="/web" component={WebPortfolio} />
+          {webProjects.map((project) => (
+            <Route key={project.id} path={`/project/${project.id}`}><WebProject id={project.id} /></Route>
+          ))}
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
           <Route path="/project/:id" component={ProjectDetail} />
@@ -37,7 +45,7 @@ export interface AppProps {
 function AppContent() {
   useSmoothScroll();
 
-  return <Router />;
+  return <><Router /><NewsletterPopup /></>;
 }
 
 function App({ path }: AppProps) {
