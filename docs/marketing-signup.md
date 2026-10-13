@@ -16,7 +16,11 @@ On 13 October, read-only Cloudflare API inspection confirmed that the configured
 
 The current draft sets both `CONTACT_INBOX` and `ENQUIRY_FROM` to `info@christopherrobindesign.com`. The latest read-only audit found Google MX records, disabled Cloudflare Email Routing and no verified `info@` destination. An old Cloudflare forwarding rule exists but is not evidence of active receiving while Email Routing is disabled. The live Worker still has its previous recipient and sender, pending destination verification and delivery testing.
 
-Cloudflare destination registration for `info@christopherrobindesign.com` succeeded on 13 October and requested a verification email. The address is pending verification; registration is not proof of delivery. No live Worker settings or mailbox DNS were changed.
+Cloudflare destination registration for `info@christopherrobindesign.com` succeeded on 13 October. A subsequent API read confirmed verification at `2026-10-13T05:30:03.461498Z`. This verifies ownership of the address, not end-to-end notification delivery. No live Worker settings or mailbox DNS were changed.
+
+The exact-preserving live settings update was refused by Cloudflare with error `10214`: a newer uploaded Worker version is not currently deployed. The existing production version remains `2e34a1df-b57a-4055-99bf-82d42f1f4f27`. Apply the draft's email variables with the approved website release and verify delivery then. The local private integration directory holds the previous settings for rollback. Do not deploy an unreviewed staged version merely to change the inbox.
+
+Christopher reports the CRD MailerLite connection as Connected. Its skill is installed, but no authenticated MailerLite account tools are available in this chat yet. No group, form, sender setting or campaign has been changed in that account by this agent.
 
 Before activation, verify `info@christopherrobindesign.com` as a destination, domain sending and a controlled end-to-end notification arriving in that inbox, including Spam. Label any test clearly and do not create a subscriber or represent test data as genuine marketing consent. Check the subject, sender, reply-to, timestamps and consent text. Retain the private delivery evidence and remove test messages separately if requested. Preserve the existing Google MX records. For MailerLite, use `info@christopherrobindesign.com` as the sender and reply-to, and verify the address/domain in the connected account before sending any campaign.
 
