@@ -38,7 +38,7 @@ export const webProjects: WebProject[] = [
     discipline: "Maker website",
     description: "A showcase for handcrafted timber lighting, built around the warmth of the wood and the maker behind it.",
     introduction: "A website for handcrafted timber lighting. Product photography, generous typography and a simple structure bring the character of the pieces into focus.",
-    status: "Built and launching soon.",
+    status: "Website built. Goes live once the domain is registered.",
     desktop: "/work/web/made-by-mike-desktop.webp",
     previewVideo: "/work/web/made-by-mike-motion.mp4",
     mobile: "/work/web/made-by-mike-mobile.webp",

@@ -8,7 +8,7 @@ const steps = [
   { title: "Brief", status: "Received", detail: "Acknowledge the request and gather the content." },
   { title: "Assign", status: "Assigned", detail: "Set ownership, priorities and the delivery date." },
   { title: "Design", status: "In progress", detail: "Develop the work and keep the project updated." },
-  { title: "Review", status: "In review", detail: "Collect your feedback into one clear round of changes." },
+  { title: "Review", status: "In review", detail: "Gather your feedback into clear, consolidated rounds of changes." },
   { title: "Approve", status: "Approved", detail: "Confirm the final direction before delivery." },
   { title: "Deliver", status: "Delivered", detail: "Supply the finished work and record the handover." },
 ];
