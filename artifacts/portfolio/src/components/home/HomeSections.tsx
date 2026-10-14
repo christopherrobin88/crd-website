@@ -81,7 +81,7 @@ const featured: FeaturedProject[] = [
     label: "Brand Identity Study",
     client: "Behelm Consulting",
     description:
-      "An earlier logo system study for a private security consultancy: shield monogram, colour rules and applications. A precise presentation of the thinking behind an identity.",
+      "Logo system for a private security consultancy: a shield monogram, clear colour rules and real-world applications, presented step by step.",
     coverAlt: "Behelm logo system presentation cover — shield monogram on deep navy",
     cover: behelmCover,
     reversed: true,
@@ -155,8 +155,8 @@ export function SelectedWorkSection() {
             Selected Work
           </h2>
           <p className="mt-6 max-w-2xl font-sans text-base leading-relaxed text-foreground/80 md:text-lg">
-            Publication craft and identity design, with the thinking and
-            production detail that carry each project through.
+            A few recent projects, from wildlife magazines to brand identities,
+            each taken from first idea to finished, print-ready work.
           </p>
         </div>
         <div className="mt-4 space-y-24 md:mt-8 md:space-y-36">

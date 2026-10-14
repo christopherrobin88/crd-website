@@ -8,7 +8,7 @@ const steps = [
   { title: "Brief", status: "Received", detail: "Acknowledge the request and gather the content." },
   { title: "Assign", status: "Assigned", detail: "Set ownership, priorities and the delivery date." },
   { title: "Design", status: "In progress", detail: "Develop the work and keep the project updated." },
-  { title: "Review", status: "In review", detail: "Bring feedback together for a considered revision." },
+  { title: "Review", status: "In review", detail: "Collect your feedback into one clear round of changes." },
   { title: "Approve", status: "Approved", detail: "Confirm the final direction before delivery." },
   { title: "Deliver", status: "Delivered", detail: "Supply the finished work and record the handover." },
 ];
@@ -39,7 +39,7 @@ export function ProjectFlow() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 grid gap-7 md:grid-cols-2 md:gap-20">
           <div><p className="mb-5 text-xs uppercase tracking-[0.2em]">Design & delivery systems</p><h2 id="project-flow-title" className="font-serif text-4xl leading-tight tracking-tight md:text-5xl">Drawn by hand.<br /><span className="italic">Kept in motion.</span></h2><SketchLine className="mt-4 w-52" /></div>
-          <p className="text-lg leading-relaxed text-crd-forest/85">Good systems give creative work room to happen. A clear brief, visible ownership and considered checkpoints keep a project moving. Routine acknowledgements, status updates and reminders can be automated; design decisions and approvals stay with people. The cards show a sample project from brief to delivery.</p>
+          <p className="text-lg leading-relaxed text-crd-forest/85">Every project runs through the same six steps, so you always know where your job is, who is working on it and what happens next. No chasing and no surprises. The cards show a sample project from brief to delivery.</p>
         </div>
         {!reduce && <div className="mb-4 flex justify-end">
           <button type="button" onClick={() => setPaused((value) => !value)}

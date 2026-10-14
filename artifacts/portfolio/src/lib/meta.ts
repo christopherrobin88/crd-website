@@ -81,7 +81,7 @@ const staticRoutes: PageMeta[] = [
     path: "/contact",
     title: "Contact | Christopher Robin Design",
     description:
-      "Start a project conversation: brand identity, publication design, campaign rollout or production systems. Enquiries answered personally within two working days.",
+      "Start a project conversation: websites, brand identity, publication design or campaign work. Enquiries answered personally within two working days.",
     ogType: "website",
     image: DEFAULT_OG_IMAGE,
   },
