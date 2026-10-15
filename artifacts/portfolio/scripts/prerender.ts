@@ -61,7 +61,11 @@ function homeStructuredData(meta: PageMeta): string {
     name: "Christopher Robin Design",
     alternateName: "CRD",
     url: new URL(canonicalUrl("/")).origin,
-    founder: { "@type": "Person", name: "Christopher Gara" },
+    founder: {
+      "@type": "Person",
+      name: "Christopher Gara",
+      sameAs: ["https://www.linkedin.com/in/christopher-gara/"],
+    },
     address: {
       "@type": "PostalAddress",
       addressLocality: "Cape Town",
@@ -70,7 +74,11 @@ function homeStructuredData(meta: PageMeta): string {
     areaServed: ["Cape Town", "South Africa"],
     email: CONTACT_EMAIL,
     image: absoluteImageUrl(meta.image),
-    sameAs: ["https://linkedin.com/in/christopher-gara"],
+    sameAs: [
+      "https://www.linkedin.com/company/christopher-robin-design/",
+      "https://www.facebook.com/christopherrobindesign/",
+      "https://www.instagram.com/christopher_robin_design/",
+    ],
   };
   return `<script type="application/ld+json">${JSON.stringify(data).replaceAll("<", "\\u003c")}</script>`;
 }
