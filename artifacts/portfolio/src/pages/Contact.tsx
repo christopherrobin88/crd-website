@@ -195,8 +195,7 @@ export default function Contact() {
           </h1>
 
           <p className="font-sans text-base md:text-lg text-foreground/70 leading-relaxed max-w-lg mb-6">
-            Whether you need a website, a brand, a publication or senior
-            creative support for your agency, this is the place to start.
+            Christopher Robin Design makes websites, brands and publications for businesses. Agencies can also bring me in for senior creative support.
           </p>
 
           <p className="font-sans text-base md:text-lg text-foreground/60 leading-relaxed max-w-lg">
@@ -453,8 +452,7 @@ export default function Contact() {
             </div>
 
             <p className="mt-6 font-sans text-xs leading-relaxed text-crd-forest/60 max-w-md">
-              Your enquiry goes straight to the studio inbox; nothing is
-              stored on this site. If you'd rather write freely, email{" "}
+              Your enquiry goes straight to the studio inbox. Nothing is stored on this site. If you'd rather write freely, email{" "}
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
                 className="underline decoration-crd-gold/60 underline-offset-2 hover:text-crd-forest"

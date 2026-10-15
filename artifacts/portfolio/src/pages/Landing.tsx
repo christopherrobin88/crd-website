@@ -50,7 +50,7 @@ export default function Landing() {
         <section className="px-6 py-14 md:px-12 md:py-20" aria-labelledby="approach-title">
           <div className="mx-auto grid max-w-7xl gap-8 border-y border-crd-forest/20 py-12 md:grid-cols-2 md:gap-20 md:py-16">
             <h2 id="approach-title" className="font-serif text-3xl leading-tight tracking-tight md:text-4xl">Why a magazine designer makes better websites.</h2>
-            <p className="max-w-xl text-lg leading-relaxed text-crd-forest/85">A magazine has to make sense of a lot of content, fast: what to lead with, what to cut and where to let a picture breathe. A website has the same job. I bring that discipline, and years of print production, to every publication, brand and site.</p>
+            <p className="max-w-xl text-lg leading-relaxed text-crd-forest/85">A magazine has to make sense of a lot of content, fast: what to lead with, what to cut and where to let a picture breathe. A website has the same job. I bring that discipline and years of print production to every publication, brand and site.</p>
           </div>
         </section>
 

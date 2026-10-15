@@ -215,7 +215,7 @@ export default function ProjectDetail() {
         <QuoteBand className="mt-20 md:mt-28">
           <div className="mx-auto max-w-xl text-center">
             <p className="font-serif text-2xl md:text-3xl tracking-tight text-crd-forest">
-              {text.enquiry}
+              {project.id === "aios" ? "Designing a production workflow or automation system?" : text.enquiry}
             </p>
             <Link
               href={contactHref(enquiryTypeForProject(project))}
