@@ -12,8 +12,7 @@ export function Work() {
       <div className="max-w-7xl mx-auto">
         <header className="mb-16 md:mb-24 max-w-3xl">
           <h1 className="font-serif text-4xl md:text-6xl tracking-tight leading-[1.05]">
-            Ideas brought to life with{" "}
-            <span className="text-crd-moss">purpose</span> and precision.
+            Selected work across print, brand and screen.
           </h1>
         </header>
 
@@ -36,8 +35,7 @@ export function Work() {
               Rooted in craft. Focused on impact.
             </p>
             <p className="mt-4 font-sans text-base md:text-lg leading-relaxed text-crd-forest/80">
-              CRD works with agencies, brands and organisations to design with
-              clarity, shape stories and build systems that work beautifully.
+              Christopher Robin Design makes publications, brands and websites for agencies, publishers and small businesses. Every job is seen through to finished files.
             </p>
             <Link
               href="/contact"

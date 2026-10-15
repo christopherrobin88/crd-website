@@ -21,8 +21,8 @@ export default function WebPortfolio() {
         </header>
         <WebProjects />
         <section className="mt-20 border-t border-crd-forest/20 pt-12">
-          <h2 className="font-serif text-3xl md:text-4xl">A website with a clear point of view.</h2>
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-crd-forest/80">Tell me what you do, who you want to reach and what the site needs to make possible.</p>
+          <h2 className="font-serif text-3xl md:text-4xl">Ready for a better website?</h2>
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-crd-forest/80">Send me your current site, or tell me what you do and who you want to reach. I'll come back with what I'd build and a clear quote.</p>
           <Link href={contactHref("Website or portfolio")} className="mt-7 inline-block rounded-full bg-crd-forest px-7 py-4 text-sm font-medium text-crd-parchment">Discuss your website</Link>
         </section>
       </main>

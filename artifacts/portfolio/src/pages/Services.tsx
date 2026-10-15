@@ -11,8 +11,8 @@ import { contactHref, type ProjectType } from "@/lib/enquiry";
 
 const services: { title: string; body: string; deliverables: string[]; enquiryType: ProjectType; work: string; example: string }[] = [
   { title: "Editorial design", body: "For publications that need a strong visual voice and a dependable production partner. From a single report to a recurring magazine, the design serves the content and holds together from cover to final page.", deliverables: ["Publication concept and visual direction", "Layout, typography and editorial systems", "Image treatment and print-ready artwork"], enquiryType: "Publication design", work: "/project/kruger-magazine", example: "Kruger Magazine" },
-  { title: "Branding", body: "For businesses that need a distinct, coherent identity. A considered mark is the starting point; the typography, colour and applications give it a life beyond the logo.", deliverables: ["Identity direction and logo system", "Typography, colour and usage guidelines", "Print and digital brand applications"], enquiryType: "Brand identity", work: "/project/behelm", example: "Behelm logo system study" },
-  { title: "Websites", body: "For artists, makers and businesses ready to present their work clearly online. Content, design and the visitor's path are considered together, with layouts that work across desktop and mobile.", deliverables: ["Site structure and content direction", "Responsive website design and build", "Portfolio, gallery or enquiry journeys"], enquiryType: "Website or portfolio", work: "/web", example: "Riette Gara & Made by Mike" },
+  { title: "Branding", body: "For businesses that need an identity people remember. The logo is the start; the typography, colour and usage rules make it work everywhere you use it.", deliverables: ["Identity direction and logo system", "Typography, colour and usage guidelines", "Print and digital brand applications"], enquiryType: "Brand identity", work: "/project/behelm", example: "Behelm logo system study" },
+  { title: "Websites", body: "For artists, makers and businesses ready to look their best online. I plan the content, design the pages and build a site that works as well on a phone as on a desktop.", deliverables: ["Site structure and content direction", "Responsive website design and build", "Portfolio, gallery or enquiry journeys"], enquiryType: "Website or portfolio", work: "/web", example: "Riette Gara & Made by Mike" },
 ];
 
 export default function Services() {
@@ -25,7 +25,7 @@ export default function Services() {
         <header className="mb-14 max-w-3xl md:mb-20">
           <p className="mb-5 text-xs uppercase tracking-[0.22em]">The CRD offer</p>
           <h1 className="font-serif text-5xl leading-[1.08] tracking-tight md:text-7xl">Editorial design.<br />Branding. Websites.</h1>
-          <p className="mt-7 max-w-xl text-lg leading-relaxed text-crd-forest/85">Independent design support for publications, brands and agencies. Clear thinking, considered craft and the experience to get the work delivered.</p>
+          <p className="mt-7 max-w-xl text-lg leading-relaxed text-crd-forest/85">Design for publications, brands, businesses and agencies, backed by seventeen years of production experience to get the work delivered on time.</p>
           <a href="#packages" className="mt-6 inline-flex min-h-11 items-center gap-2 border-b border-crd-gold text-sm font-medium">Explore packages & fees<ArrowRight className="h-4 w-4" aria-hidden="true" /></a>
         </header>
         <div>
@@ -44,7 +44,7 @@ export default function Services() {
         <PricingPackages />
         <section className="mt-16 grid gap-6 border-t border-crd-forest/20 pt-10 md:grid-cols-2 md:gap-16">
           <h2 className="font-serif text-3xl tracking-tight md:text-4xl">Craft, through to delivery.</h2>
-          <p className="text-lg leading-relaxed text-crd-forest/85">The work begins with a conversation and a brief, then moves through direction, design and review to a considered handover. Print production, campaign rollout and ongoing editorial support can be included where the project needs them.</p>
+          <p className="text-lg leading-relaxed text-crd-forest/85">The work begins with a conversation and a brief, then moves through direction, design and review to a clean handover. Print production, campaign rollout and ongoing editorial support can be included where the project needs them.</p>
         </section>
         <div className="-mx-6 md:-mx-12"><ProjectFlow /></div>
       </main>

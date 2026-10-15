@@ -13,7 +13,7 @@ export function PricingPackages() {
           <h2 id="packages-title" className="font-serif text-4xl leading-tight tracking-tight md:text-5xl">A place to start.</h2>
           <SketchLine className="mt-3 w-40 text-crd-forest" />
         </div>
-        <p className="self-center text-base leading-relaxed text-crd-forest/85 md:text-lg">Four ways to work together. Choose a starting point and we’ll shape the scope around your brief, with a clear project fee agreed before work begins.</p>
+        <p className="self-center text-base leading-relaxed text-crd-forest/85 md:text-lg">Four ways to work together. Choose a starting point and I’ll shape the scope around your brief, with a clear project fee agreed before work begins.</p>
       </div>
       <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
         {servicePackages.map((item, index) => {

@@ -35,8 +35,8 @@ export function WebWorkSection() {
     <section className="px-6 py-20 md:px-12 md:py-28" aria-labelledby="web-work-title">
       <div className="mx-auto max-w-7xl border-t border-crd-forest/20 pt-12 md:pt-16">
         <div className="mb-10 grid gap-6 md:grid-cols-2 md:gap-12">
-          <div><h2 id="web-work-title" className="font-serif text-4xl leading-tight tracking-tight md:text-5xl">From page to screen.</h2><SketchLine className="mt-3 w-44" /><p className="mt-4 flex items-center gap-4 font-serif text-lg italic">A little movement makes the difference.<SketchArrow className="hidden w-20 md:block" /></p></div>
-          <p className="max-w-lg text-base leading-relaxed text-crd-forest/80 md:text-lg">Websites shaped by the same editorial eye: a clear story, a considered hierarchy and room for the work to stand out.</p>
+          <div><h2 id="web-work-title" className="font-serif text-4xl leading-tight tracking-tight md:text-5xl">From page to screen.</h2><SketchLine className="mt-3 w-44" /><p className="mt-4 flex items-center gap-4 font-serif text-lg italic">See them in motion.<SketchArrow className="hidden w-20 md:block" /></p></div>
+          <p className="max-w-lg text-base leading-relaxed text-crd-forest/80 md:text-lg">Websites with a clear story, a sensible structure and room for the work to shine. Built to look right on every phone.</p>
         </div>
         <WebProjects compact />
         <Link href="/web" className="mt-10 inline-flex items-center gap-3 border-b border-crd-gold pb-2 text-sm font-medium">Explore the web portfolio<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>

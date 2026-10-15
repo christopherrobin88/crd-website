@@ -33,7 +33,7 @@ export function enquiryTypeForProject(
   project: Pick<Project, "category" | "layout">,
 ): ProjectType {
   if (project.category.includes("Packaging")) return "Packaging or POS";
-  if (project.category.includes("Systems")) return "Automation / workflow system";
+  if (project.category.includes("Systems Design")) return "Automation / workflow system";
   if (project.layout === "identity") return "Brand identity";
   if (project.layout === "campaign") return "Campaign / rollout design";
   return "Publication design";

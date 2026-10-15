@@ -34,7 +34,7 @@ export default function Landing() {
             </h1>
           </div>
           <div className="order-2 md:col-start-1 md:row-start-2 md:self-start">
-            <p className="max-w-lg text-base leading-relaxed text-crd-forest/85 md:text-lg">Seventeen years of publication craft, carried from page to screen. Editorial design, distinctive brand identities and websites with a clear point of view.</p>
+            <p className="max-w-lg text-base leading-relaxed text-crd-forest/85 md:text-lg">Seventeen years designing magazines, brands and retail campaigns. Now the same eye goes into websites for businesses that want to look as good as their work.</p>
             <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-4 md:mt-8 md:gap-x-7">
               <Link href="/work" className="inline-flex items-center gap-3 crd-pencil-button rounded-full bg-crd-forest px-5 py-3 text-[0.8rem] md:px-7 md:py-4 md:text-sm font-medium text-crd-parchment focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-crd-forest">View selected work<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
               <Link href="/contact" className="border-b border-crd-gold pb-1 text-sm font-medium">Start a conversation</Link>
@@ -42,15 +42,15 @@ export default function Landing() {
           </div>
           <div className="order-1 mx-auto w-full max-w-[230px] md:col-start-2 md:row-span-2 md:row-start-1 md:max-w-[430px]">
             <HeroLaptop className="w-full" />
-            <p className="mt-2 flex items-center justify-center gap-2 font-serif text-sm italic md:gap-3 md:text-lg">Drawn to the possibilities.<SketchArrow className="w-16" /></p>
+            <p className="mt-2 flex items-center justify-center gap-2 font-serif text-sm italic md:gap-3 md:text-lg">Now designing websites.<SketchArrow className="w-16" /></p>
             <Link href="/web" className="mt-1 flex items-center justify-center gap-2 text-xs font-medium md:text-sm">Explore the web work<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
           </div>
         </section>
 
         <section className="px-6 py-14 md:px-12 md:py-20" aria-labelledby="approach-title">
           <div className="mx-auto grid max-w-7xl gap-8 border-y border-crd-forest/20 py-12 md:grid-cols-2 md:gap-20 md:py-16">
-            <h2 id="approach-title" className="font-serif text-3xl leading-tight tracking-tight md:text-4xl">The editorial eye runs through everything.</h2>
-            <p className="max-w-xl text-lg leading-relaxed text-crd-forest/85">A publication teaches you to make sense of content: where to lead, what to emphasise and when to give something space. CRD brings that discipline to magazines, identities and websites, with the production experience to carry the design through to delivery.</p>
+            <h2 id="approach-title" className="font-serif text-3xl leading-tight tracking-tight md:text-4xl">Why a magazine designer makes better websites.</h2>
+            <p className="max-w-xl text-lg leading-relaxed text-crd-forest/85">A magazine has to make sense of a lot of content, fast: what to lead with, what to cut and where to let a picture breathe. A website has the same job. I bring that discipline and years of print production to every publication, brand and site.</p>
           </div>
         </section>
 

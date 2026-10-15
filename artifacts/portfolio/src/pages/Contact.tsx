@@ -22,8 +22,8 @@ const timelines = [
 ];
 
 const budgets = [
-  "Under R5,000",
-  "R5,000 to R15,000",
+  "Under R8,500",
+  "R8,500 to R15,000",
   "R15,000 to R30,000",
   "R30,000 to R60,000",
   "R60,000+",
@@ -190,14 +190,12 @@ export default function Contact() {
               href={`mailto:${CONTACT_EMAIL}`}
               className="hover:text-accent transition-colors duration-300 block"
             >
-              Let's build the next identity, publication or campaign system.
+              Tell me about your project.
             </a>
           </h1>
 
           <p className="font-sans text-base md:text-lg text-foreground/70 leading-relaxed max-w-lg mb-6">
-            For agencies, production companies and brands looking for senior
-            creative support, CRD works across art direction, editorial
-            design, campaign systems and AI-assisted production workflows.
+            Christopher Robin Design makes websites, brands and publications for businesses. Agencies can also bring me in for senior creative support.
           </p>
 
           <p className="font-sans text-base md:text-lg text-foreground/60 leading-relaxed max-w-lg">
@@ -240,7 +238,7 @@ export default function Contact() {
                 </li>
                 <li className="flex gap-3">
                   <span className="text-crd-gold" aria-hidden="true">03</span>
-                  We agree scope and the clearest next step — no obligation.
+                  We agree the scope and the next step, with no obligation.
                 </li>
               </ol>
             </div>
@@ -435,7 +433,7 @@ export default function Contact() {
             <div role="status" aria-live="polite">
               {status.state === "sent" && (
                 <p className="mt-6 border-l-2 border-crd-moss pl-4 font-sans text-sm leading-relaxed text-crd-forest">
-                  Thank you — your enquiry is on its way to the studio.
+                  Thank you. Your enquiry is on its way to the studio.
                   You'll hear back within two working days.
                 </p>
               )}
@@ -454,8 +452,7 @@ export default function Contact() {
             </div>
 
             <p className="mt-6 font-sans text-xs leading-relaxed text-crd-forest/60 max-w-md">
-              Your enquiry goes straight to the studio inbox — nothing is
-              stored on this site. If you'd rather write freely, email{" "}
+              Your enquiry goes straight to the studio inbox. Nothing is stored on this site. If you'd rather write freely, email{" "}
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
                 className="underline decoration-crd-gold/60 underline-offset-2 hover:text-crd-forest"

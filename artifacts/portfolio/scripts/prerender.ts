@@ -12,6 +12,7 @@
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { CONTACT_EMAIL } from "../src/lib/site";
 
 interface PageMeta {
   path: string;
@@ -53,6 +54,35 @@ function escapeHtml(value: string): string {
     .replaceAll(">", "&gt;");
 }
 
+function homeStructuredData(meta: PageMeta): string {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "Christopher Robin Design",
+    alternateName: "CRD",
+    url: new URL(canonicalUrl("/")).origin,
+    founder: {
+      "@type": "Person",
+      name: "Christopher Gara",
+      sameAs: ["https://www.linkedin.com/in/christopher-gara/"],
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Cape Town",
+      addressCountry: "ZA",
+    },
+    areaServed: ["Cape Town", "South Africa"],
+    email: CONTACT_EMAIL,
+    image: absoluteImageUrl(meta.image),
+    sameAs: [
+      "https://www.linkedin.com/company/christopher-robin-design/",
+      "https://www.facebook.com/christopherrobindesign/",
+      "https://www.instagram.com/christopher_robin_design/",
+    ],
+  };
+  return `<script type="application/ld+json">${JSON.stringify(data).replaceAll("<", "\\u003c")}</script>`;
+}
+
 function headFor(meta: PageMeta): string {
   const title = escapeHtml(meta.title);
   const description = escapeHtml(meta.description);
@@ -78,6 +108,7 @@ function headFor(meta: PageMeta): string {
     `<meta name="twitter:title" content="${title}" />`,
     `<meta name="twitter:description" content="${description}" />`,
     `<meta name="twitter:image" content="${image}" />`,
+    ...(meta.path === "/" ? [homeStructuredData(meta)] : []),
   ].join("\n    ");
 }
 
