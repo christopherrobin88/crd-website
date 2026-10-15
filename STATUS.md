@@ -27,9 +27,9 @@ Repository: `/Users/user/Documents/GitHub/crd-website/`
 
 ## Footer social links review branch on 2026-10-16
 
-- `feat/footer-social-links` adds LinkedIn, Instagram and Facebook icons to the shared footer. Footer links and Home business `sameAs` now consume one URL constant; the founder's personal `sameAs` remains separate.
+- PR #10 (`feat/footer-social-links`, commit `9a0140a`) adds LinkedIn, Instagram and Facebook icons to the shared footer. Footer links and Home business `sameAs` now consume one URL constant; the founder's personal `sameAs` remains separate.
 - `pnpm build` and `pnpm typecheck` passed. Generated Home HTML has all three links with the requested labels, target, rel and 44px minimum tap area, and its business `sameAs` matches their URLs. This is local build evidence; no production change is claimed.
 
 ## Next action
 
-- Review the footer social links PR before any merge or deployment.
+- Review PR #10 before any merge or deployment.
