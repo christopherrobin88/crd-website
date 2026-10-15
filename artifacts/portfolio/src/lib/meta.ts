@@ -42,7 +42,7 @@ const staticRoutes: PageMeta[] = [
     path: "/",
     title: "Christopher Robin Design | Editorial, Branding and Web Design, Cape Town",
     description:
-      "Editorial design, branding and websites from a Cape Town studio. Seventeen years of publication craft, carried from page to screen.",
+      "Website design, branding and editorial design in Cape Town. Seventeen years of magazine and brand work, now carried from page to screen.",
     ogType: "website",
     image: DEFAULT_OG_IMAGE,
   },
@@ -58,7 +58,7 @@ const staticRoutes: PageMeta[] = [
     path: "/services",
     title: "Services | Christopher Robin Design",
     description:
-      "Editorial design, branding and website design. Explore the CRD offer, project scope and how fees are agreed before work begins.",
+      "Websites from R18,000, brand identity from R15,000 and editorial design from R8,500. Fixed fees agreed before work starts, from a Cape Town design studio.",
     ogType: "website",
     image: DEFAULT_OG_IMAGE,
   },
@@ -71,9 +71,9 @@ const staticRoutes: PageMeta[] = [
   },
   {
     path: "/about",
-    title: "About the Studio | Christopher Robin Design",
+    title: "Christopher Gara, Designer and Creative Director | Christopher Robin Design",
     description:
-      "Christopher Robin Design is a Cape Town creative studio led by Christopher Gara: publication design, brand systems and the production discipline that keeps them moving.",
+      "Christopher Robin Design is a Cape Town studio led by Christopher Gara, designing publications, brands and websites for businesses and agencies.",
     ogType: "website",
     image: DEFAULT_OG_IMAGE,
   },
