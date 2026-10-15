@@ -88,11 +88,11 @@ export const projects: Project[] = [
     role: "Layout, Image Correction & Social Design",
     category: "Editorial Design & Production",
     shortDescription:
-      "End-to-end editorial production across multiple issues: layout, image correction and print-ready output for a specialist wildlife title.",
+      "Several years of issues for a specialist wildlife magazine, from layout and image correction to press-ready files.",
     fullDescription:
-      "Kruger Magazine is a specialist wildlife and conservation publication covering Kruger National Park. Across multiple years and issues, the studio held full production responsibility, from first layout through to final press-ready files. The work asked for creative and technical precision in equal measure: every issue had to read well on the page and meet the standards of commercial print production.",
+      "Kruger Magazine is a specialist wildlife and conservation publication covering Kruger National Park. Across multiple years and issues, I held full production responsibility, from first layout through to final press-ready files. The work asked for creative and technical precision in equal measure: every issue had to read well on the page and meet the standards of commercial print production.",
     processNotes:
-      "The scope on each issue covered the complete production pipeline. Layout balanced long-form features, photography-led spreads, maps, infographics and advertiser placements within a consistent editorial grid. Image correction and colour grading were central, as contributor photography varied in quality and colour profile, and each frame was retouched in Photoshop for consistent ink density across coated and uncoated stock. Social assets adapted print layouts and key imagery into platform-ready formats, and a pre-press pass checked bleeds, trim, CMYK colour, resolution, font embedding and overprint before supply.",
+      "The scope on each issue covered the complete production pipeline. Layout balanced long-form features, photography-led spreads, maps, infographics and advertiser placements within a consistent editorial grid. Image correction and colour grading were central. Contributor photography varied in quality and colour profile, so I retouched each frame in Photoshop for consistent ink density across coated and uncoated stock. Social assets adapted print layouts and key imagery into platform-ready formats. A final pre-press pass checked bleeds, trim, CMYK colour, resolution, font embedding and overprint before supply.",
     toolsUsed: ["InDesign", "Photoshop", "Illustrator"],
     outcomes:
       "Consistent, well-produced issues delivered across several years, holding the magazine's reputation for considered editorial design and reliable print. Social content carried the title between issues.",
@@ -106,11 +106,11 @@ export const projects: Project[] = [
     role: "Brand Identity Design",
     category: "Brand Identity Study & Logo System",
     shortDescription:
-      "An earlier logo system study for a private security consultancy: a shield monogram, disciplined colour rules and considered applications.",
+      "A logo system study for a private security consultancy: shield monogram, colour rules and applications.",
     fullDescription:
       "Behelm Consulting provides discreet, intelligence-led protection for executives, VIPs and organisations that need high-trust advisory. This earlier identity study explores a BH monogram held in a shield silhouette, referencing maritime helm and seal traditions. The latest website uses a compass-style mark, shown separately in the web portfolio. Navy and paper carry every surface; gold appears once, as a single point at the crown of the mark, never as fill.",
     processNotes:
-      "The mark is constructed on a 16-unit grid: spine width, shield rise and watch line are fixed relationships, so it reproduces identically at any size. The system specifies scale behaviour down to a 24px favicon (the gold accent drops below 80px), reverse lockups for navy and paper grounds, and a stationery and digital-avatar set. Usage rules were written to survive contact with real work: approved colourways, minimum sizes and misuse cases are all documented.",
+      "The mark is constructed on a 16-unit grid. Spine width, shield rise and watch line are fixed relationships, so it reproduces identically at any size. The system sets how the mark scales down to a 24px favicon, with the gold accent removed below 80px. It also includes reverse lockups for navy and paper grounds plus a stationery and digital-avatar set. Usage rules were written to survive contact with real work: approved colourways, minimum sizes and misuse cases are all documented.",
     toolsUsed: ["Illustrator", "InDesign"],
     outcomes:
       "A logo system study presented as a working toolkit: construction, colour, scale and application rules brought together in a restrained presentation.",
@@ -124,9 +124,9 @@ export const projects: Project[] = [
     role: "Art Director",
     category: "Retail Marketing & Campaign Design",
     shortDescription:
-      "High-volume retail campaign design for one of South Africa's largest grocery chains, built for speed-to-market without losing brand consistency.",
+      "High-volume campaign design for one of South Africa's largest grocery chains, built for tight, repeating deadlines without losing brand consistency.",
     fullDescription:
-      "Art direction for Checkers' large-scale retail marketing, one of South Africa's biggest and fastest-moving retail accounts. The work ran from concept through to pre-press across print, digital and in-store, and called for creative judgement and production discipline under tight, repeating deadlines.",
+      "Art direction for Checkers' large-scale retail marketing, one of South Africa's biggest and fastest-moving retail accounts. The work ran from concept through to pre-press across print, digital and in-store. It called for creative judgement and production discipline under tight, repeating deadlines.",
     processNotes:
       "Production systems handled the repetitive, high-frequency work so the team could hold quality at pace, reducing errors and shortening turnaround. The role also sat between design and production as the point of creative continuity, keeping campaigns coherent from brief to press.",
     toolsUsed: ["InDesign", "Illustrator", "Photoshop", "Production systems"],
@@ -142,11 +142,11 @@ export const projects: Project[] = [
     role: "Art Director",
     category: "Editorial Direction & Publication Design",
     shortDescription:
-      "Editorial direction for a national lifestyle title: local voice and commercial features held within a global brand system.",
+      "Art direction for a national lifestyle magazine, giving a global brand a distinctly South African voice.",
     fullDescription:
       "Art direction for Playboy South Africa, leading the visual and editorial direction of one of the country's most recognised lifestyle magazines. The work balanced an established global brand identity with a distinctly South African editorial voice, with layouts that were sophisticated, engaging and commercially effective.",
     processNotes:
-      "Each issue worked closely with the editorial team to align visual storytelling with the writing. Layout systems covered long-form features, photo essays and advertiser integrations, with every page held to global brand standards while staying locally relevant. Commercial concept development supported advertiser features.",
+      "I worked closely with the editorial team on each issue, matching the visual storytelling to the writing. Layout systems covered long-form features, photo essays and advertiser integrations, with every page held to global brand standards while staying locally relevant. Commercial concept development supported advertiser features.",
     toolsUsed: ["InDesign", "Photoshop", "Illustrator"],
     outcomes:
       "Consistent editorial direction across multiple issues, strengthening the title in the South African market while staying aligned with global Playboy standards.",
@@ -160,13 +160,14 @@ export const projects: Project[] = [
     role: "Packaging & Label Design",
     category: "Packaging & Brand Design",
     shortDescription:
-      "Label and packaging design for a Cape Town amenity supplier to boutique hotels and short-stay properties: quiet, natural shelf presence for guest bathrooms.",
+      "Labels and packaging for a Cape Town supplier of guest amenities to boutique hotels, designed to sit quietly in a guest bathroom.",
     fullDescription:
-      "Boutique Essentials supplies guest amenities (shampoo, conditioner and room sprays) to boutique hotels, guesthouses and short-stay properties around Cape Town. The packaging had to feel considered in a guest bathroom rather than shout from a retail shelf: a hand-drawn leaf mark and script wordmark over a muted olive label, paired with amber glass and natural textures.",
+      "Boutique Essentials supplies guest amenities, including shampoo, conditioner and room sprays, to boutique hotels, guesthouses and short-stay properties around Cape Town. The packaging had to feel considered in a guest bathroom rather than shout from a retail shelf: a hand-drawn leaf mark and script wordmark over a muted olive label, paired with amber glass and natural textures.",
     processNotes:
-      "The label system runs across the range from a single layout: product name, range descriptor and volume hold fixed positions, so new products drop in without redesign. The finish keeps to a restrained pairing of matt label stock against amber glass, so the range reads premium at arm's length and in photography.",
+      "The label system runs across the range from a single layout. Product name, range descriptor and volume hold fixed positions, so new products drop in without redesign. The finish keeps to a restrained pairing of matt label stock against amber glass, so the range reads premium at arm's length and in photography.",
     toolsUsed: ["Illustrator", "Photoshop"],
-    outcomes: "",
+    outcomes:
+      "One label layout now covers the whole range, so new products are added without a redesign. The amber-and-olive finish reads as premium in guest bathrooms and in product photography.",
     coverImage: coverPicFor("boutique-essentials"),
   },
   {
@@ -179,11 +180,12 @@ export const projects: Project[] = [
     shortDescription:
       "Editorial design across multiple issues of the Western Cape Department of Agriculture's research and news magazine.",
     fullDescription:
-      "AgriProbe is the quarterly research and news magazine of the Western Cape Department of Agriculture, published by MLP Media. The work covered issue design across several volumes (covers, feature layouts and research articles), bringing a clear editorial standard to scientific and departmental content aimed at both specialists and the wider agricultural community.",
+      "AgriProbe is the quarterly research and news magazine of the Western Cape Department of Agriculture, published by MLP Media. Across several volumes I designed the covers, feature layouts and research articles, bringing a clear editorial standard to scientific and departmental content for specialists and the wider farming community.",
     processNotes:
-      "Each issue balanced research features, departmental news and photography within a consistent editorial grid, keeping dense technical material readable without flattening its character. Cover concepts gave every issue a distinct visual identity while holding the magazine's recognisable masthead system, and bilingual content was set with equal typographic care.",
+      "Each issue balanced research features, departmental news and photography within a consistent editorial grid, keeping dense technical material readable without flattening its character. Cover concepts gave every issue a distinct visual identity while holding the magazine's recognisable masthead system. Bilingual content was set with equal typographic care.",
     toolsUsed: ["InDesign", "Photoshop", "Illustrator"],
-    outcomes: "",
+    outcomes:
+      "Seven issues delivered across several volumes, each with its own cover identity inside the established masthead system. Research written for specialists stayed readable for the wider farming community in both languages.",
     coverImage: coverPicFor("agriprobe"),
   },
   {
@@ -194,7 +196,7 @@ export const projects: Project[] = [
     role: "Art Director & Designer",
     category: "Editorial Design & Art Direction",
     shortDescription:
-      "Commissioned art direction and layout for LoveLife's bold youth music and culture title: Issue 94, cover to press-ready spreads.",
+      "Issue 94 of LoveLife's youth music and culture magazine, art-directed from cover to press-ready spreads.",
     fullDescription:
       "UNCUT is a youth music and culture magazine published by LoveLife, with a strong editorial voice and a discerning young readership. This was real commissioned editorial work, not concept: Issue 94's complete visual direction, from cover through to fully produced, press-ready spreads, with layouts as bold and unconventional as the content.",
     processNotes:
@@ -212,13 +214,14 @@ export const projects: Project[] = [
     role: "Editorial Designer",
     category: "Editorial Design & Publication Design",
     shortDescription:
-      "Cover and feature design for South Africa's property investment magazine: finance-led content with newsstand presence.",
+      "Covers and features for South Africa's property investment magazine, making finance-led content work on the newsstand.",
     fullDescription:
-      "Real Estate Investor is South Africa's magazine for property investors, combining market analysis, investment strategy and high-profile interviews. The work spanned covers and feature layouts across multiple issues, including cover stories on Christo Wiese, Siya Kolisi and Trevor Noah, holding a confident, business-led visual identity that kept financial content approachable.",
+      "Real Estate Investor is South Africa's magazine for property investors, combining market analysis, investment strategy and high-profile interviews. The work spanned covers and feature layouts across multiple issues, including cover stories on Christo Wiese, Siya Kolisi and Trevor Noah. A confident, business-led visual identity kept financial content approachable.",
     processNotes:
       "Cover design leaned on strong portrait photography and a disciplined masthead system to earn newsstand attention, while feature layouts organised data-heavy investment content into clear, structured reading. The Master Investor series carried its own recognisable treatment within the magazine's broader identity.",
     toolsUsed: ["InDesign", "Photoshop", "Illustrator"],
-    outcomes: "",
+    outcomes:
+      "Twelve editions with covers built around some of South Africa's best-known business and public figures, plus a Master Investor series with its own recognisable treatment. Data-heavy investment content became clear, structured reading.",
     coverImage: coverPicFor("real-estate-investor"),
   },
   {
@@ -229,7 +232,7 @@ export const projects: Project[] = [
     role: "Art Director & Designer",
     category: "Publication Design & Layout Systems",
     shortDescription:
-      "Layout and visual system for a specialist title: cohesive design that made technical content clear and enjoyable to read.",
+      "Layout and a reusable visual system for a specialist boating magazine, making technical content clear and enjoyable to read.",
     fullDescription:
       "Layout and visual style for Leisure Boating Magazine, working closely with the editorial team to produce pages that were engaging and clearly structured for a specialist boating audience. The role was foundational in developing an editorial design discipline and a careful attention to detail.",
     processNotes:
@@ -247,9 +250,9 @@ export const projects: Project[] = [
     role: "Brand Concepts & Product UI Design",
     category: "Systems Design & Product Concept",
     shortDescription:
-      "Conceptual identity routes and orchestration-dashboard design for an AI operating system: the studio's systems thinking made visible.",
+      "Identity routes and dashboard design for a self-initiated workflow software concept. Process work, not a shipped product.",
     fullDescription:
-      "AIOS is a self-initiated concept for an AI operating system: an operating layer that coordinates agents, shared memory and workflows. The internal brief was to take the systems thinking behind CRD's own production automation and design what it would look like as a product: identity, application surfaces and the orchestration dashboard itself. These are conceptual renders, shown as process work rather than shipped product.",
+      "AIOS is a self-initiated concept for workflow software: one place that routes jobs, tracks approvals and keeps a shared record of every project. The brief was to take the systems behind my own production workflow and design them as a product: identity, application surfaces and the dashboard itself. These are conceptual renders shown as process work, not a shipped product.",
     processNotes:
       "Several identity routes were explored, from glowing product marks to a calm editorial navy-and-gold system, each pushed to application level (app icons, login screens, stationery and dashboard tiles) to test how a mark survives real product surfaces. The dashboard designs map the operating layer honestly: workflow routing with approval gates and human-review queues, live pipeline schedules and system health. The same logic runs CRD's actual production workflow.",
     toolsUsed: ["Illustrator", "Photoshop", "AI-assisted concept rendering"],
