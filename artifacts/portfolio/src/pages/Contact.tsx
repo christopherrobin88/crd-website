@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { MistBand } from "@/components/EditorialAtmosphere";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { scrollNowTo } from "@/hooks/use-smooth-scroll";
-import { CONTACT_EMAIL } from "@/lib/site";
+import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from "@/lib/site";
 import { PROJECT_TYPES, isProjectType } from "@/lib/enquiry";
 import { servicePackages } from "@/data/service-packages";
 
@@ -245,13 +245,22 @@ export default function Contact() {
 
             <div className="border-t border-crd-gold/25 pt-8">
               <h3 className="font-sans text-xs font-medium uppercase tracking-widest text-crd-forest/70 mb-4">
-                Prefer email or LinkedIn?
+                Prefer email, WhatsApp or LinkedIn?
               </h3>
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
                 className="block font-sans text-sm text-crd-forest underline decoration-crd-gold/60 underline-offset-4 hover:text-accent transition-colors break-all"
               >
                 {CONTACT_EMAIL}
+              </a>
+              <a
+                href={`https://wa.me/${CONTACT_PHONE.slice(1)}`}
+                aria-label={`WhatsApp ${CONTACT_PHONE_DISPLAY}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 block font-sans text-sm text-crd-forest underline decoration-crd-gold/60 underline-offset-4 hover:text-accent transition-colors break-all"
+              >
+                {CONTACT_PHONE_DISPLAY}
               </a>
               <div className="mt-6 flex flex-col sm:flex-row gap-4 sm:gap-10 font-sans text-sm uppercase tracking-[0.18em] text-foreground/60">
                 <Link href="/work" className="hover:text-foreground transition-colors">

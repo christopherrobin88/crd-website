@@ -8,6 +8,8 @@
  * matching custom address in Email Routing, and nothing else.
  */
 export const CONTACT_EMAIL = "info@christopherrobindesign.com";
+export const CONTACT_PHONE = "+27828390093";
+export const CONTACT_PHONE_DISPLAY = "082 839 0093";
 
 /** Public social profiles used by the footer and business structured data. */
 export const SOCIAL_LINKS = [

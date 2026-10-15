@@ -25,11 +25,15 @@ Repository: `/Users/user/Documents/GitHub/crd-website/`
 - Re-fetched all 19 public page URLs. Every page returned HTTP 200 and matched the local production HTML after accounting for Cloudflare's injected beacon and the generated JavaScript asset hash. This verifies the published page content, not external enquiry delivery or analytics.
 - The October copy brief and this status file were committed. The local repository was clean on `main` after the merge.
 
-## Footer social links review branch on 2026-10-16
+## Footer social links released on 2026-10-16
 
 - PR #10 (`feat/footer-social-links`, commit `9a0140a`) adds LinkedIn, Instagram and Facebook icons to the shared footer. Footer links and Home business `sameAs` now consume one URL constant; the founder's personal `sameAs` remains separate.
-- `pnpm build` and `pnpm typecheck` passed. Generated Home HTML has all three links with the requested labels, target, rel and 44px minimum tap area, and its business `sameAs` matches their URLs. This is local build evidence; no production change is claimed.
+- `pnpm build` and `pnpm typecheck` passed. Generated Home HTML has all three links with the requested labels, target, rel and 44px minimum tap area, and its business `sameAs` matches their URLs. PR #10 merged as `0a97384`. Its Cloudflare main build passed and the public Home returned all three links on plain and fresh URLs. Christopher-supplied footer screenshot showed the icons centred and unclipped.
+
+## Contact WhatsApp review branch on 2026-10-16
+
+- `feat/contact-whatsapp` adds the user-supplied phone number and WhatsApp link to Contact, plus `telephone` and `priceRange` to Home JSON-LD. `pnpm build`, `pnpm typecheck` and generated HTML checks passed. No production deployment is claimed.
 
 ## Next action
 
-- Review PR #10 before any merge or deployment.
+- Review the contact WhatsApp branch and PR before any merge or deployment.
