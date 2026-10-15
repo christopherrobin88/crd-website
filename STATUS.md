@@ -16,4 +16,15 @@ Repository: `/Users/user/Documents/GitHub/crd-website/`
 - Christopher opened the exact `d1163b6` version preview in his authenticated browser and reported that `sameAs` appears in its source.
 - Christopher then opened the branch preview alias with `?check=d1163b6` and reported that the new markers are present. The latest branch content is reachable through both preview URLs by his browser inspection.
 - The earlier old HTML came from a stale response. This chat did not establish whether browser cache or Cloudflare cache supplied it. No deployment, cache, site code or access setting was changed.
-- Christopher authorised merging PR #8 on 2026-10-16, superseding the earlier no-merge hold in the October copy brief. Next: merge after checks, then verify the live deployment and record the result.
+- Christopher authorised merging PR #8 on 2026-10-16, superseding the earlier no-merge hold in the October copy brief.
+
+## Release verified on 2026-10-16
+
+- PR #8 merged into `main` as `992fdf61b71f7a4e9d09590967696444405df403`. The final branch check and production Workers build passed. Cloudflare reported version `069cee0a-586c-4213-830f-614a03390fc0` active at 100%.
+- The plain public Home URL initially returned old cached HTML while a fresh query returned the new Home description and `sameAs`. Purged only the 19 page URLs in the generated sitemap.
+- Re-fetched all 19 public page URLs. Every page returned HTTP 200 and matched the local production HTML after accounting for Cloudflare's injected beacon and the generated JavaScript asset hash. This verifies the published page content, not external enquiry delivery or analytics.
+- The October copy brief and this status file were committed. The local repository was clean on `main` after the merge.
+
+## Next action
+
+- Continue normal content review on the live site. Use a new feature branch for any follow-up change.
