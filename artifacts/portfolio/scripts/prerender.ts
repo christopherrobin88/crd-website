@@ -12,7 +12,7 @@
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { CONTACT_EMAIL, SOCIAL_LINKS } from "../src/lib/site";
+import { CONTACT_EMAIL, CONTACT_PHONE, SOCIAL_LINKS } from "../src/lib/site";
 
 interface PageMeta {
   path: string;
@@ -73,6 +73,8 @@ function homeStructuredData(meta: PageMeta): string {
     },
     areaServed: ["Cape Town", "South Africa"],
     email: CONTACT_EMAIL,
+    telephone: CONTACT_PHONE,
+    priceRange: "From R8,500",
     image: absoluteImageUrl(meta.image),
     sameAs: SOCIAL_LINKS.map(({ href }) => href),
   };
