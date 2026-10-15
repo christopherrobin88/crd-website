@@ -8,3 +8,10 @@
  * matching custom address in Email Routing, and nothing else.
  */
 export const CONTACT_EMAIL = "info@christopherrobindesign.com";
+
+/** Public social profiles used by the footer and business structured data. */
+export const SOCIAL_LINKS = [
+  { name: "LinkedIn", href: "https://www.linkedin.com/company/christopher-robin-design/" },
+  { name: "Instagram", href: "https://www.instagram.com/christopher_robin_design/" },
+  { name: "Facebook", href: "https://www.facebook.com/christopherrobindesign/" },
+] as const;

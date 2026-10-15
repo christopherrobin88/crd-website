@@ -25,6 +25,11 @@ Repository: `/Users/user/Documents/GitHub/crd-website/`
 - Re-fetched all 19 public page URLs. Every page returned HTTP 200 and matched the local production HTML after accounting for Cloudflare's injected beacon and the generated JavaScript asset hash. This verifies the published page content, not external enquiry delivery or analytics.
 - The October copy brief and this status file were committed. The local repository was clean on `main` after the merge.
 
+## Footer social links review branch on 2026-10-16
+
+- PR #10 (`feat/footer-social-links`, commit `9a0140a`) adds LinkedIn, Instagram and Facebook icons to the shared footer. Footer links and Home business `sameAs` now consume one URL constant; the founder's personal `sameAs` remains separate.
+- `pnpm build` and `pnpm typecheck` passed. Generated Home HTML has all three links with the requested labels, target, rel and 44px minimum tap area, and its business `sameAs` matches their URLs. This is local build evidence; no production change is claimed.
+
 ## Next action
 
-- Continue normal content review on the live site. Use a new feature branch for any follow-up change.
+- Review PR #10 before any merge or deployment.

@@ -12,7 +12,7 @@
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { CONTACT_EMAIL } from "../src/lib/site";
+import { CONTACT_EMAIL, SOCIAL_LINKS } from "../src/lib/site";
 
 interface PageMeta {
   path: string;
@@ -74,11 +74,7 @@ function homeStructuredData(meta: PageMeta): string {
     areaServed: ["Cape Town", "South Africa"],
     email: CONTACT_EMAIL,
     image: absoluteImageUrl(meta.image),
-    sameAs: [
-      "https://www.linkedin.com/company/christopher-robin-design/",
-      "https://www.facebook.com/christopherrobindesign/",
-      "https://www.instagram.com/christopher_robin_design/",
-    ],
+    sameAs: SOCIAL_LINKS.map(({ href }) => href),
   };
   return `<script type="application/ld+json">${JSON.stringify(data).replaceAll("<", "\\u003c")}</script>`;
 }
