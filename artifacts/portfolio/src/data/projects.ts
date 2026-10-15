@@ -95,7 +95,7 @@ export const projects: Project[] = [
       "The scope on each issue covered the complete production pipeline. Layout balanced long-form features, photography-led spreads, maps, infographics and advertiser placements within a consistent editorial grid. Image correction and colour grading were central. Contributor photography varied in quality and colour profile, so I retouched each frame in Photoshop for consistent ink density across coated and uncoated stock. Social assets adapted print layouts and key imagery into platform-ready formats. A final pre-press pass checked bleeds, trim, CMYK colour, resolution, font embedding and overprint before supply.",
     toolsUsed: ["InDesign", "Photoshop", "Illustrator"],
     outcomes:
-      "Consistent, well-produced issues delivered across several years, holding the magazine's reputation for considered editorial design and reliable print. Social content carried the title between issues.",
+      "Consistent, well-produced issues delivered across several years, holding the magazine's reputation for clear editorial design and reliable print. Social content carried the title between issues.",
     coverImage: coverPicFor("kruger-magazine"),
   },
   {
@@ -131,7 +131,7 @@ export const projects: Project[] = [
       "Production systems handled the repetitive, high-frequency work so the team could hold quality at pace, reducing errors and shortening turnaround. The role also sat between design and production as the point of creative continuity, keeping campaigns coherent from brief to press.",
     toolsUsed: ["InDesign", "Illustrator", "Photoshop", "Production systems"],
     outcomes:
-      "Workflow improvements cut production errors and improved speed-to-market across high-frequency campaigns, with the client services team supported on delivery and communication.",
+      "Workflow improvements cut production errors and shortened turnaround across high-frequency campaigns, with the client services team supported on delivery and communication.",
     coverImage: coverPicFor("checkers-retail"),
   },
   {
