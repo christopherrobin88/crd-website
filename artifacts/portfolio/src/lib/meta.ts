@@ -15,7 +15,7 @@ export const SITE_NAME = "Christopher Robin Design";
 
 /** Default social card, used by routes without their own artwork. */
 const DEFAULT_OG_IMAGE = {
-  url: "/og-image.png",
+  url: "/og-logo-botanical-v1.png",
   width: 1200,
   height: 630,
 };

@@ -37,3 +37,9 @@ Repository: `/Users/user/Documents/GitHub/crd-website/`
 ## Next action
 
 - Review the contact WhatsApp branch and PR before any merge or deployment.
+
+## Botanical logo preview, 2026-10-19
+
+- Christopher approved the enlarged green botanical logo concept and authorised publication.
+- New versioned 1200x630 social image keeps the square logo artwork centred for square comment crops; default Open Graph and Twitter image references updated. Original image retained.
+- Publication verification pending. WhatsApp profile derivative prepared separately in the CRD workspace.
