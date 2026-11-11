@@ -43,3 +43,18 @@ Repository: `/Users/user/Documents/GitHub/crd-website/`
 - Christopher approved the enlarged green botanical logo concept and authorised publication.
 - New versioned 1200x630 social image keeps the square logo artwork centred for square comment crops; default Open Graph and Twitter image references updated. Original image retained.
 - Publication verification pending. WhatsApp profile derivative prepared separately in the CRD workspace.
+
+## Homepage refresh and living tree released on 2026-11-12
+
+- Four pull requests merged to `main` at Christopher's request ("go live"), in this order: #15 hero twinkle loops pause off screen, #16 deposit terms line on Services, #14 homepage (page-to-screen showpiece, contents strip, prices on offers, "More of the work." index, four-step project flow), #17 living tree nav logo plus the credit kit at `/credit/`.
+- Production build for `444f116` reported success. Verified on the public site in a browser with a fresh query and with a no-store fetch of the plain Home URL: new Home sections present, living logo inlined, four flow cards, three "Starting from" prices, the deposit line on `/services`, and all four `/credit/` files returning 200.
+- Mobile check on the live site by viewport emulation at 375x812 only: the pinned stage fits and there is no horizontal overflow. No real device, Safari or Firefox check was done.
+
+### Open items
+
+- The living tree uses underdamped springs (damping 0.28 on the trunk, 0.4 on leaves). Codex flagged this on #17 against the "no bounce or elastic easing" rule. Left as supplied because Christopher authored the motion and asked for it. Needs his decision: keep as an agreed exception, or damp it.
+- The hero illustration's sparkles and pop-in easing sit against the "no sparkle effects" and "no bounce" rules. Untouched.
+- Deposit wording ("balance is due on handover") was drafted in chat and published on his go-live instruction. He should confirm it matches his terms.
+- New Home copy is unreviewed in detail: the four flow cards, "Vol. 17", the stage labels.
+- No pay link exists yet. The Yoco account on his email appears to have been set up for another business in 2020; he needs to confirm the business name and payout bank before any client deposit goes through it.
+- The credit kit is not yet on any client site. Each needs the owner's agreement.
