@@ -18,6 +18,9 @@ import spreadRight from "@/assets/images/kruger/issue-29-spread-01-page-r.jpg?fo
  * - No artwork is ever cropped: the spread is shown whole with no gutter
  *   shadow across the photograph, and each screenshot fades out to the dark
  *   frame before the frame changes shape.
+ * - The pinned part must always fit the viewport. On small screens the
+ *   heading and paragraph scroll above it; on short desktop windows the
+ *   paragraph is dropped and the heading set smaller.
  * - Under prefers-reduced-motion the three states are laid out side by side
  *   and nothing is pinned.
  */
@@ -53,9 +56,9 @@ function Spread({ className = "" }: { className?: string }) {
 function Heading() {
   return (
     <>
-      <h2 id="approach-title" className="font-serif text-3xl leading-tight tracking-tight md:text-5xl">Why a magazine designer makes better websites.</h2>
+      <h2 className="font-serif text-3xl leading-tight tracking-tight md:text-5xl [@media(min-width:768px)_and_(max-height:760px)]:text-3xl">Why a magazine designer makes better websites.</h2>
       <SketchLine className="mt-4 w-44" />
-      <p className="mt-5 max-w-xl text-base leading-relaxed text-crd-forest/85 md:mt-7 md:text-lg">A magazine has to make sense of a lot of content, fast: what to lead with, what to cut and where to let a picture breathe. A website has the same job. I bring that discipline and years of print production to every publication, brand and site.</p>
+      <p className="mt-5 max-w-xl text-base leading-relaxed text-crd-forest/85 md:mt-7 md:text-lg [@media(min-width:768px)_and_(max-height:760px)]:hidden">A magazine has to make sense of a lot of content, fast: what to lead with, what to cut and where to let a picture breathe. A website has the same job. I bring that discipline and years of print production to every publication, brand and site.</p>
     </>
   );
 }
@@ -78,7 +81,7 @@ function StageLabel({ index, progress }: { index: number; progress: MotionValue<
 
 function StaticPageToScreen() {
   return (
-    <section className="px-6 py-14 md:px-12 md:py-20" aria-labelledby="approach-title">
+    <section className="px-6 py-14 md:px-12 md:py-20" aria-label="Why a magazine designer makes better websites">
       <div className="mx-auto max-w-7xl border-y border-crd-forest/20 py-12 md:py-16">
         <Heading />
         <div className="mt-10 grid items-end gap-8 md:grid-cols-[1.5fr_1.5fr_0.5fr]">
@@ -111,12 +114,17 @@ export function PageToScreen() {
   if (reduce) return <StaticPageToScreen />;
 
   return (
-    <section ref={track} className="relative h-[260vh] md:h-[300vh]" aria-labelledby="approach-title">
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden px-6 pt-16 md:px-12 md:pt-20">
-        <div className="mx-auto grid w-full max-w-7xl items-center gap-6 md:grid-cols-[0.9fr_1.1fr] md:gap-16">
+    <section aria-label="Why a magazine designer makes better websites">
+      {/* Small screens: the heading and paragraph scroll normally above the
+          pinned stage, so the pinned part (labels and frame) always fits,
+          including short viewports such as 375 by 667. */}
+      <div className="px-6 pt-14 md:hidden"><Heading /></div>
+      <div ref={track} className="relative h-[240vh] md:h-[300vh]">
+      <div className="sticky top-0 flex h-[100svh] items-center overflow-hidden px-6 pt-16 md:px-12 md:pt-20">
+        <div className="mx-auto grid w-full max-w-7xl items-center gap-5 md:grid-cols-[0.9fr_1.1fr] md:gap-16">
           <div>
-            <Heading />
-            <ol className="mt-6 border-b border-crd-forest/20 md:mt-10">
+            <div className="hidden md:block"><Heading /></div>
+            <ol className="border-b border-crd-forest/20 md:mt-10">
               {stages.map((stage, index) => <StageLabel key={stage.title} index={index} progress={p} />)}
             </ol>
             <div aria-hidden="true" className="mt-4 h-px w-full bg-crd-forest/10"><motion.div style={{ scaleX: progressScale }} className="h-px origin-left bg-crd-gold" /></div>
@@ -139,6 +147,7 @@ export function PageToScreen() {
             </motion.div>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );
