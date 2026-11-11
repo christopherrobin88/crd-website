@@ -34,6 +34,14 @@ export function HeroLaptop({ className }: { className?: string }) {
     const tilt = tiltRef.current;
     if (!root || !float || !tilt) return;
 
+    // The illustration's 63 twinkle loops run forever. Hold them whenever the
+    // hero is scrolled out of view, so nothing repaints behind the rest of
+    // the page.
+    const visibility = new IntersectionObserver(([entry]) => {
+      root.toggleAttribute("data-hero-art-paused", !entry.isIntersecting);
+    });
+    visibility.observe(root);
+
     const mm = gsap.matchMedia();
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       // Idle float — separate element from the cursor tilt so their
@@ -93,7 +101,10 @@ export function HeroLaptop({ className }: { className?: string }) {
       };
     });
 
-    return () => mm.revert();
+    return () => {
+      visibility.disconnect();
+      mm.revert();
+    };
   }, []);
 
   return (
