@@ -1,3 +1,4 @@
+import { LivingLogo } from "@/components/LivingLogo";
 import { useCallback, useRef, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
@@ -29,19 +30,7 @@ export function SiteNav() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
       >
-        <Link
-          href="/"
-          onClick={close}
-          className="flex items-center transition-opacity duration-200 hover:opacity-80"
-        >
-          <img
-            src="/logos/02_horizontal_lockup.svg"
-            alt="Christopher Robin Design"
-            className="h-12 w-auto md:h-14"
-            width={133}
-            height={56}
-          />
-        </Link>
+        <LivingLogo onClick={close} />
 
         {/* Desktop links */}
         <div className="hidden gap-9 font-sans text-[0.7rem] uppercase tracking-[0.22em] text-crd-forest md:flex">

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CRD tree credit: demo</title>
+  <link rel="stylesheet" href="./crd-credit.css">
+  <style>
+    html, body { margin: 0; }
+    body { font-family: Georgia, serif; color: #12322F; background: #F2EBDD; }
+    .section { min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; padding: 48px 24px 32px; box-sizing: border-box; }
+    .section--ink { background: #12322F; color: #F2EBDD; }
+    .section h1 { font-size: 2rem; font-weight: 400; margin: 0 0 12px; }
+    .section p { max-width: 36rem; line-height: 1.5; margin: 0; }
+    .note { font-family: system-ui, sans-serif; font-size: .85rem; color: #4d5a4f; max-width: 40rem; }
+    .credit-row { display: flex; justify-content: center; padding-top: 24px; border-top: 1px solid rgba(18, 50, 47, .15); }
+    .section--ink .credit-row { border-top-color: rgba(242, 235, 221, .18); }
+    .spacer { height: 60vh; display: flex; align-items: center; justify-content: center; font-family: system-ui, sans-serif; color: #4d5a4f; }
+  </style>
+</head>
+<body>
+
+  <section class="section" aria-labelledby="cream-title">
+    <div>
+      <h1 id="cream-title">Cream background</h1>
+      <p>Scroll down. The credit sways once when it first enters the view and one or two leaves let go. Move the pointer within about 150 px of it to make the tree lean away. Linger or sweep past it and a leaf may fall. Reduced motion: the logo sits still.</p>
+    </div>
+    <p class="note">Default theme: official colours on cream.</p>
+  </section>
+
+  <div class="spacer">Keep scrolling</div>
+
+  <section class="section" aria-labelledby="mid-title">
+    <div>
+      <h1 id="mid-title">Mid-page</h1>
+      <p>Credit placed in a footer-like row, the way the sites use it.</p>
+    </div>
+    <footer class="credit-row">
+      <a class="crd-credit" href="https://christopherrobindesign.com" target="_blank" rel="noopener" aria-label="Christopher Robin Design">
+        <span>Developed by</span>
+        <img src="./crd-tree.svg" alt="" width="200" height="84" decoding="async">
+      </a>
+    </footer>
+  </section>
+
+  <div class="spacer">Keep scrolling</div>
+
+  <section class="section section--ink" aria-labelledby="ink-title">
+    <div>
+      <h1 id="ink-title">Ink background</h1>
+      <p>Same geometry, remapped fills: cream tree and wordmark, lighter olive leaves, wheat DESIGN.</p>
+    </div>
+    <footer class="credit-row">
+      <a class="crd-credit crd-credit--on-ink" href="https://christopherrobindesign.com" target="_blank" rel="noopener" aria-label="Christopher Robin Design">
+        <span>Developed by</span>
+        <img src="./crd-tree.svg" alt="" width="200" height="84" decoding="async">
+      </a>
+    </footer>
+  </section>
+
+  <script src="./crd-credit.js" defer></script>
+</body>
+</html>
