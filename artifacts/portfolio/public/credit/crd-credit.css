@@ -1,0 +1,106 @@
+/* crd-credit.css: "Developed by Christopher Robin Design" credit. Pairs with crd-credit.js and crd-tree.svg. */
+
+/* Theme variables. Override on .crd-credit or any ancestor (see README). */
+.crd-credit {
+  --crd-credit-text: #2b2620b3;   /* "Developed by" label */
+  --crd-credit-accent: #2d4a34;   /* hover and focus */
+  --crd-focus: #2d4a34;           /* focus ring */
+  --crd-ink: #12322F;             /* trunk, branches, Christopher Robin */
+  --crd-leaf: #6B7A3D;            /* leaves */
+  --crd-gold: #C7A35A;            /* rule and DESIGN */
+}
+
+/* Ink and dark backgrounds: remap fills only. Geometry is unchanged. */
+.crd-credit--on-ink,
+[data-theme="ink"] .crd-credit {
+  --crd-credit-text: #F2EBDDb3;
+  --crd-credit-accent: #F2EBDD;
+  --crd-focus: #D9B56E;
+  --crd-ink: #F2EBDD;
+  --crd-leaf: #8DA25A;
+  --crd-gold: #D9B56E;
+}
+
+.crd-credit {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--crd-credit-text);
+  text-decoration: none;
+  font-size: .85rem;
+  letter-spacing: .02em;
+  border-radius: 6px;
+}
+
+.crd-credit img,
+.crd-credit__svg {
+  display: block;
+  height: 84px;
+  width: auto;
+  aspect-ratio: 1014 / 427;
+  margin: -18px 0;
+  overflow: visible;   /* falling leaves may drop past the viewBox */
+}
+
+.crd-credit:hover span,
+.crd-credit:focus-visible span {
+  color: var(--crd-credit-accent);
+  text-decoration: underline;
+}
+
+.crd-credit:focus-visible {
+  outline: 2px solid var(--crd-focus);
+  outline-offset: 6px;
+}
+
+.crd-credit__svg [fill="#12322F"] { fill: var(--crd-ink); }
+.crd-credit__svg [fill="#6B7A3D"] { fill: var(--crd-leaf); }
+.crd-credit__svg [fill="#C7A35A"] { fill: var(--crd-gold); }
+.crd-credit__svg [stroke="#C7A35A"] { stroke: var(--crd-gold); }
+
+/* Reduced motion: the logo stays still. No falling leaves are created by the script. */
+@media (prefers-reduced-motion: reduce) {
+  .crd-credit .crd-fall { display: none; }
+}
+
+/* When #crd-credit (or .crd-credit) is a wrapper around the link, style the inner <a>
+   the same way. The wrapper itself is just a box, so a later drop-in on an existing
+   #crd-credit element works without rewriting the host page's markup. */
+div#crd-credit,
+div.crd-credit {
+  display: block;
+}
+a#crd-credit,
+#crd-credit > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--crd-credit-text, #2b2620b3);
+  text-decoration: none;
+  font-size: .85rem;
+  letter-spacing: .02em;
+  border-radius: 6px;
+}
+#crd-credit > a img,
+#crd-credit > a .crd-credit__svg,
+a#crd-credit img,
+a#crd-credit .crd-credit__svg {
+  display: block;
+  height: 84px;
+  width: auto;
+  aspect-ratio: 1014 / 427;
+  margin: -18px 0;
+  overflow: visible;
+}
+#crd-credit > a:hover span,
+#crd-credit > a:focus-visible span,
+a#crd-credit:hover span,
+a#crd-credit:focus-visible span {
+  color: var(--crd-credit-accent, #2d4a34);
+  text-decoration: underline;
+}
+#crd-credit > a:focus-visible,
+a#crd-credit:focus-visible {
+  outline: 2px solid var(--crd-focus, #2d4a34);
+  outline-offset: 6px;
+}
