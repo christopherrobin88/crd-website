@@ -521,6 +521,9 @@
 .crd-flow-step.is-reached .crd-flow-outline { fill: rgb(107 122 61 / .1); stroke: #0E2320; }
 @media (min-width: 1024px) {
   .crd-flow-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 15px; }
+  .crd-flow-grid--four { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 34px; }
+  .crd-flow-grid--four .crd-flow-step:not(:last-child)::after { right: -26px; }
+  .crd-flow-grid--four .crd-flow-step > div { padding: 28px 24px; }
   .crd-flow-step:not(:last-child)::after { content: '→'; left: auto; right: -16px; top: 42%; bottom: auto; z-index: 1; font-size: 20px; }
   .crd-flow-step > div { padding: 22px 17px; }
 }

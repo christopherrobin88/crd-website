@@ -7,16 +7,28 @@ import { HeroLaptop } from "@/components/HeroLaptop";
 import { StudioPortal } from "@/components/StudioPortal";
 import { SketchLine, SketchArrow } from "@/components/SketchLine";
 import { ProjectFlow } from "@/components/ProjectFlow";
+import { PageToScreen } from "@/components/home/PageToScreen";
+import { WorkIndex } from "@/components/home/WorkIndex";
+import { servicePackages } from "@/data/service-packages";
 import { SelectedWorkSection, ContactCloseSection } from "@/components/home/HomeSections";
 import { WebWorkSection } from "@/components/WebProjects";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { scrollNowTo } from "@/hooks/use-smooth-scroll";
 import { contactHref } from "@/lib/enquiry";
 
+const priceFor = (id: string) => servicePackages.find((item) => item.id === id)?.price;
+
+const contents = [
+  { page: "01", title: "Selected work", detail: "Kruger Magazine, Behelm", href: "/work" },
+  { page: "02", title: "From page to screen", detail: "Riette Gara, Made by Mike", href: "/web" },
+  { page: "03", title: "Ways to work together", detail: `Projects from ${priceFor("editorial")}`, href: "/services" },
+  { page: "04", title: "Start a conversation", detail: "Brief, timeline, goals", href: "/contact" },
+];
+
 const offers = [
-  { title: "Editorial design", body: "Magazines, reports and publications. A clear hierarchy, careful image treatment and layouts built to carry the story.", href: "/project/kruger-magazine", proof: "Explore the editorial work" },
-  { title: "Branding", body: "Distinctive identities with the typography, colour and application rules to hold together across print and digital.", href: "/project/behelm", proof: "Explore the brand work" },
-  { title: "Websites", body: "Considered websites for artists, makers and businesses. The same attention to content and craft, made for the screen.", href: "/web", proof: "Explore the web work" },
+  { title: "Editorial design", body: "Magazines, reports and publications. A clear hierarchy, careful image treatment and layouts built to carry the story.", href: "/project/kruger-magazine", price: priceFor("editorial"), proof: "Explore the editorial work" },
+  { title: "Branding", body: "Distinctive identities with the typography, colour and application rules to hold together across print and digital.", href: "/project/behelm", price: priceFor("brand-identity"), proof: "Explore the brand work" },
+  { title: "Websites", body: "Considered websites for artists, makers and businesses. The same attention to content and craft, made for the screen.", href: "/web", price: priceFor("website"), proof: "Explore the web work" },
 ];
 
 export default function Landing() {
@@ -28,7 +40,7 @@ export default function Landing() {
       <main>
         <section data-hero-zone className="mx-auto grid max-w-7xl items-center gap-6 px-6 pb-12 pt-28 md:grid-cols-[1.15fr_1fr] md:gap-x-16 md:gap-y-8 md:px-12 md:pb-24 md:pt-44">
           <div className="order-0 md:col-start-1 md:row-start-1 md:self-end">
-            <p className="mb-5 text-[0.65rem] font-medium uppercase tracking-[0.2em] md:mb-7 md:text-xs">Independent design studio / Cape Town</p>
+            <p className="mb-5 text-[0.65rem] font-medium uppercase tracking-[0.2em] md:mb-7 md:text-xs"><span className="mr-3 border-r border-crd-forest/30 pr-3 font-serif text-sm italic normal-case tracking-normal md:text-base">Vol. 17</span>Independent design studio / Cape Town</p>
             <h1 className="font-serif text-[clamp(2.7rem,5.6vw,5.5rem)] font-semibold leading-[1.05] tracking-[-0.035em]">
               Editorial.<br />Branding.<br /><span className="relative inline-block font-normal italic text-crd-moss">Websites.<SketchLine className="absolute -bottom-4 left-0 w-full" /></span>
             </h1>
@@ -47,12 +59,18 @@ export default function Landing() {
           </div>
         </section>
 
-        <section className="px-6 py-14 md:px-12 md:py-20" aria-labelledby="approach-title">
-          <div className="mx-auto grid max-w-7xl gap-8 border-y border-crd-forest/20 py-12 md:grid-cols-2 md:gap-20 md:py-16">
-            <h2 id="approach-title" className="font-serif text-3xl leading-tight tracking-tight md:text-4xl">Why a magazine designer makes better websites.</h2>
-            <p className="max-w-xl text-lg leading-relaxed text-crd-forest/85">A magazine has to make sense of a lot of content, fast: what to lead with, what to cut and where to let a picture breathe. A website has the same job. I bring that discipline and years of print production to every publication, brand and site.</p>
-          </div>
-        </section>
+        <nav aria-label="In this issue" className="px-6 md:px-12">
+          <ol className="mx-auto grid max-w-7xl border-y border-crd-forest/20 sm:grid-cols-2 lg:grid-cols-4">
+            {contents.map((item) => <li key={item.page} className="border-b border-crd-forest/15 last:border-b-0 sm:[&:nth-child(n+3)]:border-b-0 lg:border-b-0 lg:border-l lg:first:border-l-0">
+              <Link href={item.href} className="group flex items-baseline gap-4 py-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-crd-forest lg:px-6 lg:py-6">
+                <span className="font-serif text-2xl italic text-crd-moss md:text-3xl">{item.page}</span>
+                <span><span className="block text-sm font-medium underline decoration-transparent underline-offset-4 transition-colors group-hover:decoration-crd-gold motion-reduce:transition-none">{item.title}</span><span className="mt-1 block text-xs text-crd-forest/75">{item.detail}</span></span>
+              </Link>
+            </li>)}
+          </ol>
+        </nav>
+
+        <PageToScreen />
 
         <SelectedWorkSection />
         <WebWorkSection />
@@ -65,6 +83,7 @@ export default function Landing() {
                 <p className="mb-4 text-xs uppercase tracking-widest">0{index + 1}</p>
                 <h3 className="font-serif text-3xl">{offer.title}</h3>
                 <p className="mt-5 text-base leading-relaxed text-crd-forest/85 md:text-lg">{offer.body}</p>
+                {offer.price && <p className="mt-5 text-sm">Starting from <span className="font-serif text-2xl tracking-tight">{offer.price}</span></p>}
                 <Link href={offer.href} className="mt-6 inline-flex items-center gap-2 text-sm font-medium underline decoration-crd-gold underline-offset-4">{offer.proof}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
               </article>)}
             </div>
@@ -74,6 +93,7 @@ export default function Landing() {
             </div>
           </div>
         </section>
+        <WorkIndex />
         <ProjectFlow />
         <ContactCloseSection />
         <StudioPortal />
