@@ -36,6 +36,7 @@ export function PricingPackages() {
         <p>Prices are in South African rand. Each package includes two consolidated rounds of refinements to the agreed direction. Final fees depend on your content, complexity and timeline. Larger publications and recurring editorial work are quoted individually.</p>
         <p>You supply the copy and images. Copywriting, photography, printing and paid assets are quoted separately. Website packages cover portfolio and business sites; shops, bookings and custom integrations need a separate scope. Domains, hosting and ongoing maintenance are separate.</p>
       </div>
+      <p className="mt-6 border-t border-crd-forest/20 pt-5 text-sm leading-relaxed text-crd-forest/85"><span className="font-medium text-crd-forest">How payment works.</span> A 50% deposit confirms your booking and start date. The balance is due on handover.</p>
       <Link href="/contact" className="mt-6 inline-flex min-h-11 items-center gap-2 border-b border-crd-gold text-sm font-medium">Have something else in mind? Let’s talk<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
     </section>
   );
