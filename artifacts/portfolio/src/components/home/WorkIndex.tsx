@@ -25,8 +25,8 @@ export function WorkIndex() {
     <section className="px-6 py-16 md:px-12 md:py-24" aria-labelledby="work-index-title">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 grid gap-6 md:grid-cols-2 md:gap-20">
-          <h2 id="work-index-title" className="font-serif text-4xl leading-tight tracking-tight md:text-5xl">Seventeen years,<br /><span className="italic">indexed.</span><SketchLine className="mt-4 w-44" /></h2>
-          <p className="max-w-xl text-base leading-relaxed text-crd-forest/85 md:text-lg">National magazine titles, retail campaigns, brand identities and websites. Every entry opens the full project.</p>
+          <h2 id="work-index-title" className="font-serif text-4xl leading-tight tracking-tight md:text-5xl">More of <span className="italic">the work.</span><SketchLine className="mt-4 w-44" /></h2>
+          <p className="max-w-xl text-base leading-relaxed text-crd-forest/85 md:text-lg">A selection of magazines, retail campaigns, brand identities and websites. Each one opens the full project.</p>
         </div>
         <ol className="border-t border-crd-forest/25">
           {entries.map((entry, index) => (
