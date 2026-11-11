@@ -15,6 +15,9 @@ import spreadRight from "@/assets/images/kruger/issue-29-spread-01-page-r.jpg?fo
  * - The spread is composited in code from the two single-page exports, never
  *   a pre-merged file (CLAUDE.md, section 4).
  * - Only opacity, width and border radius change, on a single element.
+ * - No artwork is ever cropped: the spread is shown whole with no gutter
+ *   shadow across the photograph, and each screenshot fades out to the dark
+ *   frame before the frame changes shape.
  * - Under prefers-reduced-motion the three states are laid out side by side
  *   and nothing is pinned.
  */
@@ -43,7 +46,6 @@ function Spread({ className = "" }: { className?: string }) {
     <div className={`relative flex h-full w-full ${className}`}>
       <div className="h-full w-1/2 overflow-hidden"><Picture pic={spreadLeft} alt="Kruger Magazine feature opener, left page" className="h-full w-full object-cover" sizes="(min-width: 768px) 30vw, 50vw" /></div>
       <div className="h-full w-1/2 overflow-hidden"><Picture pic={spreadRight} alt="Kruger Magazine feature opener, right page" className="h-full w-full object-cover" sizes="(min-width: 768px) 30vw, 50vw" /></div>
-      <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 left-1/2 w-6 -translate-x-1/2 bg-gradient-to-r from-black/15 via-transparent to-black/15" />
     </div>
   );
 }
@@ -95,15 +97,15 @@ export function PageToScreen() {
   const { scrollYProgress: p } = useScroll({ target: track, offset: ["start start", "end end"] });
 
   // 0 to 0.24 spread, 0.24 to 0.42 becomes a browser, hold, 0.62 to 0.8 becomes a phone, hold.
-  const width = useTransform(p, [0.62, 0.8], ["100%", "31%"]);
-  const radius = useTransform(p, [0.24, 0.42, 0.62, 0.8], [0, 12, 12, 30]);
+  const width = useTransform(p, [0.64, 0.78], ["100%", "31%"]);
+  const radius = useTransform(p, [0.24, 0.42, 0.64, 0.78], [0, 12, 12, 30]);
   const chrome = useFade(p, [0.24, 0.42], [0, 1]);
-  const barHeight = useTransform(p, [0.24, 0.42, 0.62, 0.8], ["0%", "7%", "7%", "0%"]);
-  const barOpacity = useFade(p, [0.24, 0.42, 0.62, 0.74], [0, 1, 1, 0]);
+  const barHeight = useTransform(p, [0.24, 0.42, 0.64, 0.78], ["0%", "7%", "7%", "0%"]);
+  const barOpacity = useFade(p, [0.24, 0.42, 0.58, 0.64], [0, 1, 1, 0]);
   const borderColor = useTransform(chrome, (v) => `rgba(14, 35, 32, ${0.55 * v})`);
-  const spreadOpacity = useFade(p, [0.26, 0.42], [1, 0]);
-  const desktopOpacity = useFade(p, [0.26, 0.42, 0.66, 0.8], [0, 1, 1, 0]);
-  const mobileOpacity = useFade(p, [0.66, 0.8], [0, 1]);
+  const spreadOpacity = useFade(p, [0.24, 0.4], [1, 0]);
+  const desktopOpacity = useFade(p, [0.28, 0.44, 0.57, 0.64], [0, 1, 1, 0]);
+  const mobileOpacity = useFade(p, [0.76, 0.86], [0, 1]);
   const progressScale = useTransform(p, [0, 1], [0, 1]);
 
   if (reduce) return <StaticPageToScreen />;
@@ -126,7 +128,7 @@ export function PageToScreen() {
               className="relative flex h-full flex-col overflow-hidden border-[1.5px] bg-crd-forest shadow-[0_26px_60px_-26px_rgba(14,35,32,0.55)]">
               <motion.svg style={{ opacity: chrome }} className="crd-browser-pencil" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true"><path d="M9 11 C245 6 530 12 986 9 Q992 12 991 25 L993 578 Q990 589 976 587 C743 591 311 585 22 590 Q9 586 11 574 L8 27" /></motion.svg>
               <motion.div aria-hidden="true" style={{ height: barHeight, opacity: barOpacity }} className="flex shrink-0 items-center gap-2 overflow-hidden bg-crd-parchment px-3">
-                <span className="crd-browser-dots"><i /><i /><i /></span>
+                <span className="crd-browser-dots shrink-0"><i /><i /><i /></span>
                 <span className="min-w-0 flex-1 truncate text-center text-[0.6rem] tracking-wide">riettegara.com</span>
               </motion.div>
               <div className="relative min-h-0 flex-1">
