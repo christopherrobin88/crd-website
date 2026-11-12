@@ -1,3 +1,4 @@
+import { MotionFrame } from "@/components/MotionFrame";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { Picture } from "@/components/Picture";
@@ -102,6 +103,7 @@ function FeaturedWorkCard({ project }: { project: FeaturedProject }) {
             project.large ? "max-w-md md:col-span-6" : "max-w-sm md:col-span-5"
           } ${project.reversed ? "md:order-2" : ""}`}
         >
+          <MotionFrame label="Take a closer look" direction={project.reversed ? -1 : 1}>
           {/* Parchment mat, matching the Work page's mounted-cover treatment */}
           <div className="rounded-xl border border-crd-gold/30 bg-crd-parchment/75 p-3 shadow-[0_18px_44px_-20px_rgba(14,35,32,0.35)] transition-shadow duration-500 group-hover:shadow-[0_26px_56px_-22px_rgba(14,35,32,0.45)] md:p-5">
             <div
@@ -111,11 +113,12 @@ function FeaturedWorkCard({ project }: { project: FeaturedProject }) {
               <Picture
                 pic={cover}
                 alt={project.coverAlt}
-                className="target-image h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                className="target-image h-full w-full object-contain"
                 sizes="(min-width: 768px) 40vw, 100vw"
               />
             </div>
           </div>
+          </MotionFrame>
         </Link>
 
         <div
