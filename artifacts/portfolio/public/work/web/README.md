@@ -3,7 +3,7 @@
 Source: desktop and mobile screenshots supplied by Christopher on 12 October 2026. Converted to WebP without cropping or compositing. All desktop images are 1440 x 1000; mobile images are 390 x 1000.
 
 Riette Gara: desktop, mobile, gallery and enquiry.
-Made by Mike: desktop and mobile captures from Christopher's subsequently supplied prototype 6 HTML; primary domain registration pending. Concept imagery remains labelled within the prototype.
+Made by Mike: desktop and mobile captures from Christopher's subsequently supplied prototype 6 HTML; the site is now live at https://www.madebymike.co.za/. Concept imagery remains labelled within the prototype.
 Behelm: desktop and mobile; latest compass-style identity confirmed by Christopher. Earlier BH logo-system study remains separately documented in the brand portfolio.
 
 These are portfolio design presentations, not embedded live websites. Screenshots are not evidence of performance results, conversion outcomes or a registered domain.

@@ -39,7 +39,7 @@ export const webProjects: WebProject[] = [
     description: "A showcase for handcrafted timber lighting, built around the warmth of the wood and the maker behind it.",
     introduction: "A website for handcrafted timber lighting. Product photography, generous typography and a simple structure bring the character of the pieces into focus.",
     status: "Live website",
-    liveUrl: "https://madebymike.co.za/",
+    liveUrl: "https://www.madebymike.co.za/",
     desktop: "/work/web/made-by-mike-desktop.webp",
     previewVideo: "/work/web/made-by-mike-motion.mp4",
     mobile: "/work/web/made-by-mike-mobile.webp",

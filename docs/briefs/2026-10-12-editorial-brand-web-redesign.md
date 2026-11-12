@@ -11,7 +11,7 @@ Use CRD's approved forest, parchment, moss and gold palette, Playfair Display an
 ## Web portfolio
 
 - Riette Gara: artist website, live at https://www.riettegara.com/. Desktop, mobile, gallery and enquiry presentations supplied by Christopher.
-- Made by Mike: maker website prototype built, primary domain registration pending. Christopher subsequently supplied the exact prototype 6 HTML. Desktop, mobile and motion captures now use that source, with its pendant logo, pale header and orange accents. The source includes labelled concept imagery. Do not link madebymike.com as a live site or substitute the older v07 prototype.
+- Made by Mike: maker website, live at https://www.madebymike.co.za/ (confirmed by Christopher, 16 October 2026). Christopher subsequently supplied the exact prototype 6 HTML. Desktop, mobile and motion captures now use that source, with its pendant logo, pale header and orange accents. The source includes labelled concept imagery. Do not substitute the older v07 prototype.
 - Behelm: website design presentation. Christopher confirmed the compass-style website mark is the latest identity. The existing BH monogram PDF presentation is retained and labelled as the earlier logo system study, not the current identity.
 
 The added routes are /web, /project/riette-gara, /project/made-by-mike and /project/behelm-web. They are included in the same metadata, prerender and sitemap flow as the existing projects. The web cards are also present on /work.
