@@ -518,9 +518,14 @@
 .crd-flow-step:not(:last-child)::after { content: '↓'; position: absolute; left: 50%; bottom: -28px; font-family: var(--font-serif); font-size: 24px; color: #0E2320; }
 .crd-flow-outline { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; fill: transparent; stroke: rgb(14 35 32 / .5); stroke-width: 1.25; transition: fill .35s ease, stroke .35s ease; }
 .crd-flow-pencil { opacity: .25; stroke-width: .6; }
+.crd-flow-grid--four .crd-flow-step { --flow-delay: 0s; }
+.crd-flow-grid--four .crd-flow-outline { transition-duration: .65s; transition-delay: var(--flow-delay); }
+.crd-flow-trace { fill: none; stroke: #0E2320; stroke-width: 1.6; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .9s ease var(--flow-delay); }
 .crd-flow-step.is-reached .crd-flow-outline { fill: rgb(107 122 61 / .1); stroke: #0E2320; }
+.crd-flow-step.is-reached .crd-flow-trace { stroke-dashoffset: 0; }
 @media (min-width: 1024px) {
   .crd-flow-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 15px; }
+  .crd-flow-grid--four .crd-flow-step { --flow-delay: calc(var(--flow-order) * .3s); }
   .crd-flow-grid--four { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 34px; }
   .crd-flow-grid--four .crd-flow-step:not(:last-child)::after { right: -26px; }
   .crd-flow-grid--four .crd-flow-step > div { padding: 28px 24px; }
@@ -546,7 +551,8 @@
 @keyframes crd-static-shift { from { transform: translate(-1%, -1%); } to { transform: translate(1%, 1%); } }
 @media (prefers-reduced-motion: reduce) {
   .crd-changing-channel #root, .crd-changing-channel .crd-tv-noise { animation: none; }
-  .crd-flow-outline { transition: none; }
+  .crd-flow-grid--four .crd-flow-outline, .crd-flow-trace { transition: none; }
+  .crd-flow-trace { stroke-dashoffset: 0; }
 }
 
 /* A small family of authored pencil marks, kept separate from body copy. */
