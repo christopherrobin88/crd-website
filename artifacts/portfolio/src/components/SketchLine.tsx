@@ -1,5 +1,10 @@
+import { useRef } from "react";
+import { useInView } from "framer-motion";
+
 export function SketchLine({ className = "" }: { className?: string }) {
-  return <svg viewBox="0 0 260 24" className={`crd-sketch-line ${className}`} aria-hidden="true">
+  const line = useRef<SVGSVGElement>(null);
+  const shown = useInView(line, { once: true, amount: 0.5 });
+  return <svg ref={line} data-drawn={shown} viewBox="0 0 260 24" className={`crd-sketch-line ${className}`} aria-hidden="true">
     <path pathLength="1" d="M4 12 C54 7 91 15 134 10 S210 9 254 13" />
     <path pathLength="1" d="M10 17 C62 14 117 18 169 14 S220 15 248 17" />
   </svg>;

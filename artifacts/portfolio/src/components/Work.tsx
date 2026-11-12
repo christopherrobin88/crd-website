@@ -1,3 +1,4 @@
+import { MotionFrame } from "@/components/MotionFrame";
 import { WebProjects } from "@/components/WebProjects";
 import { Link } from "wouter";
 import { projects, type Project } from "@/data/projects";
@@ -69,6 +70,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         data-project-anchor={project.id}
         className="group relative w-full max-w-sm md:w-2/5 block block-hover"
       >
+        <MotionFrame label="Take a closer look" direction={index % 2 ? -1 : 1}>
         {/* Parchment mat — frames the cover as a mounted editorial artefact */}
         <div className="border border-crd-gold/30 bg-crd-parchment/75 p-3 shadow-[0_18px_44px_-20px_rgba(14,35,32,0.35)] transition-shadow duration-500 group-hover:shadow-[0_26px_56px_-22px_rgba(14,35,32,0.45)] md:p-5">
           <div
@@ -78,7 +80,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             <Picture
               pic={project.coverImage}
               alt={project.title}
-              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+              className="w-full h-full object-contain"
               sizes="(min-width: 768px) 40vw, 100vw"
               // The first cover is the page's LCP candidate — never lazy.
               loading={index === 0 ? "eager" : "lazy"}
@@ -87,6 +89,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
           </div>
         </div>
+        </MotionFrame>
       </Link>
 
       <div className="w-full md:w-3/5 flex flex-col justify-center">

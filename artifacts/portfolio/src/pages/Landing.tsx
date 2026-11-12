@@ -62,7 +62,7 @@ export default function Landing() {
         <nav aria-label="In this issue" className="px-6 md:px-12">
           <ol className="mx-auto grid max-w-7xl border-y border-crd-forest/20 sm:grid-cols-2 lg:grid-cols-4">
             {contents.map((item) => <li key={item.page} className="border-b border-crd-forest/15 last:border-b-0 sm:[&:nth-child(n+3)]:border-b-0 lg:border-b-0 lg:border-l lg:first:border-l-0">
-              <Link href={item.href} className="group flex items-baseline gap-4 py-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-crd-forest lg:px-6 lg:py-6">
+              <Link href={item.href} className="crd-contents-link group flex items-baseline gap-4 py-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-crd-forest lg:px-6 lg:py-6">
                 <span className="font-serif text-2xl italic text-crd-moss md:text-3xl">{item.page}</span>
                 <span><span className="block text-sm font-medium underline decoration-transparent underline-offset-4 transition-colors group-hover:decoration-crd-gold motion-reduce:transition-none">{item.title}</span><span className="mt-1 block text-xs text-crd-forest/75">{item.detail}</span></span>
               </Link>

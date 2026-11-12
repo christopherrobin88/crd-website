@@ -1,3 +1,4 @@
+import { MotionFrame } from "@/components/MotionFrame";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 import { Pause, Play } from "lucide-react";
@@ -84,8 +85,9 @@ export function BrowserPreview({ title, image, mobileImage, previewVideo, href, 
   }, [paused, reduce]);
 
   return (
+    <MotionFrame className="crd-browser-motion">
     <div ref={frame} className="crd-browser">
-      <svg className="crd-browser-pencil" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true"><path d="M9 11 C245 6 530 12 986 9 Q992 12 991 25 L993 578 Q990 589 976 587 C743 591 311 585 22 590 Q9 586 11 574 L8 27" /></svg>
+      <svg className="crd-browser-pencil" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M9 11 C245 6 530 12 986 9 Q992 12 991 25 L993 578 Q990 589 976 587 C743 591 311 585 22 590 Q9 586 11 574 L8 27" /></svg>
       <div className="crd-browser-bar">
         <span className="crd-browser-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="min-w-0 flex-1 truncate text-center text-[0.65rem] tracking-wide">{title} / <span className="md:hidden">mobile</span><span className="hidden md:inline">website</span> preview</span>
@@ -106,5 +108,6 @@ export function BrowserPreview({ title, image, mobileImage, previewVideo, href, 
         </div>
       </Link>
     </div>
+    </MotionFrame>
   );
 }

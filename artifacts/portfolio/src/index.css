@@ -574,3 +574,36 @@
 /* Nav logo once the living-tree kit has inlined it (LivingLogo.tsx). Same box as the static image. */
 .crd-living-logo .crd-credit__svg { display: block; height: 3rem; width: auto; aspect-ratio: 1014 / 427; overflow: visible; }
 @media (min-width: 768px) { .crd-living-logo .crd-credit__svg { height: 3.5rem; } }
+
+/* Paper objects, pencil gestures and playful details. No perpetual motion. */
+.crd-motion-mount { position: relative; perspective: 1000px; }
+.crd-frame-arrival { transform: none; }
+.crd-frame-surface { transform: none; }
+.crd-frame-note { position: absolute; z-index: 3; right: -8px; bottom: 15px; display: flex; align-items: center; gap: 18px; padding: 10px 16px; background: #0E2320; color: #F4ECD9; font-family: var(--font-serif); font-size: 17px; font-style: italic; border-radius: 2px 5px 3px 7px; opacity: 0; pointer-events: none; transform: translateY(12px) rotate(-5deg); }
+.crd-frame-note span { font-family: var(--font-sans); font-style: normal; }
+.crd-index-link { position: relative; isolation: isolate; }
+.crd-index-link::before { content: ''; position: absolute; z-index: -1; inset: 3px -10px; background: rgb(107 122 61 / .09); border-radius: 49% 2% 48% 3% / 5% 70% 7% 65%; transform: scaleX(0); transform-origin: left; }
+.crd-index-link:hover::before, .crd-index-link:focus-visible::before { transform: scaleX(1); }
+@media (prefers-reduced-motion: no-preference) {
+  .crd-frame-arrival { transition: transform .85s cubic-bezier(.22, 1, .36, 1); }
+  .crd-motion-mount[data-arrived="false"] .crd-frame-arrival { transform: translateY(28px) rotate(calc(var(--frame-direction) * -2deg)) scale(.97); }
+  .crd-frame-surface { transition: transform .35s ease-out, filter .35s ease-out; transform: rotateX(var(--frame-y, 0deg)) rotateY(var(--frame-x, 0deg)); }
+  .crd-frame-note { transition: opacity .25s ease, transform .4s cubic-bezier(.22, 1, .36, 1); }
+  .crd-motion-mount[data-arrived="true"] .crd-browser-pencil path { stroke-dasharray: 1; animation: crd-frame-pencil 1.4s ease both; }
+  @keyframes crd-frame-pencil { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+  .crd-sketch-line[data-drawn="true"] path { stroke-dasharray: 1; animation: crd-frame-pencil 1s ease both; }
+  .crd-sketch-line[data-drawn="true"] path:last-child { animation-delay: .18s; }
+  .crd-index-link::before { transition: transform .45s cubic-bezier(.22, 1, .36, 1); }
+  .crd-index-link > span:nth-child(2), .crd-contents-link > span:first-child { transition: transform .35s ease, color .35s ease; }
+  .crd-index-link:hover > span:nth-child(2), .crd-index-link:focus-visible > span:nth-child(2) { transform: translateX(7px); }
+  .crd-contents-link:hover > span:first-child, .crd-contents-link:focus-visible > span:first-child { transform: rotate(-9deg) translateY(-3px); }
+}
+@media (hover: hover) and (pointer: fine) {
+  .crd-motion-mount[data-pointed="true"] .crd-frame-surface { filter: drop-shadow(0 16px 12px rgb(14 35 32 / .12)); }
+  .crd-motion-mount[data-pointed="true"] .crd-frame-note, a:focus-visible .crd-frame-note { opacity: 1; transform: translateY(0) rotate(-3deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .crd-motion-mount .crd-frame-arrival, .crd-motion-mount .crd-frame-surface { transform: none; transition: none; }
+  .crd-motion-mount .crd-browser-pencil path, .crd-sketch-line[data-drawn] path { animation: none; stroke-dashoffset: 0; }
+  .crd-frame-note { transition: none; transform: none; }
+}

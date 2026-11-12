@@ -31,7 +31,7 @@ export function WorkIndex() {
         <ol className="border-t border-crd-forest/25">
           {entries.map((entry, index) => (
             <li key={entry.id} className="border-b border-crd-forest/25">
-              <Link href={`/project/${entry.id}`} className="group grid grid-cols-[2.5rem_1fr_auto] items-baseline gap-x-4 py-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-crd-forest md:grid-cols-[4rem_1.2fr_1fr_1fr_auto] md:py-5">
+              <Link href={`/project/${entry.id}`} className="crd-index-link group grid grid-cols-[2.5rem_1fr_auto] items-baseline gap-x-4 py-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-crd-forest md:grid-cols-[4rem_1.2fr_1fr_1fr_auto] md:py-5">
                 <span className="text-xs tracking-widest text-crd-forest/70">{String(index + 1).padStart(2, "0")}</span>
                 <span className="font-serif text-2xl tracking-tight transition-colors group-hover:text-crd-moss motion-reduce:transition-none md:text-3xl">{entry.title}</span>
                 <span className="hidden text-sm text-crd-forest/80 md:block">{entry.kind}</span>
