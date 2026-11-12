@@ -99,3 +99,16 @@ An external AI-generated design review of a stitched full-page screenshot flagge
 ## Standing rule
 
 `DoubleSpread` compositing happens in code at render time, always — never as pre-merged flat files. This was tried once, reversed, and should not recur. `DoubleSpread` (`src/components/DoubleSpread.tsx`) now exists, with per-publication aspect ratios (measured from real sample page dimensions, not guessed) and a mobile-stacking fallback, and is used by Uncut, Kruger, Playboy SA, and Checkers via `ProjectContentFlow`.
+
+### Four-step project flow appeared static and finished off screen
+**Resolved 12 November 2026 in `fix/project-flow-reveal`.**
+
+The four-card rewrite retained only a subtle fill transition and observed the
+whole list. On stacked mobile layouts, later cards finished before the visitor
+reached them. Each card now observes its own visibility and draws its pencil
+outline before settling into the filled state. Desktop cards stagger by 300ms;
+mobile cards start when they enter view. Reveals run once per mount, all copy
+stays readable, and reduced-motion visitors see the completed state without
+transitions. Verified at 1440x900, 375x667 and 320x568 in headless Chrome, including
+scroll-back, no horizontal overflow and a live reduced-motion preference change.
+Workspace typecheck and the production build (19 prerendered routes) pass.
